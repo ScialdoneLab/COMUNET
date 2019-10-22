@@ -91,8 +91,8 @@ The **output** of this notebook is communist_output folder with following files:
 * unclustered_LRPs.pdf: one .pdf that contains for each ligand-receptor pair that doesn't belong to any cluster a ligand-receptor pair communication graph and log10 expression levels for ligand(s) and receptor(s) that belong to this ligand-receptor pair.
 	
 *for pattern search analysis:*
-	* pattern_results.csv: a table with all lingand-receptor pairs with dissimilarity < 1 to the pattern of interest sorted by increasing dissimilarity.
-	* pattern.pdf: one .pdf that contains for each ligand-receptor pair from pattern_results.csv (sorted by increasing dissimilarity) a ligand-receptor pair communication graph and log10 expression levels for ligand(s) and receptor(s) that belong to this ligand-receptor pair.
+* pattern_results.csv: a table with all lingand-receptor pairs with dissimilarity < 1 to the pattern of interest sorted by increasing dissimilarity.
+* pattern.pdf: one .pdf that contains for each ligand-receptor pair from pattern_results.csv (sorted by increasing dissimilarity) a ligand-receptor pair communication graph and log10 expression levels for ligand(s) and receptor(s) that belong to this ligand-receptor pair.
 
 ## comparativeAnalysis tutoarial
 These tutorials handle AML data
