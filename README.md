@@ -34,9 +34,11 @@ This notebook describes the steps for:
 * installation of CellPhoneDB
 * setting parameters for CellPhoneDB (gene_input_type = "gene_name", subsample = False) 
 * running CellPhoneDB
+
 The **input** of this notebook is:
 * counts_filtered_norm.txt a normalised (NOT log2 transformed) filtered count matrix (gene names in rows, cell IDs in columns)
 * anno_filtered.txt an annotation matrix (containing columns "Cell" and "cell_type").
+
 The **output** of this notebook is a "cpdb_output" folder that contains following files:
 * deconvoluted.txt
 *  means.txt
@@ -54,12 +56,14 @@ This notebook describes the steps for:
 * converting CellPhoneDB output (significant_means.txt  file) into a weight array
 * running Clusterins analysis of COMMUNIST
 * running Pattern Search analysis of COMMUNIST
+
 The **input** for this notebook is 
 * significant_means.txt from "cpdb_output" folder 
 * counts_filtered_norm.txt a normalised (NOT log2 transformed) filtered count matrix (gene names in rows, cell IDs in columns)
 * anno_filtered.txt an annotation matrix (containing columns "Cell" and "cell_type").
 * complex_input.csv obtained from CellPhoneDB site
 * gene_input.csv obtained from CellPhoneDB site
+
 The **output** of this notebook is communist_output folder with following files:
 * for clustering analysis:
 	* result.RData an list that contains:
