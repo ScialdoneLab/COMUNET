@@ -67,27 +67,27 @@ The **input** for this notebook is
 
 The **output** of this notebook is communist_output folder with following files:
 *for clustering analysis:*
-	* result.RData an list that contains:
-		* cellNumbers: number of cells per cell type
-		* nodes: cell types
-		* ligandReceptorPairs: dataframe of ligand-receptor pairs with columns: 
-			* "pair" contains values in a form "ligand:receptor", i.e. ligand being at the first place, receptor being at the second place, e.g. "TNFSF13:TNFRSF17"
-			*  "ligand" contains ligand names, e.g. "TNFSF13"
-			* "ligand_complex_composition" if ligand is a complex (e.g. "aXb2_complex"), contains genes in the ligand complex separated with a comma, e.g. "ITGAX,ITGB2", else contains ""
-			* "receptor" contains receptor names, e.g. "TNFRSF17"
-			* "receptor_complex_composition" if receptor is a complex (e.g. "NKG2D_II_receptor"), contains genes in the receptor complex separated with a comma, e.g. "KLRK1,HCST", else contains ""
-		* weight_array: array of weighted adjacency matrices (#nodes x #nodes x #ligand-receptor pairs)
-		* degree_array: array of node degrees (#nodes x 3 (in, out , delta) x # ligand-receptor pairs)
-		* dissim_matrix: dissimilarity matrix
-		* clusters: cluster assignment for each legnd-receptor pair
-		* weight_array_byCluster: array of weighted adjacency matrices of clusters (#nodes x #nodes x #clusters). Each weighted adjacency matrix contains average edge weights among ligand-receptor pairs in a cluster.
-		* degree_array_byCluster: array of node degrees (#nodes x 3 (in, out , delta) x # clusters). Each each degree matrix contains average -in , -out, and -delta node degree values among ligand-receptor pairs in a cluster.
-	* cellNumbers.csv: number of cells per cell type
-	* cluster.plots.pdf: in a single pdf for each cluster a cluster communication graph and a graph of ligands and receptors that belong to this cluster
-	* clusterX.pdf: one .pdf per cluster (i.e. cluster1.pdf for cluster1). One .pdf contains for each ligand-receptor pair that belong to this cluster a ligand-receptor pair communication graph and log10 expression levels for ligand(s) and receptor(s) that belong to this ligand-receptor pair.
-	* clusters.csv: a table of ligand-receptor pairs and their corresponding cluster number.
-	* overview.pdf: one .pdf that contains a heat map of all ligand-receptor pairs sorted by cluster, a UMAP of all ligand-receptor pairs collared by cluster.
-	* unclustered_LRPs.pdf: one .pdf that contains for each ligand-receptor pair that doesn't belong to any cluster a ligand-receptor pair communication graph and log10 expression levels for ligand(s) and receptor(s) that belong to this ligand-receptor pair.
+* result.RData an list that contains:
+	* cellNumbers: number of cells per cell type
+	* nodes: cell types
+	* ligandReceptorPairs: dataframe of ligand-receptor pairs with columns: 
+		* "pair" contains values in a form "ligand:receptor", i.e. ligand being at the first place, receptor being at the second place, e.g. "TNFSF13:TNFRSF17"
+		*  "ligand" contains ligand names, e.g. "TNFSF13"
+		* "ligand_complex_composition" if ligand is a complex (e.g. "aXb2_complex"), contains genes in the ligand complex separated with a comma, e.g. "ITGAX,ITGB2", else contains ""
+		* "receptor" contains receptor names, e.g. "TNFRSF17"
+		* "receptor_complex_composition" if receptor is a complex (e.g. "NKG2D_II_receptor"), contains genes in the receptor complex separated with a comma, e.g. "KLRK1,HCST", else contains ""
+	* weight_array: array of weighted adjacency matrices (#nodes x #nodes x #ligand-receptor pairs)
+	* degree_array: array of node degrees (#nodes x 3 (in, out , delta) x # ligand-receptor pairs)
+	* dissim_matrix: dissimilarity matrix
+	* clusters: cluster assignment for each legnd-receptor pair
+	* weight_array_byCluster: array of weighted adjacency matrices of clusters (#nodes x #nodes x #clusters). Each weighted adjacency matrix contains average edge weights among ligand-receptor pairs in a cluster.
+	* degree_array_byCluster: array of node degrees (#nodes x 3 (in, out , delta) x # clusters). Each each degree matrix contains average -in , -out, and -delta node degree values among ligand-receptor pairs in a cluster.
+* cellNumbers.csv: number of cells per cell type
+* cluster.plots.pdf: in a single pdf for each cluster a cluster communication graph and a graph of ligands and receptors that belong to this cluster
+* clusterX.pdf: one .pdf per cluster (i.e. cluster1.pdf for cluster1). One .pdf contains for each ligand-receptor pair that belong to this cluster a ligand-receptor pair communication graph and log10 expression levels for ligand(s) and receptor(s) that belong to this ligand-receptor pair.
+* clusters.csv: a table of ligand-receptor pairs and their corresponding cluster number.
+* overview.pdf: one .pdf that contains a heat map of all ligand-receptor pairs sorted by cluster, a UMAP of all ligand-receptor pairs collared by cluster.
+* unclustered_LRPs.pdf: one .pdf that contains for each ligand-receptor pair that doesn't belong to any cluster a ligand-receptor pair communication graph and log10 expression levels for ligand(s) and receptor(s) that belong to this ligand-receptor pair.
 	
 *for pattern search analysis:*
 	* pattern_results.csv: a table with all lingand-receptor pairs with dissimilarity < 1 to the pattern of interest sorted by increasing dissimilarity.
