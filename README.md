@@ -141,7 +141,7 @@ The **output** of this notebook is a "cpdb_output" folder that contains followin
 * pvalues.txt
 * significant_means.txt
 
-**PLEASE NOTE** that CellPhoneDB analysis might give slightly different results when rerun on the same data, which might affect the downstream analysis. If you wish to reproduce the exact figures from the manuscript, please run the downstream analysis on cpdb_output_AML328_d0 and cpdb_output_AML328_d29 outputs (please make sure to adjust the path name!).
+**PLEASE NOTE** that CellPhoneDB analysis might give slightly different results when rerun on the same data, which might affect the downstream analysis. If you wish to reproduce the exact figures from the manuscript, please run the downstream analysis on **cpdb_output_AML328_d0** and **cpdb_output_AML328_d29** outputs (please make sure to adjust the path name!).
 
 ### 3_ComparativeAnalysis.ipynb notebook
 This notebook uses R code, please make sure an R kernel is installed for your jupiter notebook or copy the code and run it in an R environment.
