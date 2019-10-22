@@ -99,56 +99,63 @@ These tutorials handle AML data
 ### 1_PrepareData.ipynb notebook
 This notebook uses R code, please make sure an R kernel is installed for your jupiter notebook or copy the code and run it in an R environment.
 This notebook describes the steps for:
-		- downloading the data
-		- filtering of cells (cell types that are represented by less than 5 cells are filtered out)
-		- filtering of cell types (cell types that are present only in one condition, but not in the other are filtered out)
-		- merge datasets for joint normalisation 
-		- normalising data with scran
-		- splitting data after normalisation
-		- filtering lowly expressed genes (genes with mean expression less than 1 in all expressing cells are filtered out)
-		- filtering unshared genes (genes that are present only in one condition, but not in the other are filtered out)
-The output of this notebook  are two folders:
-		- AML328_d0_forComparative
-		- AML328_d29_forComparative
-	each of them containing following files:
-		- counts_filtered_norm.txt a normalised (NOT log2 transformed) filtered count matrix (gene names in rows, cell IDs in columns)
-		- anno_filtered.txt an annotation matrix (containing columns "Cell" and "cell_type").
+* downloading the data
+* filtering of cells (cell types that are represented by less than 5 cells are filtered out)
+* filtering of cell types (cell types that are present only in one condition, but not in the other are filtered out)
+* merge datasets for joint normalisation 
+* normalising data with scran
+* splitting data after normalisation
+* filtering lowly expressed genes (genes with mean expression less than 1 in all expressing cells are filtered out)
+* filtering unshared genes (genes that are present only in one condition, but not in the other are filtered out)
+
+The **output** of this notebook  are two folders:
+* AML328_d0_forComparative
+* AML328_d29_forComparative
+
+each of them containing following files:
+* counts_filtered_norm.txt a normalised (NOT log2 transformed) filtered count matrix (gene names in rows, cell IDs in columns)
+* anno_filtered.txt an annotation matrix (containing columns "Cell" and "cell_type").
 
 ### 2_CellPhoneDBanalysis.ipynb notebook
 THIS NOTEBOOK SHOULD BE RUN SEPARATELY FOR AML328_d0 AND AML328_d29 data!
 This notebook uses CellPhoneDB venv, please make sure the venv kernel is installed for you jupiter notebook or run CellPhoneDB from the command line as described in the CellPhoneDB tutorial.
 This notebook describes the steps for:
-		- installation of CellPhoneDB
-		- setting parameters for CellPhoneDB (gene_input_type = "gene_name", subsample = False) 
-		- running CellPhoneDB
-The input of this notebook is:
-		- counts_filtered_norm.txt a normalised (NOT log2 transformed) filtered count matrix (gene names in rows, cell IDs in columns)
-		- anno_filtered.txt an annotation matrix (containing columns "Cell" and "cell_type").
-The output of this notebook is a "cpdb_output" folder that contains following files:
-		- deconvoluted.txt
-		- means.txt
-		- pvalues.txt
-		- significant_means.txt
-PLEASE NOTE that CellPhoneDB analysis might give slightly different results when rerun on the same data, which might affect the downstream analysis. If you wish to reproduce the exact figures from the manuscript, please run the downstream analysis on cpdb_output_AML328_d0 and cpdb_output_AML328_d29 outputs (please make sure to adjust the path name!).
+* installation of CellPhoneDB
+* setting parameters for CellPhoneDB (gene_input_type = "gene_name", subsample = False) 
+* running CellPhoneDB
+
+The **input** of this notebook is:
+* counts_filtered_norm.txt a normalised (NOT log2 transformed) filtered count matrix (gene names in rows, cell IDs in columns)
+* anno_filtered.txt an annotation matrix (containing columns "Cell" and "cell_type").
+
+The **output** of this notebook is a "cpdb_output" folder that contains following files:
+* deconvoluted.txt
+* means.txt
+* pvalues.txt
+* significant_means.txt
+
+**PLEASE NOTE** that CellPhoneDB analysis might give slightly different results when rerun on the same data, which might affect the downstream analysis. If you wish to reproduce the exact figures from the manuscript, please run the downstream analysis on cpdb_output_AML328_d0 and cpdb_output_AML328_d29 outputs (please make sure to adjust the path name!).
 
 ### 3_ComparativeAnalysis.ipynb notebook
 This notebook uses R code, please make sure an R kernel is installed for your jupiter notebook or copy the code and run it in an R environment.
 This notebook describes the steps for:
-		- defining parameters for COMMUNIST:
-			- export_results = TRUE the results will be exported into "communist_output" folder
-			- minClusterSize = 6 not less than 6 ligand-receptor pairs are allowed per cluster
-		- reading in input flies (for both conditions)
-		- converting CellPhoneDB output (significant_means.txt  file) into a weight array (for both conditions)
-		- running Clusterins analysis of COMMUNIST (for both conditions)
-		- running Comparative analysis of COMMUNIST
-The input for this notebook is 
-		- significant_means.txt from "cpdb_output" folder (for both conditions)
-		- counts_filtered_norm.txt a normalised (NOT log2 transformed) filtered count matrix (gene names in rows, cell IDs in columns) (for both conditions)
-		- anno_filtered.txt an annotation matrix (containing columns "Cell" and "cell_type") (for both conditions)
-		- complex_input.csv obtained from CellPhoneDB site
-		- gene_input.csv obtained from CellPhoneDB site
-The output of this notebook is communist_output folder with following files:
-		- comparative_dissimMatrix.csv: a pairwise dissimilarity matrix between ligand receptor pairs of two conditions
-		- comparative_overview.pdf: a .pdf file that contains an euler diagram of ligand-receptor pairs of both conditions, one clustered and one unclustered heatmap of pairwise dissimilarity of ligand-receptor pairs from both conditions 
-		- comparative_plots.pdf:  a .pdf that contains for each ligand-receptor of both conditions a ligand-receptor pair communication graph and log10 expression levels for ligand(s) and receptor(s) that belong to this ligand-receptor pair.
-		- comparative_sortedLRPlist.csv: a table of ligand-receptor pairs sorted by increasing dissimilarity between two conditions
+* defining parameters for COMMUNIST:
+	* export_results = TRUE the results will be exported into "communist_output" folder
+	* minClusterSize = 6 not less than 6 ligand-receptor pairs are allowed per cluster
+* reading in input flies (for both conditions)
+* converting CellPhoneDB output (significant_means.txt  file) into a weight array (for both conditions)
+* running Clusterins analysis of COMMUNIST (for both conditions)
+* running Comparative analysis of COMMUNIST
+
+The **input** for this notebook is 
+* significant_means.txt from "cpdb_output" folder (for both conditions)
+* counts_filtered_norm.txt a normalised (NOT log2 transformed) filtered count matrix (gene names in rows, cell IDs in columns) (for both conditions)
+* anno_filtered.txt an annotation matrix (containing columns "Cell" and "cell_type") (for both conditions)
+* complex_input.csv obtained from CellPhoneDB site
+* gene_input.csv obtained from CellPhoneDB site
+
+The **output** of this notebook is communist_output folder with following files:
+* comparative_dissimMatrix.csv: a pairwise dissimilarity matrix between ligand receptor pairs of two conditions
+* comparative_overview.pdf: a .pdf file that contains an euler diagram of ligand-receptor pairs of both conditions, one clustered and one unclustered heatmap of pairwise dissimilarity of ligand-receptor pairs from both conditions 
+* comparative_plots.pdf:  a .pdf that contains for each ligand-receptor of both conditions a ligand-receptor pair communication graph and log10 expression levels for ligand(s) and receptor(s) that belong to this ligand-receptor pair.
+* comparative_sortedLRPlist.csv: a table of ligand-receptor pairs sorted by increasing dissimilarity between two conditions
