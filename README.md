@@ -1,12 +1,12 @@
 # COMMUNIST
 There are following tutorials available:
 
-clustering_patternSearch:
+**clustering_patternSearch:**
 1. 1_PrepareData.ipynb
 2. 2_CellPhoneDBanalysis.ipynb
 3. 3_Clustering_PatternSearch.ipynb
 
-comparativeAnalysis:
+**comparativeAnalysis:**
 1. 1_PrepareData.ipynb
 2. 2_CellPhoneDBanalysis.ipynb
 3. 3_ComparativeAnalysis.ipynb
