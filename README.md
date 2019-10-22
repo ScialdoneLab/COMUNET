@@ -66,6 +66,7 @@ The **input** for this notebook is
 * gene_input.csv obtained from CellPhoneDB site
 
 The **output** of this notebook is communist_output folder with following files:
+
 *for clustering analysis:*
 * result.RData an list that contains:
 	* cellNumbers: number of cells per cell type
