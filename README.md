@@ -1,4 +1,4 @@
-# communicationAlgorithm
+# COMMUNIST
 There are following tutorials available:
 
 clustering_patternSearch:
