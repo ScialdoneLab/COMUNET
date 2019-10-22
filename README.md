@@ -17,6 +17,7 @@ If you wish to perform communication cluster analysis or pattern search analysis
 These tutorials handle embryo data
 ### 1_PrepareData.ipynb notebook
 This notebook uses R code, please make sure an R kernel is installed for your jupiter notebook or copy the code and run it in an R environment.
+
 This notebook describes the steps for:
 * downloading the data
 * cleaning the data (substet for E6.5 stage)
@@ -24,12 +25,14 @@ This notebook describes the steps for:
 * subsetting the dataset randomly for 1500 cells
 * normalising data with scran
 * filtering genes (genes with mean expression less than 1 in all expressing cells are filtered out)
-The output of this notebook is:
+
+The **output** of this notebook is:
 * counts_filtered_norm.txt a normalised (NOT log2 transformed) filtered count matrix (gene names in rows, cell IDs in columns)
 * anno_filtered.txt an annotation matrix (containing columns "Cell" and "cell_type").
 
 ### 2_CellPhoneDBanalysis.ipynb notebook
 This notebook uses CellPhoneDB venv, please make sure the venv kernel is installed for you jupiter notebook or run CellPhoneDB from the command line as described in the CellPhoneDB tutorial.
+
 This notebook describes the steps for:
 * installation of CellPhoneDB
 * setting parameters for CellPhoneDB (gene_input_type = "gene_name", subsample = False) 
@@ -49,6 +52,7 @@ The **output** of this notebook is a "cpdb_output" folder that contains followin
 
 ### 3_Clustering_PatternSearch.ipynb notebook
 This notebook uses R code, please make sure an R kernel is installed for your jupiter notebook or copy the code and run it in an R environment.
+
 This notebook describes the steps for:
 * defining parameters for COMMUNIST:
 	* export_results = TRUE the results will be exported into "communist_output" folder
@@ -98,6 +102,7 @@ The **output** of this notebook is communist_output folder with following files:
 These tutorials handle AML data
 ### 1_PrepareData.ipynb notebook
 This notebook uses R code, please make sure an R kernel is installed for your jupiter notebook or copy the code and run it in an R environment.
+
 This notebook describes the steps for:
 * downloading the data
 * filtering of cells (cell types that are represented by less than 5 cells are filtered out)
@@ -118,7 +123,9 @@ each of them containing following files:
 
 ### 2_CellPhoneDBanalysis.ipynb notebook
 THIS NOTEBOOK SHOULD BE RUN SEPARATELY FOR AML328_d0 AND AML328_d29 data!
+
 This notebook uses CellPhoneDB venv, please make sure the venv kernel is installed for you jupiter notebook or run CellPhoneDB from the command line as described in the CellPhoneDB tutorial.
+
 This notebook describes the steps for:
 * installation of CellPhoneDB
 * setting parameters for CellPhoneDB (gene_input_type = "gene_name", subsample = False) 
@@ -138,6 +145,7 @@ The **output** of this notebook is a "cpdb_output" folder that contains followin
 
 ### 3_ComparativeAnalysis.ipynb notebook
 This notebook uses R code, please make sure an R kernel is installed for your jupiter notebook or copy the code and run it in an R environment.
+
 This notebook describes the steps for:
 * defining parameters for COMMUNIST:
 	* export_results = TRUE the results will be exported into "communist_output" folder
