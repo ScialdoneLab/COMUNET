@@ -30,7 +30,7 @@ The **output** of this notebook is:
 * anno_filtered.txt an annotation matrix (containing columns "Cell" and "cell_type").
 
 ### 2_CellPhoneDBanalysis.ipynb notebook
-This notebook uses CellPhoneDB venv, please make sure the venv kernel is installed for you jupiter notebook or run CellPhoneDB from the command line as described in the (CellPhoneDB tutorial)[https://github.com/Teichlab/cellphonedb].
+This notebook uses CellPhoneDB venv, please make sure the venv kernel is installed for you jupiter notebook or run CellPhoneDB from the command line as described in the [CellPhoneDB tutorial](https://github.com/Teichlab/cellphonedb).
 
 This notebook describes the steps for:
 * installation of CellPhoneDB
@@ -124,7 +124,7 @@ each of them containing following files:
 ### 2_CellPhoneDBanalysis.ipynb notebook
 THIS NOTEBOOK SHOULD BE RUN SEPARATELY FOR AML328_d0 AND AML328_d29 data!
 
-This notebook uses CellPhoneDB venv, please make sure the venv kernel is installed for you jupiter notebook or run CellPhoneDB from the command line as described in the CellPhoneDB tutorial.
+This notebook uses CellPhoneDB venv, please make sure the venv kernel is installed for you jupiter notebook or run CellPhoneDB from the command line as described in the [CellPhoneDB tutorial](https://github.com/Teichlab/cellphonedb).
 
 This notebook describes the steps for:
 * installation of CellPhoneDB
