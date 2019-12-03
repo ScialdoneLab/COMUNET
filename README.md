@@ -23,6 +23,7 @@ This notebook describes the steps for:
 * subsetting the dataset randomly for 1500 cells
 * normalising data with scran
 * filtering genes (genes with mean expression less than 1 in all expressing cells are filtered out)
+* generate UMAP of the data
 
 The **output** of this notebook is:
 * counts_filtered_norm.txt a normalised (NOT log2 transformed) filtered count matrix (gene names in rows, cell IDs in columns)
@@ -110,6 +111,7 @@ This notebook describes the steps for:
 * splitting data after normalisation
 * filtering lowly expressed genes (genes with mean expression less than 1 in all expressing cells are filtered out)
 * filtering unshared genes (genes that are present only in one condition, but not in the other are filtered out)
+* generate UMAP of the data
 
 The **output** of this notebook  are two folders:
 * AML328_d0_forComparative
