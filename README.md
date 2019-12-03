@@ -18,7 +18,7 @@ This notebook uses R code, please make sure an R kernel is installed for your ju
 
 This notebook describes the steps for:
 * downloading the data
-* cleaning the data (substet for E6.5 stage)
+* cleaning the data (subset for E6.5 stage)
 * filtering of cells (cell types that are represented by less than 5 cells are filtered out)
 * subsetting the dataset randomly for 1500 cells
 * normalising data with scran
