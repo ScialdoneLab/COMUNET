@@ -52,13 +52,13 @@ The **output** of this notebook is a "cpdb_output" folder that contains followin
 This notebook uses R code, please make sure an R kernel is installed for your jupiter notebook or copy the code and run it in an R environment.
 
 This notebook describes the steps for:
-* defining parameters for COMMUNIST:
-	* export_results = TRUE the results will be exported into "communist_output" folder
+* defining parameters for COMUNET:
+	* export_results = TRUE the results will be exported into "comunet_output" folder
 	* minClusterSize = 6 not less than 6 ligand-receptor pairs are allowed per cluster
 * reading in input flies
 * converting CellPhoneDB output (significant_means.txt  file) into a weight array
-* running Clusterins analysis of COMMUNIST
-* running Pattern Search analysis of COMMUNIST
+* running Clusterins analysis of COMUNET
+* running Pattern Search analysis of COMUNET
 
 The **input** for this notebook is 
 * significant_means.txt from "cpdb_output" folder 
@@ -67,7 +67,7 @@ The **input** for this notebook is
 * complex_input.csv obtained from CellPhoneDB site
 * gene_input.csv obtained from CellPhoneDB site
 
-The **output** of this notebook is communist_output folder with following files:
+The **output** of this notebook is comunet_output folder with following files:
 
 *for clustering analysis:*
 * result.RData an list that contains:
@@ -145,13 +145,13 @@ The **output** of this notebook is a "cpdb_output" folder that contains followin
 This notebook uses R code, please make sure an R kernel is installed for your jupiter notebook or copy the code and run it in an R environment.
 
 This notebook describes the steps for:
-* defining parameters for COMMUNIST:
-	* export_results = TRUE the results will be exported into "communist_output" folder
+* defining parameters for COMUNET:
+	* export_results = TRUE the results will be exported into "comunet_output" folder
 	* minClusterSize = 6 not less than 6 ligand-receptor pairs are allowed per cluster
 * reading in input flies (for both conditions)
 * converting CellPhoneDB output (significant_means.txt  file) into a weight array (for both conditions)
-* running Clusterins analysis of COMMUNIST (for both conditions)
-* running Comparative analysis of COMMUNIST
+* running Clusterins analysis of COMUNET (for both conditions)
+* running Comparative analysis of COMUNET
 
 The **input** for this notebook is 
 * significant_means.txt from "cpdb_output" folder (for both conditions)
@@ -160,7 +160,7 @@ The **input** for this notebook is
 * complex_input.csv obtained from CellPhoneDB site
 * gene_input.csv obtained from CellPhoneDB site
 
-The **output** of this notebook is communist_output folder with following files:
+The **output** of this notebook is comunet_output folder with following files:
 * comparative_dissimMatrix.csv: a pairwise dissimilarity matrix between ligand receptor pairs of two conditions
 * comparative_overview.pdf: a .pdf file that contains an euler diagram of ligand-receptor pairs of both conditions, one clustered and one unclustered heatmap of pairwise dissimilarity of ligand-receptor pairs from both conditions 
 * comparative_plots.pdf:  a .pdf that contains for each ligand-receptor of both conditions a ligand-receptor pair communication graph and log10 expression levels for ligand(s) and receptor(s) that belong to this ligand-receptor pair.
