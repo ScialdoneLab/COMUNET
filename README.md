@@ -11,10 +11,8 @@ There are following tutorials available:
 2. 2_CellPhoneDBanalysis.ipynb
 3. 3_ComparativeAnalysis.ipynb
 
-If you wish to perform communication cluster analysis or pattern search analysis, please refer to the tutorials that are run with embryo data (Tutorial_embryo). If you wish to perform comparative analysis between two conditions, please refer to the tutorials that are run with AML data (Tutorial_AML).
-
 ## clustering_patternSearch tutorial
-These tutorials handle embryo data
+These tutorials use mouse embryo data.
 ### 1_PrepareData.ipynb notebook
 This notebook uses R code, please make sure an R kernel is installed for your jupiter notebook or copy the code and run it in an R environment.
 
@@ -99,7 +97,7 @@ The **output** of this notebook is communist_output folder with following files:
 * pattern.pdf: one .pdf that contains for each ligand-receptor pair from pattern_results.csv (sorted by increasing dissimilarity) a ligand-receptor pair communication graph and log10 expression levels for ligand(s) and receptor(s) that belong to this ligand-receptor pair.
 
 ## comparativeAnalysis tutoarial
-These tutorials handle AML data
+These tutorials use human AML data.
 ### 1_PrepareData.ipynb notebook
 This notebook uses R code, please make sure an R kernel is installed for your jupiter notebook or copy the code and run it in an R environment.
 
