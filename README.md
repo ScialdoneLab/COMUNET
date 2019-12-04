@@ -12,7 +12,7 @@ There are following tutorials available:
 3. 3_ComparativeAnalysis.ipynb
 
 ## clustering_patternSearch tutorial
-These tutorials use mouse embryo data.
+These tutorials use mouse embryo data from [Nowotschin *et al.*, 2019](https://www.nature.com/articles/s41586-019-1127-1).
 ### 1_PrepareData.ipynb notebook
 This notebook uses R code, please make sure an R kernel is installed for your jupiter notebook or copy the code and run it in an R environment.
 
@@ -30,7 +30,7 @@ The **output** of this notebook is:
 * anno_filtered.txt an annotation matrix (containing columns "Cell" and "cell_type").
 
 ### 2_CellPhoneDBanalysis.ipynb notebook
-This notebook uses CellPhoneDB venv, please make sure the venv kernel is installed for you jupiter notebook or run CellPhoneDB from the command line as described in the [CellPhoneDB tutorial](https://github.com/Teichlab/cellphonedb).
+This notebook uses [CellPhoneDB](https://doi.org/10.1101/680926) venv, please make sure the venv kernel is installed for you jupiter notebook or run CellPhoneDB from the command line as described in the [CellPhoneDB tutorial](https://github.com/Teichlab/cellphonedb).
 
 This notebook describes the steps for:
 * installation of CellPhoneDB
@@ -98,7 +98,7 @@ The **output** of this notebook is comunet_output folder with following files:
 * pattern.pdf: one .pdf that contains for each ligand-receptor pair from pattern_results.csv (sorted by increasing dissimilarity) a ligand-receptor pair communication graph and log10 expression levels for ligand(s) and receptor(s) that belong to this ligand-receptor pair.
 
 ## comparativeAnalysis tutoarial
-These tutorials use human AML data.
+These tutorials use human AML data from [van Galen *et al.,* 2019](https://doi.org/10.1016/j.cell.2019.01.031).
 ### 1_PrepareData.ipynb notebook
 This notebook uses R code, please make sure an R kernel is installed for your jupiter notebook or copy the code and run it in an R environment.
 
