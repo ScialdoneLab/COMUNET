@@ -6,7 +6,7 @@ COMUNET uses multiplex networks to represent and cluster all potential communica
 
 There are following tutorials available:
 
-**[Tutorial_embryo_lrpClustering](https://github.com/ScialdoneLab/COMUNET/tree/COUMNET-dev/Tutorials/Tutorial_embryo_lrpClustering):**
+## **[Tutorial_embryo_lrpClustering](https://github.com/ScialdoneLab/COMUNET/tree/COUMNET-dev/Tutorials/Tutorial_embryo_lrpClustering):**
 1. 1_PrepareData.ipynb
 2. 2_CellPhoneDBanalysis.ipynb
 3. 3_LRP_clustering.ipynb
@@ -21,7 +21,7 @@ Please note that COMUNET does not necessarily rely on the results of CellPhoneDB
 
 The 3_LRP_clustering.ipynb tutorial describes the COMUNET ligand-receptor clustering procedure.
 
-**[Tutorial_embryo_patternSearch](https://github.com/ScialdoneLab/COMUNET/tree/COUMNET-dev/Tutorials/Tutorial_embryo_patternSearch):**
+## **[Tutorial_embryo_patternSearch](https://github.com/ScialdoneLab/COMUNET/tree/COUMNET-dev/Tutorials/Tutorial_embryo_patternSearch):**
 1. 1_PrepareData.ipynb
 2. 2_CellPhoneDBanalysis.ipynb
 3. 3_PatternSearch.ipynb
@@ -32,7 +32,7 @@ The tutorials 1_PrepareData.ipynb and 2_CellPhoneDBanalysis.ipynb are the same, 
 
 The tutorial 3_PatternSearch.ipynb describes the COMUNET cell-cell communication pattern search procedure.
 
-**[Tutorial_AML_comparative](https://github.com/ScialdoneLab/COMUNET/tree/COUMNET-dev/Tutorials/Tutorial_AML_comparative):**
+## **[Tutorial_AML_comparative](https://github.com/ScialdoneLab/COMUNET/tree/COUMNET-dev/Tutorials/Tutorial_AML_comparative):**
 1. 1_PrepareData.ipynb
 2. 2_CellPhoneDBanalysis.ipynb
 3. 3_ComparativeAnalysis.ipynb
