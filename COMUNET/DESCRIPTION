@@ -2,9 +2,7 @@ Package: COMUNET
 Type: Package
 Title: Cell cOMmunication exploration with MUltiplex NETworks
 Version: 0.1.0
-Author: c(person("Solovey", "Maria", email = "maria.solovey@helmholtz-muenchen.de",
-  role = c("aut", "cre")), person("Scialdone", "Antonio",
-  role = c("aut")))
+Author: Maria Solovey [aut, cre], Antonio Scialdone [aut]
 Maintainer: The package maintainer <maria.solovey@helmholtz-muenchen.de>
 BugReports: https://github.com/ScialdoneLab/COMUNET/issues
 Description: COMUNET is a visualisation and analysis tool for cell-cell communication.  
