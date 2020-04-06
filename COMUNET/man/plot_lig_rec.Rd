@@ -1,5 +1,5 @@
-\name{plotLigRec}
-\alias{plotLigRec}
+\name{plot_lig_rec}
+\alias{plot_lig_rec}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
 Function to plot a graph with ligands and receptors in a particular cluster
@@ -8,38 +8,38 @@ Function to plot a graph with ligands and receptors in a particular cluster
 %%  ~~ A concise (1-5 lines) description of what the function does. ~~
 }
 \usage{
-plotLigRec(clusterOfInterest, lrp_clusters, ligandReceptorPairDF, ligRecColor = c("red", "blue"), edge.arrow.size = 0.25, node.label.cex = 1, layout = layout_nicely, legend.position = c(-1, -1.1), legend.pt.cex=2, legend.cex=0.8, ...)
+plot_lig_rec(cluster_of_interest, lrp_clusters, ligand_receptor_pair_df, lig_rec_color = c("red", "blue"), edge_arrow_size = 0.25, node_label_cex = 1, layout = layout_nicely, legend_position = c(-1, -1.1), legend_pt_cex=2, legend_cex=0.8, ...)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
-  \item{clusterOfInterest}{
+  \item{cluster_of_interest}{
 numeric: number of the cluster, for which the ligands and receptors should be plotted.
 }
   \item{lrp_clusters}{
 numeric vector: cluster assignment for each ligand-receptor pair
 }
-  \item{ligandReceptorPairDF}{
+  \item{ligand_receptor_pair_df}{
 character dataframe: data frame with columns "pair", "ligand", "ligand_complex_composition", "receptor", "receptor_complex_composition". Column "pair" contains values in a form "ligand:receptor", i.e. ligand being at the first place, receptor being at the second place, e.g. "TNFSF13:TNFRSF17". Column "ligand" contains ligand names, e.g. "TNFSF13". Column "ligand_complex_composition" if ligand is a complex (e.g. "aXb2_complex"), contains genes in the ligand complex separated with a comma, e.g. "ITGAX,ITGB2", else contains empty string "". Column "receptor" contains receptor names, e.g. "TNFRSF17". Column "receptor_complex_composition" if receptor is a complex (e.g. "NKG2D_II_receptor"), contains genes in the receptor complex separated with a comma, e.g. "KLRK1,HCST", else contains empty string "".
 }
-  \item{ligRecColor}{
+  \item{lig_rec_color}{
 character string vector: colours for ligand and receptors: first colour for the ligand, second colour for the receptor. Default value: c("red", "blue")
 }
-  \item{edge.arrow.size}{
+  \item{edge_arrow_size}{
 numeric: size of arrow edge. Default value: 0.25. See same argument of plot.igraph().
 }
-  \item{node.label.cex}{
+  \item{node_label_cex}{
 numeric: size of node labels. Default value: 1.
 }
   \item{layout}{
 function: see layout from igraph package v0.2.1. Default value: layout_nicely.
 }
-  \item{legend.position}{
+  \item{legend_position}{
 numeric vector: x, y coordinates of the legend position. Default value: c(-1, -1.1).
 }
-  \item{legend.pt.cex}{
+  \item{legend_pt_cex}{
 numeric: expansion factor(s) for the points in the legend. See legend() from graphics v3.6.2. Default value: 2
 }
-  \item{legend.cex}{
+  \item{legend_cex}{
 numeric: character expansion factor in the legend. See legend() from graphics v3.6.2. Default value: 0.8.
 }
   \item{...}{

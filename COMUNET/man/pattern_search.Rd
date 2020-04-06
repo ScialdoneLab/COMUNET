@@ -1,5 +1,5 @@
-\name{patternSearch}
-\alias{patternSearch}
+\name{pattern_search}
+\alias{pattern_search}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
 Function to perform pattern search
@@ -8,17 +8,17 @@ Function to perform pattern search
 %%  ~~ A concise (1-5 lines) description of what the function does. ~~
 }
 \usage{
-patternSearch(patternAdjMatrix, weight_array, ligandReceptorPairDF, nodes, dissimilarity = d_normWeightDiff)
+pattern_search(pattern_adj_matrix, weight_array, ligand_receptor_pair_df, nodes, dissimilarity = d_normWeightDiff)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
-  \item{patternAdjMatrix}{
+  \item{pattern_adj_matrix}{
 numeric matrix: an adjacency matrix for the pattern of interest.
 }
   \item{weight_array}{
 numeric array: array of weighted adjacency matrices with dimensions [number of nodes, number of nodes, number of ligand-receptor pairs].
 }
-  \item{ligandReceptorPairDF}{
+  \item{ligand_receptor_pair_df}{
 character dataframe: data frame with columns "pair", "ligand", "ligand_complex_composition", "receptor", "receptor_complex_composition". Column "pair" contains values in a form "ligand:receptor", i.e. ligand being at the first place, receptor being at the second place, e.g. "TNFSF13:TNFRSF17". Column "ligand" contains ligand names, e.g. "TNFSF13".  Column ligand_complex_composition" if ligand is a complex (e.g. "aXb2_complex"), contains genes in the ligand complex separated with a comma, e.g. "ITGAX,ITGB2", else contains empty string "". Column "receptor" contains receptor names, e.g. "TNFRSF17". Column "receptor_complex_composition" if receptor is a complex (e.g. "NKG2D_II_receptor"), contains genes in the receptor complex separated with a comma, e.g. "KLRK1,HCST", else contains empty string "".
 }
   \item{nodes}{

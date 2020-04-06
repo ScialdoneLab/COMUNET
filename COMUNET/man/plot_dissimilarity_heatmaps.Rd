@@ -8,15 +8,15 @@ Function to plot heatmaps of dissimilarity between two conditions
 %%  ~~ A concise (1-5 lines) description of what the function does. ~~
 }
 \usage{
-plot_dissimilarity_heatmaps(dissim_cond1_cond2, sortedLRP_DF, cond1_name, cond2_name, colors_lrp = c("green", "black"), show_legend = T, row_names_fontsize = 5, colomn_names_fontsize = 5, show_column_names = T, show_row_names = T, width = unit(0.1, "cm"), legend_direction = "horizontal", legend_width = unit(5, "cm"), title_position = "lefttop", row_dend_side = "left", column_dend_side = "top", column_title_side = "top", heatmap_legend_side = "bottom", ...)
+plot_dissimilarity_heatmaps(dissim_cond1_cond2, sorted_LRP_df, cond1_name, cond2_name, colors_lrp = c("green", "black"), show_legend = T, row_names_fontsize = 5, colomn_names_fontsize = 5, show_column_names = T, show_row_names = T, width = unit(0.1, "cm"), legend_direction = "horizontal", legend_width = unit(5, "cm"), title_position = "lefttop", row_dend_side = "left", column_dend_side = "top", column_title_side = "top", heatmap_legend_side = "bottom", ...)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{dissim_cond1_cond2}{
 numeric matrix: pairwise dissimilarity between all ligand-receptor pairs in the two conditions (condition 1 in rows, condition 2 in columns).
 }
-  \item{sortedLRP_DF}{
-dataframe with columns: "pair" (character string): names of ligand-receptor pairs in the same form as they are in ligandReceptorPairDF$pair; "presence" (character string): name of the condition in which the ligand-receptor pair is present or "shared" if present in both conditions; dissimilarity (numeric): dissimilarity value between the topology of ligand-receptor pair graph in two conditions. The smaller the dissimilarity value, the more similar is the graph topology between the two conditions. If a ligand-receptor pair is present only in one of the conditions, the dissimilarity is equal to 1.
+  \item{sorted_LRP_df}{
+dataframe with columns: "pair" (character string): names of ligand-receptor pairs in the same form as they are in ligand_receptor_pair_df$pair; "presence" (character string): name of the condition in which the ligand-receptor pair is present or "shared" if present in both conditions; dissimilarity (numeric): dissimilarity value between the topology of ligand-receptor pair graph in two conditions. The smaller the dissimilarity value, the more similar is the graph topology between the two conditions. If a ligand-receptor pair is present only in one of the conditions, the dissimilarity is equal to 1.
 }
   \item{cond1_name}{
 character string: sample name for condition 1.

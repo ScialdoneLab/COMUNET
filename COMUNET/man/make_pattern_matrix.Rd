@@ -1,5 +1,5 @@
-\name{makePatternMatrix}
-\alias{makePatternMatrix}
+\name{make_pattern_matrix}
+\alias{make_pattern_matrix}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
 Function to make a weight matrix for pattern of interest
@@ -8,11 +8,11 @@ Function to make a weight matrix for pattern of interest
 %%  ~~ A concise (1-5 lines) description of what the function does. ~~
 }
 \usage{
-makePatternMatrix(communicatingNodes, nodes)
+make_pattern_matrix(communicating_nodes, nodes)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
-  \item{communicatingNodes}{
+  \item{communicating_nodes}{
 character string vector: in form of c("cellType1_to_celltype2", "cell_type1_to_celltype3", ...), e.g. c("HSC_to_Tcells", "HSC_to_bcells", ...)
 }
   \item{nodes}{
@@ -23,7 +23,7 @@ character string vector: of length n with all cell types in the data
 %%  ~~ If necessary, more details than the description above ~~
 }
 \value{
-\item{weight matrix}{
+\item{weight_matrix}{
 numeric n x n matrix with values being 0 or 1. Rows are nodes, columns are nodes. Rows are regarded as sending cell type, columns are regarded as receiving cell types. The value 1 defines communication, the value 0 defines no communication.
 }
 }
