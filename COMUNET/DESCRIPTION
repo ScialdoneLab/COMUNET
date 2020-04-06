@@ -5,7 +5,15 @@ Version: 0.1.0
 Author: Maria Solovey [aut, cre], Antonio Scialdone [aut]
 Maintainer: The package maintainer <maria.solovey@helmholtz-muenchen.de>
 BugReports: https://github.com/ScialdoneLab/COMUNET/issues
-Description: COMUNET is a visualisation and analysis tool for cell-cell communication.  
-License: What license is it under?
+Description: COMUNET is a visualisation and analysis tool for cell-cell communication. COMUNET uses multiplex networks to represent and cluster all potential communication pathways between cell types. It algorithm also enables the search for specific patterns of communication and can perform comparative analysis between two biological conditions. 
+Depends: R (>= 3.5.0)
+Imports:
+	ComplexHeatmap (>= 1.20.0)
+	dynamicTreeCut (>= 1.63-1)
+	ggplot2 (>= 3.3.0)
+	igraph (>= 1.2.5)
+	umap (>= 0.2.5.0)
+	SDMTools (>= 1.1-221)
+License: GPL-3
 Encoding: UTF-8
 LazyData: true
