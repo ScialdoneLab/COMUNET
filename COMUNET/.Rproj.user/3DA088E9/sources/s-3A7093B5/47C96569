@@ -1,0 +1,26 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1586169075537.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "0",
+    "id" : "47C96569",
+    "lastKnownWriteTime" : 1586170223,
+    "last_content_update" : 1586170223718,
+    "path" : "~/Documents/Helmholtz/AG_Scialdone/our_papers/communication/package/COMUNET/man/comparativeAnalysis.Rd",
+    "project_path" : "man/comparativeAnalysis.Rd",
+    "properties" : {
+        "cursorPosition" : "51,22",
+        "scrollLine" : "50",
+        "tempName" : "Untitled1"
+    },
+    "read_only" : false,
+    "read_only_alternatives" : [
+    ],
+    "relative_order" : 1,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_doc"
+}
