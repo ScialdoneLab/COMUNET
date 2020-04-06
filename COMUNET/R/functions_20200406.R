@@ -5,17 +5,17 @@
 #       objectToCheck: a vector or matrix containing any values
 # OUPUT:
 #       a warning message is case the object contains NAs
-checkNAs <- function(objectToCheck){
+check_NAs <- function(objectToCheck){
         if(!all(!is.na(objectToCheck))) stop("WARNING: the object contains NAs.")
 }
 
-stepFunc <- function(x) {as.integer(x != 0)}
+step_func <- function(x) {as.integer(x != 0)}
 
 # prevent dropping dimensions
 `[` <- function(...) base::`[`(...,drop=FALSE)
 
 # filter out layers with no edges
-filterEmptyLayers <- function(weight_array
+filter_empty_layers <- function(weight_array
                               ,ligandReceptorPairDF
 ){
         # check which layers have no edges
@@ -51,7 +51,7 @@ array2matrix <- function(my_2D_array){
 # nr of degrees in 3: in- out- and (out-in)-
 # nr of layers is M
 #function to calculate degree
-calcDegrees <- function(weight_array
+calc_degrees <- function(weight_array
 ){
         N <- dim(weight_array)[1]
         if(length(dim(weight_array)) == 3){
@@ -85,7 +85,7 @@ calcDegrees <- function(weight_array
         }
         myDegreeArray[,"delta",] <- myDegreeArray[,"out",] - myDegreeArray[,"in",]
         # check NAs
-        checkNAs(myDegreeArray)
+        check_NAs(myDegreeArray)
         # return myDegreeArray
         myDegreeArray
 }
@@ -100,7 +100,7 @@ d_normWeightDiff <- function(adj1, adj2){
         # make a union adjacency matrix: 
         # 1. apply theta function on each of the two matrices to convert weights into zeros and ones
         # 2. then perform bitwise or operation to get the union matrix
-        unionOfEdges <- apply(adj1, 1:2, stepFunc) | apply(adj2, 1:2, stepFunc)
+        unionOfEdges <- apply(adj1, 1:2, step_func) | apply(adj2, 1:2, step_func)
         # calculate the number of edges in the union
         n_unionOfEdges <- sum(unionOfEdges)
         
@@ -133,7 +133,7 @@ d_deltaDegree <- function(adj1, adj2){
                            ,adj2)
                          ,dim = c(N,N,2)
         )
-        deltaDegrees <- calcDegrees(myArray)
+        deltaDegrees <- calc_degrees(myArray)
         # calculate distance
         myDist <- dist(x = t(matrix(deltaDegrees[,3,], nrow = N))
                        ,method = "euclidean"
@@ -182,7 +182,7 @@ calc_dissim_matrix <- function(weight_array1
                 }
         }
         
-        checkNAs(dissim_matrix)
+        check_NAs(dissim_matrix)
         dimnames(dissim_matrix) <- list(dimnames(weight_array1)[[3]]
                                         ,dimnames(weight_array2)[[3]]
         )
@@ -195,7 +195,7 @@ calc_dissim_matrix <- function(weight_array1
 # nodes
 # palette
 # OUT
-deltaDegreeToColor <- function(deltaDegreeVector
+delta_degree2color <- function(deltaDegreeVector
                                ,nodes
                                ,node_color_palette
 ){
@@ -218,7 +218,7 @@ deltaDegreeToColor <- function(deltaDegreeVector
         }
 }
 
-createEmptyAdjMatrix <- function(nodes){
+create_empty_adj_matrix <- function(nodes){
         adjacencyMatrix <- matrix(0
                                   ,nrow=length(nodes)
                                   ,ncol=length(nodes)
@@ -260,7 +260,7 @@ createEmptyAdjMatrix <- function(nodes){
 #       ...                             other plot.igraph parameters
 # OUT:
 #       graph plot
-plotCommunicationGraph <- function(LRP
+plot_communication_graph <- function(LRP
                                    ,weight_array
                                    ,ligandReceptorPairDF
                                    ,nodes
@@ -269,15 +269,15 @@ plotCommunicationGraph <- function(LRP
                                    ,title = LRP
                                    ,subtitle = ""
                                    ,node_color_palette = c("blue", "gray40", "red")
-                                   ,node.label.cex = 1 # size of node labels
-                                   ,vertex.shape = "none" # shape of node. See same argument of plot.igraph()
+                                   ,node.label.cex = 1
+                                   ,vertex.shape = "none"
                                    ,vertex.size = 15
                                    ,edge.arrow.size = 0.5
-                                   ,edge.width.scale = 2.5 # scaling factor for edge width
-                                   ,legend.size = 0.75 # size of the legend text
+                                   ,edge.width.scale = 2.5
+                                   ,legend.size = 0.75
                                    ,legend.gradient.x.coord = c(1.15,1.25,1.25,1.15)
                                    ,legend.gradient.y.coord = c(-0.5,-0.5,-1,-1)
-                                   ,... # other plot.igraph parameters
+                                   ,...
 ){
         # check that weight_array has dimnames
         if(length(dimnames(weight_array)) == 0) stop("ERROR: Dimension names of weight_array are not defined. Please define dimnames(weight_array)")
@@ -300,13 +300,13 @@ plotCommunicationGraph <- function(LRP
         } else { # LRP is NOT present in the ligandReceptorPairDF
                 
                 # create an empty weight matrix
-                adjacencyMatrix <- createEmptyAdjMatrix(nodes)
+                adjacencyMatrix <- create_empty_adj_matrix(nodes)
                 # convert to matrix
                 adjacencyMatrix <- array2matrix(adjacencyMatrix)
         }
         
         # calculate delta degree matrix
-        degreeMatrix <- calcDegrees(weight_array = adjacencyMatrix)
+        degreeMatrix <- calc_degrees(weight_array = adjacencyMatrix)
         # convert to matrix
         degreeMatrix <- array2matrix(degreeMatrix)
         
@@ -317,7 +317,7 @@ plotCommunicationGraph <- function(LRP
         )
         
         # add colour scheme to the graph object
-        colors <- deltaDegreeToColor(degreeMatrix[,3]
+        colors <- delta_degree2color(degreeMatrix[,3]
                                      ,nodes
                                      ,node_color_palette
         )
@@ -394,17 +394,17 @@ plotCommunicationGraph <- function(LRP
 #       ...                                     other plot.igraph parameters
 # OUT:
 #       graph plot
-plotLigRec <- function(clusterOfInterest
+plot_lig_rec <- function(clusterOfInterest
                        ,lrp_clusters
                        ,ligandReceptorPairDF
-                       ,ligRecColor = c("red", "blue") # first colour for ligand, second colour for receptor
+                       ,ligRecColor = c("red", "blue")
                        ,edge.arrow.size = 0.25
                        ,node.label.cex = 1
-                       ,layout = layout_nicely # see layout from igraph package v0.2.1
-                       ,legend.position = c(-1, -1.1) # x, y coordinates of the legend position
-                       ,legend.pt.cex=2 # expansion factor(s) for the points in the legend. See legend() from graphics v3.6.2
-                       ,legend.cex=0.8 # character expansion factor in the legend. See legend() from graphics v3.6.2
-                       ,... # other plot.igraph parameters
+                       ,layout = layout_nicely
+                       ,legend.position = c(-1, -1.1)
+                       ,legend.pt.cex=2
+                       ,legend.cex=0.8
+                       ,...
 ){
         # make adjacency matrix: 
         # rows contain ligands
@@ -511,21 +511,21 @@ plot_dissimilarity_heatmaps <- function(dissim_cond1_cond2
                                         ,cond1_name
                                         ,cond2_name
                                         ,colors_lrp = c("green"
-                                                        ,"black") # colours for ligand-receptor labels. Default: green for shared, black for unshared
-                                        ,show_legend = T # parameter of the HeatmapAnnotation function
-                                        ,row_names_fontsize = 5 # parameter of the Heatmap function
-                                        ,colomn_names_fontsize = 5 # parameter of the Heatmap function
-                                        ,show_column_names = T # parameter of the Heatmap function
-                                        ,show_row_names = T # parameter of the Heatmap function
-                                        ,width = unit(0.1, "cm") # parameter of the HeatmapAnnotation function
-                                        ,legend_direction = "horizontal" # parameter of the Heatmap function
-                                        ,legend_width = unit(5, "cm") # parameter of the Heatmap function
-                                        ,title_position = "lefttop" # parameter of the Heatmap function
-                                        ,row_dend_side = "left" # parameter of the Heatmap function
-                                        ,column_dend_side = "top" # parameter of the Heatmap function
-                                        ,column_title_side = "top" # parameter of the draw function
-                                        ,heatmap_legend_side = "bottom" # parameter of the draw function
-                                        ,... # other parameters for the Heatmap function
+                                                        ,"black")
+                                        ,show_legend = T
+                                        ,row_names_fontsize = 5
+                                        ,colomn_names_fontsize = 5
+                                        ,show_column_names = T
+                                        ,show_row_names = T
+                                        ,width = unit(0.1, "cm")
+                                        ,legend_direction = "horizontal"
+                                        ,legend_width = unit(5, "cm")
+                                        ,title_position = "lefttop"
+                                        ,row_dend_side = "left"
+                                        ,column_dend_side = "top"
+                                        ,column_title_side = "top"
+                                        ,heatmap_legend_side = "bottom"
+                                        ,...
 ){
         # colour vector for ligand-receptor pairs in condition 1
         cond1_LRPcolors <- sapply(rownames(dissim_cond1_cond2)
@@ -633,7 +633,7 @@ plot_dissimilarity_heatmaps <- function(dissim_cond1_cond2
 #       ...                                     any arguments "Heatmap" function takes
 # OUT:
 #       heatmap with ligand-receptor pairs ordered by their cluster assignment
-plot_cluster_heatmap <- function(dissim_matrix  # pairwise dissimilarity matrix. Note that rownames and colnames should be defined
+plot_cluster_heatmap <- function(dissim_matrix
                                  ,lrp_clusters
                                  ,cluster_colors = ""
                                  ,unclustered_LRP_color = "black"
@@ -645,7 +645,7 @@ plot_cluster_heatmap <- function(dissim_matrix  # pairwise dissimilarity matrix.
                                  ,column_title = "Clustering of ligand-receptor pairs"
                                  ,column_title_side = "top"
                                  ,heatmap_legend_side = "bottom"
-                                 ,... # any arguments "Heatmap" function takes
+                                 ,...
 ){
         # check that dissim_matrix  has rownames and colnames
         if(length(rownames(dissim_matrix )) == 0) stop("ERROR: dissim_matrix  has no rownames. Please define rownames as ligand-receptor pairs")
@@ -845,7 +845,7 @@ complex2genes <- function(complex
 # nodes                 character string vector of length n with all cell types in the data
 # OUT:
 # weight matrix         numeric n x n matrix [0,1]. Rows are nodes, columns are nodes. Rows are regarded as sending cell type, columns are regarded as receiving cell types. 1 defines communication, 0 defines no communication
-makePatternMatrix <- function(communicatingNodes
+make_pattern_matrix <- function(communicatingNodes
                               ,nodes
 ){
         # make a dummy matrix
@@ -903,8 +903,8 @@ makePatternMatrix <- function(communicatingNodes
 #                        "receptor_complex_composition" if receptor is a complex (e.g. "NKG2D_II_receptor"), contains genes in the receptor complex separated with a comma, e.g. "KLRK1,HCST", else contains ""
 #               nodes: character string vector                            a vector with all cell types in the data
 convert_CellPhoneDB_output <- function(CellPhoneDB_output
-                                       ,complex_input # donwload from CellPhoneDB
-                                       ,gene_input # donwload from CellPhoneDB
+                                       ,complex_input
+                                       ,gene_input
 ){
         # make ligand-receptor pair list
         # ligandReceptorPairDF is data frame with columns "pair", "ligand", "ligand_complex_composition", "receptor", "receptor_complex_composition"
@@ -1049,7 +1049,7 @@ convert_CellPhoneDB_output <- function(CellPhoneDB_output
         rownames(ligandReceptorPairDF) <- CellPhoneDB_output$interacting_pair
         
         # check NAs
-        checkNAs(ligandReceptorPairDF)
+        check_NAs(ligandReceptorPairDF)
         
         # make a key of nodes (in order to convert a vector of pairwise nodes to an adjacency matrix)
         nodeCombinations <- colnames(CellPhoneDB_output)[grepl("[|]"
@@ -1106,7 +1106,7 @@ convert_CellPhoneDB_output <- function(CellPhoneDB_output
         }
         
         # filter empty weight matrices
-        filteredData <- filterEmptyLayers(weight_array = weight_array
+        filteredData <- filter_empty_layers(weight_array = weight_array
                                           ,ligandReceptorPairDF = ligandReceptorPairDF
         )
         ligandReceptorPairDF <- filteredData$ligandReceptorPairDF
@@ -1149,7 +1149,7 @@ lrp_clustering <- function(weight_array
                            
 ){
         # calculate degree array
-        degree_array <- calcDegrees(weight_array = weight_array)
+        degree_array <- calc_degrees(weight_array = weight_array)
         hist(degree_array[,3,], main = "Histogram of degree delta")
         
         ## run analysis ####
@@ -1211,10 +1211,10 @@ lrp_clustering <- function(weight_array
                                                             ,paste("cluster"
                                                                    ,1:max(my.clusters))
                         )
-                        checkNAs(weight_array_byCluster)
+                        check_NAs(weight_array_byCluster)
                         
                         # calcualte degree arrays for each community (put it as well as an array)
-                        degreeArrayForClusters <- calcDegrees(weight_array = weight_array_byCluster)
+                        degreeArrayForClusters <- calc_degrees(weight_array = weight_array_byCluster)
                         
                 } else {
                         weight_array_byCluster <- NA
@@ -1249,7 +1249,7 @@ lrp_clustering <- function(weight_array
 #       dataframe:                              The data frame is sorted by increasing dissimilarity (i.e. similar patterns a the top
 #               pair: character string vector             ligand-receptor pair names
 #               dissimilarity: numeric vector  dissimilarity of ligand-receptor pairs to the pattern of interest. Note here that for the calculation of the dissimilarity of a weight matrix to the pattern of interest, we don't take into consideration the actual weight of the edges in this weight matrix, but just check wether the edge is present (i.e. has a non-zero value) or absent (i.e. has a zero value).
-patternSearch <- function(patternAdjMatrix # in rows are sending nodes, in columns are receiving nodes, 0 for no communication, 1 for communication
+pattern_search <- function(patternAdjMatrix # in rows are sending nodes, in columns are receiving nodes, 0 for no communication, 1 for communication
                           ,weight_array
                           ,ligandReceptorPairDF
                           ,nodes
@@ -1316,12 +1316,12 @@ patternSearch <- function(patternAdjMatrix # in rows are sending nodes, in colum
 # 	dissimilarity: numeric                 dissimilarity value between the topology of ligand-receptor pair graph in two conditions. The smaller the dissimilarity value, the more similar is the graph topology between the two conditions. If a ligand-receptor pair is present only in one of the conditions, the dissimilarity is equal to 1.
 # dissim_cond1_cond2: numeric matrix            pairwise dissimilarity between all ligand-receptor pairs in the two conditions (condition 1 in rows, condition 2 in columns)
 
-comparativeAnalysis <- function(cond1_weight_array
+comparative_analysis <- function(cond1_weight_array
                                 ,cond2_weight_array
                                 ,cond1_ligandReceptorPairDF
                                 ,cond2_ligandReceptorPairDF
-                                ,cond1_nodes # Please note that comparativeAnalysis expects nodes (i.e. cell types) to be the same in both conditions.
-                                ,cond2_nodes = cond1_nodes # Please note that comparativeAnalysis expects nodes (i.e. cell types) to be the same in both conditions.
+                                ,cond1_nodes
+                                ,cond2_nodes = cond1_nodes
                                 ,cond1_name
                                 ,cond2_name
                                 ,dissimilarity = d_normWeightDiff 
