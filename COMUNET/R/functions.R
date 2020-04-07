@@ -144,7 +144,6 @@ calc_dissim_matrix <- function(weight_array1
                         for(j in (i+1):M){
                                 dissim_value <- d(weight_array1[,,i]
                                                  ,weight_array2[,,j]
-                                                 #,...
                                 )
                                 dissim_matrix[i,j] <- dissim_value
                                 dissim_matrix[j,i] <- dissim_value
@@ -155,7 +154,6 @@ calc_dissim_matrix <- function(weight_array1
                         for(j in 1:M){
                                 dissim_value <- d(weight_array1[,,i]
                                                  ,weight_array2[,,j]
-                                                 #,...
                                 )
                                 dissim_matrix[i,j] <- dissim_value
                         }
@@ -356,28 +354,31 @@ plot_communication_graph <- function(LRP
         set.seed(1123)
         
         # create a plot
-        plot.igraph(layer_graph
-                    ,edge.width=edge.width
-                    ,edge.arrow.size = edge_arrow_size
-                    ,layout = layout.circle(layer_graph)
-                    ,edge.curved=TRUE
-                    ,vertex.label.color=V(layer_graph)$color
-                    ,vertex.shape=vertex_shape
-                    ,main = title
-                    ,sub = subtitle
-                    ,... # other plot.igraph parameters
-        )
+        igraph::plot.igraph(
+                layer_graph
+                ,edge.width=edge.width
+                ,edge.arrow.size = edge_arrow_size
+                ,layout = layout.circle(layer_graph)
+                ,edge.curved=TRUE
+                ,vertex.label.color=V(layer_graph)$color
+                ,vertex.shape=vertex_shape
+                ,main = title
+                ,sub = subtitle
+                ,... # other plot.igraph parameters
+                )
+        
         #points for the gradient legend
         pnts = cbind(x = legend_gradient_x_coord
-                     , y = legend_gradient_y_coord
+                     ,y = legend_gradient_y_coord
         )
         #create the gradient legend
-        legend.gradient(pnts = pnts
-                        ,cols = colormap
-                        ,limits = leg_labels
-                        ,title = leg_title
-                        ,cex = legend_size
-        )
+        SDMTools::legend.gradient(
+                pnts = pnts
+                ,cols = colormap
+                ,limits = leg_labels
+                ,title = leg_title
+                ,cex = legend_size
+                )
         
         
 }
@@ -463,14 +464,14 @@ plot_lig_rec <- function(cluster_of_interest
         set.seed(1123)
         
         # create a plot
-        plot.igraph(lrp_graph
-                    ,edge.arrow.size = edge_arrow_size
-                    ,vertex.label.color=V(lrp_graph)$color
-                    ,vertex.shape="none"
-                    ,edge.curved=F
-                    ,main = title
-                    ,layout=layout
-                    ,... # other plot.igraph parameters
+        igraph::plot.igraph(lrp_graph
+                            ,edge.arrow.size = edge_arrow_size
+                            ,vertex.label.color=V(lrp_graph)$color
+                            ,vertex.shape="none"
+                            ,edge.curved=F
+                            ,main = title
+                            ,layout=layout
+                            ,... # other plot.igraph parameters
         )
         legend(x=legend_position[1]
                ,y=legend_position[2]
@@ -548,80 +549,83 @@ plot_dissimilarity_heatmaps <- function(dissim_cond1_cond2
                                           else colors_lrp[2]
                                   })
         # row annotations
-        haRow = HeatmapAnnotation(df = data.frame(
-                ligand_receptor_pair = c("shared"
-                                         ,"not shared"))
-                , col = list(ligand_receptor_pair = c("shared" = colors_lrp[1]
-                                                      ,"not shared" = colors_lrp[2]))
-                , which = "row"
-                , width = width
-                , show_legend = show_legend
-        )
-        h_clustered <- Heatmap(dissim_cond1_cond2
-                               ,cluster_rows = T
-                               ,row_names_gp = gpar(fontsize = row_names_fontsize
-                                                    ,col = cond1_LRP_colors
-                               )
-                               ,cluster_columns = T
-                               ,column_names_gp = gpar(fontsize = colomn_names_fontsize
-                                                       ,col = cond2_LRP_colors
-                               )
-                               ,name = "dissimilarity coefficient"
-                               ,show_column_names = show_column_names
-                               ,show_row_names = show_row_names
-                               ,heatmap_legend_param = list(legend_direction = legend_direction
-                                                            ,legend_width = legend_width
-                                                            ,title_position = title_position
-                               )
-                               ,row_title = cond1_name
-                               ,row_dend_side = row_dend_side
-                               ,column_title = cond2_name
-                               ,column_dend_side = column_dend_side
-                               ,...
-        )
-        heatmap_comparative_clustered <- draw(h_clustered + haRow
-                                              ,column_title = "Comparative analysis: clustered"
-                                              ,column_title_side = column_title_side
-                                              ,heatmap_legend_side = heatmap_legend_side
-        )
+        haRow = ComplexHeatmap::HeatmapAnnotation(
+                df = data.frame(ligand_receptor_pair = c("shared"
+                                                         ,"not shared")
+                                )
+                ,col = list(ligand_receptor_pair = c("shared" = colors_lrp[1]
+                                                     ,"not shared" = colors_lrp[2]))
+                ,which = "row"
+                ,width = width
+                ,show_legend = show_legend
+                )
+        h_clustered <- ComplexHeatmap::Heatmap(
+                dissim_cond1_cond2
+                ,cluster_rows = T
+                ,row_names_gp = gpar(fontsize = row_names_fontsize
+                                     ,col = cond1_LRP_colors
+                                     )
+                ,cluster_columns = T
+                ,column_names_gp = gpar(fontsize = colomn_names_fontsize
+                                        ,col = cond2_LRP_colors
+                                        )
+                ,name = "dissimilarity coefficient"
+                ,show_column_names = show_column_names
+                ,show_row_names = show_row_names
+                ,heatmap_legend_param = list(legend_direction = legend_direction
+                                             ,legend_width = legend_width
+                                             ,title_position = title_position
+                                             )
+                ,row_title = cond1_name
+                ,end_side = row_dend_side
+                ,column_title = cond2_name
+                ,column_dend_side = column_dend_side
+                ,...
+                )
+        heatmap_comparative_clustered <- ComplexHeatmap::draw(
+                h_clustered + haRow
+                ,column_title = "Comparative analysis: clustered"
+                ,column_title_side = column_title_side
+                ,heatmap_legend_side = heatmap_legend_side
+                )
         
-        h_sorted <- Heatmap(dissim_cond1_cond2
-                            ,cluster_rows = F
-                            ,row_order = {
-                                    sub_sortedList <- sorted_LRP_df[rownames(sorted_LRP_df) %in% rownames(dissim_cond1_cond2),]
-                                    rownames(sub_sortedList[order(
-                                            sub_sortedList$presence),])
-                            }
-                            ,row_names_gp = gpar(fontsize = 5
-                                                 ,col = cond1_LRP_colors
-                            )
-                            ,cluster_columns = F
-                            ,column_order = {
-                                    sub_sortedList <- sorted_LRP_df[rownames(sorted_LRP_df) %in% colnames(dissim_cond1_cond2),]
-                                    rownames(sub_sortedList[order(
-                                            sub_sortedList$presence),])
-                            }
-                            ,column_names_gp = gpar(fontsize = 5
-                                                    ,col = cond2_LRP_colors
-                            )
-                            ,name = "dissimilarity coefficient"
-                            ,show_column_names = show_column_names
-                            ,show_row_names = show_row_names
-                            ,heatmap_legend_param = list(legend_direction = legend_direction
-                                                         ,legend_width = legend_width
-                                                         , title_position = title_position
-                            )
-                            ,row_title = cond1_name
-                            ,row_dend_side = row_dend_side
-                            ,column_title = cond2_name
-                            ,column_dend_side = column_dend_side
-                            ,...
-        )
-        heatmap_comparative_sorted <- draw(h_sorted + haRow
-                                           ,column_title = "Comparative analysis: sorted"
-                                           ,column_title_side = column_title_side
-                                           ,heatmap_legend_side = heatmap_legend_side
-        )
+        h_sorted <- ComplexHeatmap::Heatmap(
+                dissim_cond1_cond2
+                ,cluster_rows = F
+                ,row_order = {
+                        sub_sortedList <- sorted_LRP_df[rownames(sorted_LRP_df) %in% rownames(dissim_cond1_cond2),]
+                        rownames(sub_sortedList[order(sub_sortedList$presence),])
+                        }
+                ,row_names_gp = gpar(fontsize = 5
+                                     ,col = cond1_LRP_colors
+                                     )
+                ,cluster_columns = F
+                ,column_order = {
+                        sub_sortedList <- sorted_LRP_df[rownames(sorted_LRP_df) %in% colnames(dissim_cond1_cond2),]
+                        rownames(sub_sortedList[order(sub_sortedList$presence),])
+                        }
+                ,column_names_gp = gpar(fontsize = 5
+                                        ,col = cond2_LRP_colors
+                                        )
+                ,name = "dissimilarity coefficient"
+                ,show_column_names = show_column_names
+                ,show_row_names = show_row_names
+                ,heatmap_legend_param = list(legend_direction = legend_direction
+                                             ,legend_width = legend_width
+                                             , title_position = title_position
+                                             )
+                ,row_title = cond1_name
+                ,row_dend_side = row_dend_side
+                ,column_title = cond2_name
+                ,column_dend_side = column_dend_side
+                ,...
+                )
+        heatmap_comparative_sorted <- ComplexHeatmap::draw(
+                h_sorted + haRow
+                ,column_title = "Comparative analysis: sorted"
+                ,column_title_side = column_title_side
+                ,heatmap_legend_side = heatmap_legend_side
+                )
 }
 
 # function to plot heatmap for clustered ligand-receptor pairs
@@ -690,33 +694,36 @@ plot_cluster_heatmap <- function(dissim_matrix
                 }
         
         # define column annotation
-        haCol <- HeatmapAnnotation(df = data.frame(cluster = as.vector(lrp_clusters))
-                                   ,col = list(cluster = cluster_colors)
-                                   ,annotation_legend_param = annotation_legend_param
-        )
+        haCol <- ComplexHeatmap::HeatmapAnnotation(
+                df = data.frame(cluster = as.vector(lrp_clusters))
+                ,col = list(cluster = cluster_colors)
+                ,annotation_legend_param = annotation_legend_param
+                )
         
         # heatmap ordered by clusters
-        h1 <- Heatmap(dissim_matrix
-                      ,cluster_rows = F
-                      ,row_order = rownames(dissim_matrix)[order(as.numeric(lrp_clusters))]
-                      ,cluster_columns = F
-                      ,name = "dissimilarity coefficient"
-                      ,column_order = colnames(dissim_matrix)[order(as.numeric(lrp_clusters))]
-                      ,top_annotation = haCol
-                      ,show_column_names = show_column_names
-                      ,show_row_names = show_row_names
-                      ,heatmap_legend_param = list(legend_direction = legend_direction
-                                                   ,legend_width = legend_width
-                                                   ,title_position = title_position#"leftcenter" #"topcenter" # "topleft" #"lefttop"
-                      )
-                      ,...
-        )
+        h1 <- ComplexHeatmap::Heatmap(
+                dissim_matrix
+                ,cluster_rows = F
+                ,row_order = rownames(dissim_matrix)[order(as.numeric(lrp_clusters))]
+                ,cluster_columns = F
+                ,name = "dissimilarity coefficient"
+                ,column_order = colnames(dissim_matrix)[order(as.numeric(lrp_clusters))]
+                ,top_annotation = haCol
+                ,show_column_names = show_column_names
+                ,show_row_names = show_row_names
+                ,heatmap_legend_param = list(legend_direction = legend_direction
+                                             ,legend_width = legend_width
+                                             ,title_position = title_position
+                                             )
+                ,...
+                )
         
-        heatmap_clusters <- draw(h1
-                                 ,column_title = column_title
-                                 ,column_title_side = column_title_side
-                                 ,heatmap_legend_side = heatmap_legend_side
-        )
+        heatmap_clusters <- ComplexHeatmap::draw(
+                h1
+                ,column_title = column_title
+                ,column_title_side = column_title_side
+                ,heatmap_legend_side = heatmap_legend_side
+                )
 }
 
 # function to plot UMAP of ligand-receptor pairs
@@ -758,7 +765,7 @@ plot_cluster_UMAP <- function(ligand_receptor_pair_df
         set.seed(seed)
         
         # define n_neighbors parameter
-        n_neighbors <- umap.defaults$n_neighbors
+        n_neighbors <- umap::umap.defaults$n_neighbors
         if(n_neighbors >= nrow(ligand_receptor_pair_df)) n_neighbors <- round(nrow(ligand_receptor_pair_df) /2)
         
         # check wether there are enough ligand-receptor pairs to plot a UMAP
@@ -768,8 +775,8 @@ plot_cluster_UMAP <- function(ligand_receptor_pair_df
                 custom.settings$n_neighbors <- n_neighbors
                 
                 # calculate the UMAP
-                my.umap <- umap(dissim_matrix
-                                ,config = custom.settings)
+                my.umap <- umap::umap(dissim_matrix
+                                      ,config = custom.settings)
                 
                 # make data frame for UMAP plotting
                 dfForUmap <- data.frame(x=my.umap$layout[,1]
@@ -792,13 +799,13 @@ plot_cluster_UMAP <- function(ligand_receptor_pair_df
                 names(cluster_shape) <- names(cluster_colors)
                 
                 # plot UMAP
-                umap.clusters <- ggplot(dfForUmap
-                                        , aes(x=x
-                                              ,y=y
-                                              ,color=cluster
-                                              ,shape = cluster
-                                        )
-                )+
+                umap.clusters <- ggplot2::ggplot(dfForUmap
+                                                 ,aes(x=x
+                                                      ,y=y
+                                                      ,color=cluster
+                                                      ,shape = cluster
+                                                      )
+                                                 ) +
                         geom_point(size=point_size) +
                         scale_color_manual(name = "Cluster"
                                            ,labels = c("unclustered"
@@ -1163,11 +1170,12 @@ lrp_clustering <- function(weight_array
                 )
                 
                 # Cut the treee to identify clusters
-                my_clusters <- cutreeHybrid(my_tree
-                                            ,distM=dissim_matrix
-                                            ,deepSplit = 0
-                                            ,minClusterSize = min_cluster_size 
-                )$label
+                my_clusters <- dynamicTreeCut::cutreeHybrid(
+                        my_tree
+                        ,distM=dissim_matrix
+                        ,deepSplit = 0
+                        ,minClusterSize = min_cluster_size 
+                        )$label
                 names(my_clusters) <- dimnames(dissim_matrix)[[1]]
                 
                 # Any unassigned cells?
@@ -1194,9 +1202,9 @@ lrp_clustering <- function(weight_array
                                 }   
                         }
                         dimnames(weight_array_by_cluster) <- list(nodes
-                                                            ,nodes
-                                                            ,paste("cluster"
-                                                                   ,1:max(my_clusters))
+                                                                  ,nodes
+                                                                  ,paste("cluster"
+                                                                         ,1:max(my_clusters))
                         )
                         check_NAs(weight_array_by_cluster)
                         
