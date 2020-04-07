@@ -16,13 +16,13 @@ step_func <- function(x) {as.integer(x != 0)}
 
 # filter out layers with no edges
 filter_empty_layers <- function(weight_array
-                              ,ligand_receptor_pair_df
+                                ,ligand_receptor_pair_df
 ){
         # check which layers have no edges
         no_edge_layers <- sapply(1:nrow(ligand_receptor_pair_df)
-                               ,function(layer){
-                                       sum(weight_array[,,layer]) == 0
-                               })
+                                 ,function(layer){
+                                         sum(weight_array[,,layer]) == 0
+                                 })
         names(no_edge_layers) <- dimnames(weight_array)[3]
         # delete these layers form ligand_receptor_pair_df
         ligand_receptor_pair_df <- ligand_receptor_pair_df[!no_edge_layers,]
@@ -60,19 +60,19 @@ calc_degrees <- function(weight_array
         
         # make a dummy array
         my_degree_array <- array(NA
-                               ,dim = c(N,3,M)
+                                 ,dim = c(N,3,M)
         )
         
         # add dimension names
         if(M == 1){
                 dimnames(my_degree_array) <- list(dimnames(weight_array)[[1]]
-                                                ,c("in", "out", "delta")
-                                                ,1
+                                                  ,c("in", "out", "delta")
+                                                  ,1
                 )        
         } else {
                 dimnames(my_degree_array) <- list(dimnames(weight_array)[[1]]
-                                                ,c("in", "out", "delta")
-                                                ,dimnames(weight_array)[[3]]
+                                                  ,c("in", "out", "delta")
+                                                  ,dimnames(weight_array)[[3]]
                 )
         }
         
@@ -81,7 +81,7 @@ calc_degrees <- function(weight_array
                 my_degree_array[,"out",] <- rowSums(weight_array)
         }else{
                 my_degree_array[,"out",] <- colSums(aperm(weight_array
-                                                        ,c(2,1,3)))
+                                                          ,c(2,1,3)))
         }
         my_degree_array[,"delta",] <- my_degree_array[,"out",] - my_degree_array[,"in",]
         # check NAs
@@ -143,7 +143,7 @@ calc_dissim_matrix <- function(weight_array1
                 for (i in 1:(N-1)){
                         for(j in (i+1):M){
                                 dissim_value <- d(weight_array1[,,i]
-                                                 ,weight_array2[,,j]
+                                                  ,weight_array2[,,j]
                                 )
                                 dissim_matrix[i,j] <- dissim_value
                                 dissim_matrix[j,i] <- dissim_value
@@ -153,7 +153,7 @@ calc_dissim_matrix <- function(weight_array1
                 for (i in 1:N){
                         for(j in 1:M){
                                 dissim_value <- d(weight_array1[,,i]
-                                                 ,weight_array2[,,j]
+                                                  ,weight_array2[,,j]
                                 )
                                 dissim_matrix[i,j] <- dissim_value
                         }
@@ -198,11 +198,11 @@ delta_degree2color <- function(delta_degree_vector
 
 create_empty_adj_matrix <- function(nodes){
         adjacency_matrix <- matrix(0
-                                  ,nrow=length(nodes)
-                                  ,ncol=length(nodes)
+                                   ,nrow=length(nodes)
+                                   ,ncol=length(nodes)
         )
         dimnames(adjacency_matrix) <- list(nodes
-                                          ,nodes)
+                                           ,nodes)
         adjacency_matrix
 }
 
@@ -232,58 +232,95 @@ complex2genes <- function(complex
         }
 }
 
-
-# define a function to plot a community
-# function to make a plot of communication graph for a given ligand-receptor pair
-# IN:
-#       LRP: string                             name of ligand-receptor pair for which the plot should be constructed. Note the the LRP name should be written in the same from as in ligand_receptor_pair_df$pair. Alternatively, it can be a name of a cluster or a pattern
-#       weight_array: 3D numeric array or 2D matrix  array of weighted adjacency matrices or one adjacency matrix with dimensions [number of nodes, number of nodes, number of ligand-receptor pairs]
-#               First dimension: sending nodes (note: this dimension has all possible nodes, even if some of them are silent for a particular ligand-receptor pair)
-#               Second dimension: receiving nodes (note: this dimension has all possible nodes, even if some of them are silent for a particular ligand-receptor pair)
-#               Third dimension: ligand-receptor pairs
-#               Note that the weight_array should contain dimnames: dimnames = list(nodes, nodes, ligand-receptor pairs)
-#       ligand_receptor_pair_df: string dataframe  data frame with columns "pair", "ligand", "ligand_complex_composition", "receptor", "receptor_complex_composition"
-#               "pair" contains values in a form "ligand:receptor", i.e. ligand being at the first place, receptor being at the second place, e.g. "TNFSF13:TNFRSF17"
-#               "ligand" contains ligand names, e.g. "TNFSF13"
-#               "ligand_complex_composition" if ligand is a complex (e.g. "aXb2_complex"), contains genes in the ligand complex separated with a comma, e.g. "ITGAX,ITGB2", else contains ""
-#               "receptor" contains receptor names, e.g. "TNFRSF17"
-#               "receptor_complex_composition" if receptor is a complex (e.g. "NKG2D_II_receptor"), contains genes in the receptor complex separated with a comma, e.g. "KLRK1,HCST", else contains ""
-#       nodes: string vector                    a vector with all cell types in the data
-#       is_pattern: logical                      should a graph of a pattern (and not a particular ligand-receptor pair) be plotted. Default value = F
-#       is_cluster: logical                      should a graph of a cluster (and not a particular ligand-receptor pair) be plotted. Default value = F
-#       title: string                           title of the plot. Default value: LRP
-#       subtitle: string                        subtitle of the plot. Default value: ""
-#       node_color_palette: string vector       vector of colours for nodes. Default values: c("blue", "gray40", "red"). The colours will be used to construct a colour gradient for the node delta degree: blue representing a receiving node (negative delta degree), grey representing a neutral node (zero delta degree), red representing a sending node (positive delta degree)
-#       node_label_cex: numeric                 size of node labels. Default value: 1
-#       vertex_shape: string                    shape of node. Default value: "none". See same argument of plot.igraph()
-#       vertex_size: integer                    size of node. Default value: 15. See same argument of plot.igraph()
-#       edge_arrow_size: numeric                size of arrow edge. Default value: 0.5. See same argument of plot.igraph()
-#       edge_width_scale: numeric               scaling factor for edge width. Default value: 2.5. See same argument of plot.igraph()
-#       legend_size: numeric                    size of the legend text. Default value: 0.75
-#       legend_gradient_x_coord: numeric vector x coordinates of the label position. Default value: c(1.15,1.25,1.25,1.15)
-#       legend_gradient_y_coord: numeric vector y coordinates of the label position. Default value: c(-0.5,-0.5,-1,-1)
-#       ...                             other plot.igraph parameters
-# OUT:
-#       graph plot
+#' @rdname plot_communication_graph
 #' @export
+#' 
+#' @title 
+#' Plots communication graph
+#' 
+#' @description 
+#' \code{plot_lig_rec} plots a communication graph for a pair of interacting partners.
+#' If the pair of interacting partners is a ligand-receptor pair, a positive value of the node delta degree indicates that the node (cell type) 
+#' is mostly communicating by producing and secreting the ligand (“sending” node); conversely, a negative node delta degree marks nodes 
+#' that communicate mainly by receiving signals through the receptor (“receiving node”). 
+#' The arrows of the graph start at the sending nodes (which expresses the ligand) and point to the receiving nodes (which expresses the receptor), 
+#' while the thickness of an edge indicates the edge weight. 
+#' In case no directionality is specified for the pair of interacting proteins A and B (i.e., as for adhesion molecules), 
+#' the arrows start at the node expressing partner A and point to the node expressing partner B. 
+#' 
+#' @author
+#' Maria Solovey \email{maria.solovey@helmholtz-muenchen.de}
+#'
+#' @param      LRP character string: name of ligand-receptor pair for which the plot should be constructed. 
+#' Note the the LRP name should be written in the same from as in ligand_receptor_pair_df$pair. 
+#' Alternatively, it can be a name of a cluster or a pattern.
+#' 
+#' @param       weight_array 3D numeric array or 2D numeric matrix: 
+#' array of weighted adjacency matrices with dimensions [number of nodes, number of nodes, number of ligand-receptor pairs] or one adjacency matrix with dimensions [number of nodes, number of nodes]. 
+#' First dimension: sending nodes (note: this dimension has all possible nodes, even if some of them are silent for a particular ligand-receptor pair). 
+#' Second dimension: receiving nodes (note: this dimension has all possible nodes, even if some of them are silent for a particular ligand-receptor pair). 
+#' Third dimension (for arrays): ligand-receptor pairs. 
+#' Note that the weight_array should contain dimnames: dimnames = list(nodes, nodes, ligand-receptor pairs).
+#' 
+#' @param       ligand_receptor_pair_df character dataframe: data frame with columns "pair", "ligand", "ligand_complex_composition", "receptor", "receptor_complex_composition". 
+#' Column "pair" contains values in a form "ligand:receptor", i.e. ligand being at the first place, receptor being at the second place, e.g. "TNFSF13:TNFRSF17". 
+#' Column "ligand" contains ligand names, e.g. "TNFSF13".  Column ligand_complex_composition" if ligand is a complex (e.g. "aXb2_complex"), 
+#' contains genes in the ligand complex separated with a comma, e.g. "ITGAX,ITGB2", else contains empty string "". 
+#' Column "receptor" contains receptor names, e.g. "TNFRSF17". 
+#' Column "receptor_complex_composition" if receptor is a complex (e.g. "NKG2D_II_receptor"), 
+#' contains genes in the receptor complex separated with a comma, e.g. "KLRK1,HCST", else contains empty string "".
+#' 
+#' @param       nodes character vector: a vector with all cell types in the data.
+#' 
+#' @param       is_pattern logical: should a graph of a pattern (and not a particular ligand-receptor pair) be plotted. Default value = F.
+#' 
+#' @param       is_cluster logical: should a graph of a cluster (and not a particular ligand-receptor pair) be plotted. Default value = F.
+#' 
+#' @param       title character string: title of the plot. Default value: LRP.
+#' 
+#' @param       subtitle character string:  subtitle of the plot. Default value: "".
+#' 
+#' @param       node_color_palette character string vector: vector of colours for nodes. Default values: c("blue", "gray40", "red"). 
+#' The colours will be used to construct a colour gradient for the node delta degree: blue representing a receiving node (negative delta degree), 
+#' grey representing a neutral node (zero delta degree), red representing a sending node (positive delta degree).
+#' 
+#' @param       node_label_cex numeric: size of node labels. Default value: 1.
+#' 
+#' @param       vertex_shape character string: shape of node. Default value: "none". See same argument of plot.igraph().
+#' 
+#' @param       vertex_size integer: size of node. Default value: 15. See same argument of plot.igraph().
+#' 
+#' @param       edge_arrow_size  numeric: size of arrow edge. Default value: 0.5. See same argument of plot.igraph().
+#' 
+#' @param       edge_width_scale numeric: scaling factor for edge width. Default value: 2.5. See same argument of plot.igraph().
+#' 
+#' @param       legend_size numeric: size of the legend text. Default value: 0.75.
+#' 
+#' @param       legend_gradient_x_coord numeric vector: x coordinates of the label position. Default value: c(1.15,1.25,1.25,1.15).
+#' 
+#' @param       legend_gradient_y_coord numeric numeric vector: y coordinates of the label position. Default value: c(-0.5,-0.5,-1,-1).
+#' 
+#' @param       ...                             other plot.igraph parameters
+#'
+#' @return      graph plot
 plot_communication_graph <- function(LRP
-                                   ,weight_array
-                                   ,ligand_receptor_pair_df
-                                   ,nodes
-                                   ,is_pattern = F
-                                   ,is_cluster = F
-                                   ,title = LRP
-                                   ,subtitle = ""
-                                   ,node_color_palette = c("blue", "gray40", "red")
-                                   ,node_label_cex = 1
-                                   ,vertex_shape = "none"
-                                   ,vertex_size = 15
-                                   ,edge_arrow_size = 0.5
-                                   ,edge_width_scale = 2.5
-                                   ,legend_size = 0.75
-                                   ,legend_gradient_x_coord = c(1.15,1.25,1.25,1.15)
-                                   ,legend_gradient_y_coord = c(-0.5,-0.5,-1,-1)
-                                   ,...
+                                     ,weight_array
+                                     ,ligand_receptor_pair_df
+                                     ,nodes
+                                     ,is_pattern = F
+                                     ,is_cluster = F
+                                     ,title = LRP
+                                     ,subtitle = ""
+                                     ,node_color_palette = c("blue", "gray40", "red")
+                                     ,node_label_cex = 1
+                                     ,vertex_shape = "none"
+                                     ,vertex_size = 15
+                                     ,edge_arrow_size = 0.5
+                                     ,edge_width_scale = 2.5
+                                     ,legend_size = 0.75
+                                     ,legend_gradient_x_coord = c(1.15,1.25,1.25,1.15)
+                                     ,legend_gradient_y_coord = c(-0.5,-0.5,-1,-1)
+                                     ,...
 ){
         # check that weight_array has dimnames
         if(length(dimnames(weight_array)) == 0) stop("ERROR: Dimension names of weight_array are not defined. Please define dimnames(weight_array)")
@@ -365,7 +402,7 @@ plot_communication_graph <- function(LRP
                 ,main = title
                 ,sub = subtitle
                 ,... # other plot.igraph parameters
-                )
+        )
         
         #points for the gradient legend
         pnts = cbind(x = legend_gradient_x_coord
@@ -378,43 +415,68 @@ plot_communication_graph <- function(LRP
                 ,limits = leg_labels
                 ,title = leg_title
                 ,cex = legend_size
-                )
+        )
         
         
 }
 
-# function to plot a graph with ligands (red) and receptors (blue) in a particular cluster
-# IN:
-#       cluster_of_interest: numeric              number of the cluster, for which the ligands and receptors should be plotted
-#       lrp_clusters: numeric vector            cluster assignment for each ligand-receptor pair
-#       ligand_receptor_pair_df: string dataframe  data frame with columns "pair", "ligand", "ligand_complex_composition", "receptor", "receptor_complex_composition"
-#               "pair" contains values in a form "ligand:receptor", i.e. ligand being at the first place, receptor being at the second place, e.g. "TNFSF13:TNFRSF17"
-#               "ligand" contains ligand names, e.g. "TNFSF13"
-#               "ligand_complex_composition" if ligand is a complex (e.g. "aXb2_complex"), contains genes in the ligand complex separated with a comma, e.g. "ITGAX,ITGB2", else contains ""
-#               "receptor" contains receptor names, e.g. "TNFRSF17"
-#               "receptor_complex_composition" if receptor is a complex (e.g. "NKG2D_II_receptor"), contains genes in the receptor complex separated with a comma, e.g. "KLRK1,HCST", else contains ""
-#       lig_rec_color: string vector              colours for ligand and receptors: first colour for the ligand, second colour for the receptor. Default value: c("red", "blue") 
-#       edge_arrow_size: numeric                size of arrow edge. Default value: 0.25. See same argument of plot.igraph()
-#       node_label_cex: numeric                 size of node labels. Default value: 1
-#       layout: func                            see layout from igraph package v0.2.1. Default value: layout_nicely 
-#       legend_position: numeric vector         x, y coordinates of the legend position. Default value: c(-1, -1.1) 
-#       legend_pt_cex: numeric                  expansion factor(s) for the points in the legend. See legend() from graphics v3.6.2. Default value: 2 
-#       legend_cex: numeric                     character expansion factor in the legend. See legend() from graphics v3.6.2. Default value: 0.8
-#       ...                                     other plot.igraph parameters
-# OUT:
-#       graph plot
+#' @rdname plot_lig_rec
 #' @export
+#' 
+#' @title 
+#' Plots ligands and receptors in a particular cluster
+#' 
+#' @description 
+#' \code{plot_lig_rec} plots interacting partners in a particular cluster.
+#' If the pair of interacting partners is a ligand-receptor pair, then the ligand is colored red,
+#' the receptor is colored blue, and the arrow goes from the ligand to the receptor.
+#' In case no directionality is specified for the pair of interacting proteins A and B (i.e., as for adhesion molecules), 
+#' the arrows start at the node expressing partner A and point to the node expressing partner B. 
+#' 
+#' @author
+#' Maria Solovey \email{maria.solovey@helmholtz-muenchen.de}
+#'
+#' @param       cluster_of_interest numeric: number of the cluster, for which the ligands and receptors should be plotted.
+#' 
+#' @param       lrp_clusters numeric vector: cluster assignment for each ligand-receptor pair.
+#' 
+#' @param       ligand_receptor_pair_df character dataframe: data frame with columns "pair", "ligand", "ligand_complex_composition", "receptor", "receptor_complex_composition". 
+#' Column "pair" contains values in a form "ligand:receptor", i.e. ligand being at the first place, receptor being at the second place, e.g. "TNFSF13:TNFRSF17". 
+#' Column "ligand" contains ligand names, e.g. "TNFSF13". 
+#' Column "ligand_complex_composition" if ligand is a complex (e.g. "aXb2_complex"), 
+#' contains genes in the ligand complex separated with a comma, e.g. "ITGAX,ITGB2", else contains empty string "". 
+#' Column "receptor" contains receptor names, e.g. "TNFRSF17". 
+#' Column "receptor_complex_composition" if receptor is a complex (e.g. "NKG2D_II_receptor"), 
+#' contains genes in the receptor complex separated with a comma, e.g. "KLRK1,HCST", else contains empty string "".
+#' 
+#' @param       lig_rec_color character string vector: colours for ligand and receptors: first colour for the ligand, second colour for the receptor. Default value: c("red", "blue").
+#' 
+#' @param       edge_arrow_size numeric: size of arrow edge. Default value: 0.25. See same argument of plot.igraph().
+#' 
+#' @param       node_label_cex numeric: size of node labels. Default value: 1.
+#' 
+#' @param       layout function: see layout from igraph package v0.2.1. Default value: layout_nicely.
+#' 
+#' @param       legend_position numeric vector: x, y coordinates of the legend position. Default value: c(-1, -1.1).
+#' 
+#' @param       legend_pt_cex numeric: expansion factor(s) for the points in the legend. See legend() from graphics v3.6.2. Default value: 2.
+#' 
+#' @param       legend_cex numeric: character expansion factor in the legend. See legend() from graphics v3.6.2. Default value: 0.8.
+#' 
+#' @param       ... other plot.igraph parameters
+#' 
+#' @return     graph plot
 plot_lig_rec <- function(cluster_of_interest
-                       ,lrp_clusters
-                       ,ligand_receptor_pair_df
-                       ,lig_rec_color = c("red", "blue")
-                       ,edge_arrow_size = 0.25
-                       ,node_label_cex = 1
-                       ,layout = layout_nicely
-                       ,legend_position = c(-1, -1.1)
-                       ,legend_pt_cex=2
-                       ,legend_cex=0.8
-                       ,...
+                         ,lrp_clusters
+                         ,ligand_receptor_pair_df
+                         ,lig_rec_color = c("red", "blue")
+                         ,edge_arrow_size = 0.25
+                         ,node_label_cex = 1
+                         ,layout = layout_nicely
+                         ,legend_position = c(-1, -1.1)
+                         ,legend_pt_cex=2
+                         ,legend_cex=0.8
+                         ,...
 ){
         # make adjacency matrix: 
         # rows contain ligands
@@ -424,11 +486,11 @@ plot_lig_rec <- function(cluster_of_interest
         ligands <- unique(lrp$ligand)
         receptors <- unique(lrp$receptor)
         adj_matrix <- matrix(0
-                         ,nrow = length(ligands) + length(receptors)
-                         ,ncol = length(ligands) + length(receptors)
+                             ,nrow = length(ligands) + length(receptors)
+                             ,ncol = length(ligands) + length(receptors)
         )
         dimnames(adj_matrix) <- list(c(ligands,receptors)
-                                 ,c(ligands,receptors)
+                                     ,c(ligands,receptors)
         )
         for(idx in 1:nrow(lrp)){
                 idx_row <- which(lrp$ligand[idx] == rownames(adj_matrix))
@@ -485,36 +547,71 @@ plot_lig_rec <- function(cluster_of_interest
         )
 }
 
-
-# function to plot heatmap of dissimilarity between two conditions
-# IN:
-# dissim_cond1_cond2: numeric matrix            pairwise dissimilarity between all ligand-receptor pairs in the two conditions (condition 1 in rows, condition 2 in columns)
-# sorted_LRP_df: data.frame with columns:
-# pair: string                          names of ligand-receptor pairs in the same form as they are in ligand_receptor_pair_df$pair
-# presence: string                      whether the ligand-receptor pair is present in both conditions ("shared") or only in one of them.
-# dissimilarity: numeric                 dissimilarity value between the topology of ligand-receptor pair graph in two conditions. The smaller the dissimilarity value, the more similar is the graph topology between the two conditions. If a ligand-receptor pair is present only in one of the conditions, the dissimilarity is equal to 1.
-# cond1_name: character string                  sample name for condition 1
-# cond2_name: character string                  sample name for condition 2
-# colors_lrp: string vector                     colours for ligand-receptor labels. Default: green for shared, black for unshared
-# show_legend: logical                          parameter of the HeatmapAnnotation function. Default is T
-# row_names_fontsize: numeric                   parameter of the Heatmap function. Default is 5
-# colomn_names_fontsize: numeric                parameter of the Heatmap function. Default is 5
-# show_column_names: logical                    parameter of the Heatmap function. Default is T
-# show_row_names: logical                       parameter of the Heatmap function. Default  is T
-# width: object of class "unit"                 parameter of the HeatmapAnnotation function. Default is unit(0.1, "cm")
-# legend_direction: string                      parameter of the Heatmap function. Default is "horizontal"
-# legend_width: object of class "unit"          parameter of the Heatmap function. Default is unit(5, "cm") 
-# title_position: string                        parameter of the Heatmap function. Default is "lefttop"
-# row_dend_side: string                         parameter of the Heatmap function. Default is "left"
-# column_dend_side: string                      parameter of the Heatmap function. Default is "top"
-# column_title_side: string                     parameter of the draw function. Default is "top"
-# heatmap_legend_side: string                   parameter of the draw function. Default is "bottom" 
-# ...                                           other parameters of the Heatmap function.
-# OUT:
-# two heatmaps:
-# - one with ligand-receptor pairs clustered by their pairwise dissimilarity
-# - one with ligand-receptor pairs sorted by decreasing dissimilarity of shared ligand-receptor pairs
+#' @rdname plot_dissimilarity_heatmaps
 #' @export
+#' 
+#' @title 
+#' Plots heatmaps of dissimilarity between two conditions
+#' 
+#' @description 
+#' \code{plot_dissimilarity_heatmaps} plots heatmaps of dissimilarity between two conditions. 
+#' In each heatmap, interacting protein pairs from condition 1 are in the rows, and those from condition 2 are in the columns.
+#' On the first heatmap, both rows and columns are clustered by the pairwise dissimilarity.
+#' On the second heatmap, rows and columns are sorted by presence (shared or unshared) of an interacting protein pairs in both conditions
+#' and by decreasing pairwise dissimilarity (in shared interacting pairs).
+#' Labels of interacting pairs are colored by their presence (shared or unshared).
+#' Each point of the heatmap is colored by the value of the pairwise dissimilarity.
+#' 
+#' @author
+#' Maria Solovey \email{maria.solovey@helmholtz-muenchen.de}
+#'
+#' @param dissim_cond1_cond2 numeric matrix: pairwise dissimilarity between all ligand-receptor pairs in the two conditions (condition 1 in rows, condition 2 in columns).
+#' 
+#' @param sorted_LRP_df dataframe with columns: 
+#' "pair" (character string): names of ligand-receptor pairs in the same form as they are in ligand_receptor_pair_df$pair; 
+#' "presence" (character string): name of the condition in which the ligand-receptor pair is present or "shared" if present in both conditions; 
+#' "dissimilarity" (numeric): dissimilarity value between the topology of ligand-receptor pair graph in two conditions. 
+#' The smaller the dissimilarity value, the more similar is the graph topology between the two conditions. 
+#' If a ligand-receptor pair is present only in one of the conditions, the dissimilarity is equal to 1.
+#' 
+#' @param cond1_name character string: sample name for condition 1.
+#' 
+#' @param cond2_name character string: sample name for condition 2.
+#' 
+#' @param colors_lrp character string vector: colours for ligand-receptor labels. Default: green for shared, black for unshared.
+#' 
+#' @param show_legend logical: parameter of the HeatmapAnnotation function. Default is T.
+#' 
+#' @param row_names_fontsize numeric: parameter of the Heatmap function. Default is 5.
+#' 
+#' @param colomn_names_fontsize numeric: parameter of the Heatmap function. Default is 5.
+#' 
+#' @param show_column_names logical: parameter of the Heatmap function. Default is T.
+#' 
+#' @param show_row_names logical: parameter of the Heatmap function. Default  is T.
+#' 
+#' @param width object of class "unit": parameter of the HeatmapAnnotation function. Default is unit(0.1, "cm").
+#' 
+#' @param legend_direction character string: parameter of the Heatmap function. Default is "horizontal".
+#' 
+#' @param legend_width object of class "unit": parameter of the Heatmap function. Default is unit(5, "cm").
+#' 
+#' @param title_position character string: parameter of the Heatmap function. Default is "lefttop".
+#' 
+#' @param row_dend_side character string: parameter of the Heatmap function. Default is "left"
+#' 
+#' @param column_dend_side character string: parameter of the Heatmap function. Default is "top".
+#' 
+#' @param column_title_side character string: parameter of the draw function. Default is "top".
+#' 
+#' @param heatmap_legend_side character string: parameter of the draw function. Default is "bottom".
+#' 
+#' @param ... other parameters of the Heatmap function.
+#' 
+#' @return     
+#' two heatmaps:
+#' one with ligand-receptor pairs clustered by their pairwise dissimilarity
+#' one with ligand-receptor pairs sorted by decreasing dissimilarity of shared ligand-receptor pairs
 plot_dissimilarity_heatmaps <- function(dissim_cond1_cond2
                                         ,sorted_LRP_df
                                         ,cond1_name
@@ -538,56 +635,56 @@ plot_dissimilarity_heatmaps <- function(dissim_cond1_cond2
 ){
         # colour vector for ligand-receptor pairs in condition 1
         cond1_LRP_colors <- sapply(rownames(dissim_cond1_cond2)
-                                  ,function(i){
-                                          if(as.character(sorted_LRP_df[i,]$presence) == "shared") colors_lrp[1]
-                                          else colors_lrp[2]
-                                  })
+                                   ,function(i){
+                                           if(as.character(sorted_LRP_df[i,]$presence) == "shared") colors_lrp[1]
+                                           else colors_lrp[2]
+                                   })
         # colour vector for ligand-receptor pairs in condition 2
         cond2_LRP_colors <- sapply(colnames(dissim_cond1_cond2)
-                                  ,function(i){
-                                          if(as.character(sorted_LRP_df[i,]$presence) == "shared") colors_lrp[1]
-                                          else colors_lrp[2]
-                                  })
+                                   ,function(i){
+                                           if(as.character(sorted_LRP_df[i,]$presence) == "shared") colors_lrp[1]
+                                           else colors_lrp[2]
+                                   })
         # row annotations
         haRow = ComplexHeatmap::HeatmapAnnotation(
                 df = data.frame(ligand_receptor_pair = c("shared"
                                                          ,"not shared")
-                                )
+                )
                 ,col = list(ligand_receptor_pair = c("shared" = colors_lrp[1]
                                                      ,"not shared" = colors_lrp[2]))
                 ,which = "row"
                 ,width = width
                 ,show_legend = show_legend
-                )
+        )
         h_clustered <- ComplexHeatmap::Heatmap(
                 dissim_cond1_cond2
                 ,cluster_rows = T
                 ,row_names_gp = gpar(fontsize = row_names_fontsize
                                      ,col = cond1_LRP_colors
-                                     )
+                )
                 ,cluster_columns = T
                 ,column_names_gp = gpar(fontsize = colomn_names_fontsize
                                         ,col = cond2_LRP_colors
-                                        )
+                )
                 ,name = "dissimilarity coefficient"
                 ,show_column_names = show_column_names
                 ,show_row_names = show_row_names
                 ,heatmap_legend_param = list(legend_direction = legend_direction
                                              ,legend_width = legend_width
                                              ,title_position = title_position
-                                             )
+                )
                 ,row_title = cond1_name
                 ,end_side = row_dend_side
                 ,column_title = cond2_name
                 ,column_dend_side = column_dend_side
                 ,...
-                )
+        )
         heatmap_comparative_clustered <- ComplexHeatmap::draw(
                 h_clustered + haRow
                 ,column_title = "Comparative analysis: clustered"
                 ,column_title_side = column_title_side
                 ,heatmap_legend_side = heatmap_legend_side
-                )
+        )
         
         h_sorted <- ComplexHeatmap::Heatmap(
                 dissim_cond1_cond2
@@ -595,57 +692,80 @@ plot_dissimilarity_heatmaps <- function(dissim_cond1_cond2
                 ,row_order = {
                         sub_sortedList <- sorted_LRP_df[rownames(sorted_LRP_df) %in% rownames(dissim_cond1_cond2),]
                         rownames(sub_sortedList[order(sub_sortedList$presence),])
-                        }
+                }
                 ,row_names_gp = gpar(fontsize = 5
                                      ,col = cond1_LRP_colors
-                                     )
+                )
                 ,cluster_columns = F
                 ,column_order = {
                         sub_sortedList <- sorted_LRP_df[rownames(sorted_LRP_df) %in% colnames(dissim_cond1_cond2),]
                         rownames(sub_sortedList[order(sub_sortedList$presence),])
-                        }
+                }
                 ,column_names_gp = gpar(fontsize = 5
                                         ,col = cond2_LRP_colors
-                                        )
+                )
                 ,name = "dissimilarity coefficient"
                 ,show_column_names = show_column_names
                 ,show_row_names = show_row_names
                 ,heatmap_legend_param = list(legend_direction = legend_direction
                                              ,legend_width = legend_width
                                              , title_position = title_position
-                                             )
+                )
                 ,row_title = cond1_name
                 ,row_dend_side = row_dend_side
                 ,column_title = cond2_name
                 ,column_dend_side = column_dend_side
                 ,...
-                )
+        )
         heatmap_comparative_sorted <- ComplexHeatmap::draw(
                 h_sorted + haRow
                 ,column_title = "Comparative analysis: sorted"
                 ,column_title_side = column_title_side
                 ,heatmap_legend_side = heatmap_legend_side
-                )
+        )
 }
 
-# function to plot heatmap for clustered ligand-receptor pairs
-# IN:
-#       dissim_matrix: numeric matrix           pairwise dissimilarity matrix. Note that rownames and colnames should be defined
-#       lrp_clusters: numeric vector  cluster assignment for each ligand-receptor pair. Note that the the vector should be named and ordered in the same way as the rownames and colnames of the dissim_matrix
-#       cluster_colors: string vector           vector with colours for each cluster. Default value: ""
-#       unclustered_LRP_color: string           colour for ligand-receptor pairs that remained unclustered (cluster assignment 0). Default value: "black"
-#       show_colomn_names: logical              argument of the Heatmap function. Default value: F
-#       show_row_names: logical                 argument of the Heatmap function. Default value: F
-#       legend_direction: string                argument of the Heatmap function. Default value: "horizontal"
-#       legend_width: object of class "unit"    argument of the Heatmap function. Default is: unit(5, "cm")
-#       title_position: string                  argument of the Heatmap function. Default value: "lefttop"
-#       column_title: string                    title of the heatmap plot. Argument of the draw function. Default value: "Clustering of ligand-receptor pairs"
-#       column_title_side: string               position of the title of the heatmap plot. Argument of the draw function. Default value: "top"
-#       heatmap_legend_side: string             position of the legend of the heatmap plot. Argument of the draw function. Default value: "bottom"
-#       ...                                     any arguments "Heatmap" function takes
-# OUT:
-#       heatmap with ligand-receptor pairs ordered by their cluster assignment
+#' @rdname plot_cluster_heatmap
 #' @export
+#' 
+#' @title 
+#' Plots heatmap for clustered ligand-receptor pairs
+#' 
+#' @description 
+#' \code{plot_cluster_heatmap} plots a heatmap for clustered ligand-receptor pairs.
+#' Rows and columns are sorted by cluster number, the color of the heatmap represents dissimilarity between two pairs.
+#' 
+#' @author
+#' Maria Solovey \email{maria.solovey@helmholtz-muenchen.de}
+#'
+#' @param       dissim_matrix numeric matrix: pairwise dissimilarity matrix. Note that rownames and colnames should be defined.
+#' 
+#' @param       lrp_clusters numeric vector: cluster assignment for each ligand-receptor pair. 
+#' Note that the the vector should be named and ordered in the same way as the rownames and colnames of the dissim_matrix.
+#' 
+#' @param       cluster_colors character string vector: vector with colours for each cluster. Default value: "".
+#' 
+#' @param       unclustered_LRP_color character string: colour for ligand-receptor pairs that remained unclustered (cluster assignment 0). Default value: "black".
+#' 
+#' @param       show_colomn_names logical: argument of the Heatmap function. Default value: F.
+#' 
+#' @param       show_row_names logical: argument of the Heatmap function. Default value: F.
+#' 
+#' @param       legend_direction character string: argument of the Heatmap function. Default value: "horizontal".
+#' 
+#' @param       legend_width object of class "unit": argument of the Heatmap function. Default is: unit(5, "cm").
+#' 
+#' @param       title_position character string: argument of the Heatmap function. Default value: "lefttop".
+#' 
+#' @param       column_title character string: title of the heatmap plot. Argument of the draw function. Default value: "Clustering of ligand-receptor pairs".
+#' 
+#' @param       column_title_side character string:  position of the title of the heatmap plot. Argument of the draw function. Default value: "top".
+#' 
+#' @param       heatmap_legend_side character string: position of the legend of the heatmap plot. Argument of the draw function. Default value: "bottom".
+#' 
+#' @param       ... any arguments "Heatmap" function takes.
+#' 
+#' @return      heatmap with ligand-receptor pairs ordered by their cluster assignment
 plot_cluster_heatmap <- function(dissim_matrix
                                  ,lrp_clusters
                                  ,cluster_colors = ""
@@ -698,7 +818,7 @@ plot_cluster_heatmap <- function(dissim_matrix
                 df = data.frame(cluster = as.vector(lrp_clusters))
                 ,col = list(cluster = cluster_colors)
                 ,annotation_legend_param = annotation_legend_param
-                )
+        )
         
         # heatmap ordered by clusters
         h1 <- ComplexHeatmap::Heatmap(
@@ -714,37 +834,67 @@ plot_cluster_heatmap <- function(dissim_matrix
                 ,heatmap_legend_param = list(legend_direction = legend_direction
                                              ,legend_width = legend_width
                                              ,title_position = title_position
-                                             )
-                ,...
                 )
+                ,...
+        )
         
         heatmap_clusters <- ComplexHeatmap::draw(
                 h1
                 ,column_title = column_title
                 ,column_title_side = column_title_side
                 ,heatmap_legend_side = heatmap_legend_side
-                )
+        )
 }
 
-# function to plot UMAP of ligand-receptor pairs
-# IN:
-#       ligand_receptor_pair_df: string dataframe  data frame with columns "pair", "ligand", "ligand_complex_composition", "receptor", "receptor_complex_composition"
-#       dissim_matrix: numeric matrix           pairwise dissimilarity matrix. Note that rownames and colnames should be defined
-#       lrp_clusters: numeric vector            cluster assignment for each ligand-recetor pair. Note that the the vector should be named and ordered in the same way as the rownames and colnames of the dissim_matrix
-#       seed                                    random seed for UMAP. Default value: 100
-#       cluster_colors: string vector           vector with colours for each cluster. Default value: ""
-#       unclustered_LRP_color: string           colour for ligand-receptor pairs that remained unclustered (cluster assignment 0). Default value: "black"
-#       cluster_shape: numeric vector           vector with shapes for each cluster. Default value: ""
-#       point_size: numeric                     size of points. Default value: 2
-#       title: string                           title of the heatmap plot. Argument of the draw function. Default value: "umap of ligand-receptor pairs"
-#       legend_position: string                 argument of the theme function. Default value: "bottom" guide_legend
-#       legend_direction: string                argument of the guide_legend function. Default value: "horizontal"
-#       legend_title_position: string           argument of the guide_legend function. Default value: "top"
-#       legend_label_position: string           argument of the guide_legend function. Default value: "bottom"
-#       legend_byrow: logical                   argument of the guide_legend function. Default value: TRUE
-# OUT:
-#       UMAP of ligand-receptor pairs coloured and shaped by cluster
+#' @rdname plot_cluster_UMAP
 #' @export
+#' 
+#' @title 
+#' Plots UMAP of ligand-receptor pairs
+#' 
+#' @description 
+#' \code{plot_cluster_UMAP} plots UMAP of ligand-receptor pairs colored and shaped by cluster.
+#' 
+#' @author
+#' Maria Solovey \email{maria.solovey@helmholtz-muenchen.de}
+#'
+#' @param       ligand_receptor_pair_df character dataframe: data frame with columns "pair", "ligand", "ligand_complex_composition", "receptor", "receptor_complex_composition". 
+#' Column "pair" contains values in a form "ligand:receptor", i.e. ligand being at the first place, receptor being at the second place, e.g. "TNFSF13:TNFRSF17". 
+#' Column "ligand" contains ligand names, e.g. "TNFSF13".  
+#' Column ligand_complex_composition" if ligand is a complex (e.g. "aXb2_complex"), 
+#' contains genes in the ligand complex separated with a comma, e.g. "ITGAX,ITGB2", else contains empty string "". 
+#' Column "receptor" contains receptor names, e.g. "TNFRSF17". 
+#' Column "receptor_complex_composition" if receptor is a complex (e.g. "NKG2D_II_receptor"), 
+#' contains genes in the receptor complex separated with a comma, e.g. "KLRK1,HCST", else contains empty string "".
+#' 
+#' @param       dissim_matrix numeric matrix: pairwise dissimilarity matrix. Note that rownames and colnames should be defined.
+#' 
+#' @param       lrp_clusters numeric vector: cluster assignment for each ligand-recetor pair.
+#'  Note that the the vector should be named and ordered in the same way as the rownames and colnames of the dissim_matrix.
+#'  
+#' @param       seed random seed for UMAP. Default value: 100.
+#' 
+#' @param       cluster_colors character string vector: vector with colours for each cluster. Default value: "".
+#' 
+#' @param       unclustered_LRP_color character string: colour for ligand-receptor pairs that remained unclustered (cluster assignment 0). Default value: "black".
+#' 
+#' @param       cluster_shape numeric vector: vector with shapes for each cluster. Default value: "".
+#' 
+#' @param       point_size numeric: size of points. Default value: 2.
+#' 
+#' @param       title character string: title of the heatmap plot. Argument of the draw function. Default value: "umap of ligand-receptor pairs".
+#' 
+#' @param       legend_position character string: argument of the theme function. Default value: "bottom" guide_legend.
+#' 
+#' @param       legend_direction character string: argument of the guide_legend function. Default value: "horizontal".
+#' 
+#' @param       legend_title_position character string: argument of the guide_legend function. Default value: "top".
+#' 
+#' @param       legend_label_position character string: argument of the guide_legend function. Default value: "bottom".
+#' 
+#' @param       legend_byrow logical: argument of the guide_legend function. Default value: TRUE.
+#' 
+#' @return      UMAP of ligand-receptor pairs coloured and shaped by cluster
 plot_cluster_UMAP <- function(ligand_receptor_pair_df
                               ,dissim_matrix
                               ,lrp_clusters
@@ -804,8 +954,8 @@ plot_cluster_UMAP <- function(ligand_receptor_pair_df
                                                       ,y=y
                                                       ,color=cluster
                                                       ,shape = cluster
-                                                      )
-                                                 ) +
+                                                 )
+                ) +
                         geom_point(size=point_size) +
                         scale_color_manual(name = "Cluster"
                                            ,labels = c("unclustered"
@@ -830,15 +980,29 @@ plot_cluster_UMAP <- function(ligand_receptor_pair_df
         } else print("WARNING: too few ligand-receptor pairs. UMAP can not be plotted.")
 }
 
-# function to make a weight matrix for pattern of interest
-# IN:
-# communicating_nodes    character string vector in form of c("cellType1_to_celltype2", "cell_type1_to_celltype3",...), e.g. c("HSC_to_Tcells", "HSC_to_bcells",...)
-# nodes                 character string vector of length n with all cell types in the data
-# OUT:
-# weight matrix         numeric n x n matrix [0,1]. Rows are nodes, columns are nodes. Rows are regarded as sending cell type, columns are regarded as receiving cell types. 1 defines communication, 0 defines no communication
+#' @rdname make_pattern_matrix
 #' @export
+#' 
+#' @title 
+#' Makes a weight matrix for pattern of interest
+#'
+#' @description 
+#' \code{make_pattern_matrix} makes a weight matrix for pattern of interest.
+#' The rows and columns of the matrix will contain all nodes.
+#' The rows are considered as sending nodes and the columns are considered as receiving nodes. 
+#' The value of 1 represents an edge (i.e. cell types are communicating) and 0 represents no edge (i.e. cell types are not communicating). 
+#' 
+#' @author
+#' Maria Solovey \email{maria.solovey@helmholtz-muenchen.de}
+#'
+#' @param communicating_nodes character string vector: in form of c("cellType1_to_celltype2", "cell_type1_to_celltype3", ...), e.g. c("HSC_to_Tcells", "HSC_to_bcells", ...).
+#' 
+#' @param nodes character string vector: of length n with all cell types in the data.
+#' 
+#' @return     weight matrix: numeric n x n matrix with values 0 or 1. Rows are nodes, columns are nodes. 
+#' Rows are regarded as sending cell type, columns are regarded as receiving cell types. 1 defines communication, 0 defines no communication
 make_pattern_matrix <- function(communicating_nodes
-                              ,nodes
+                                ,nodes
 ){
         # make a dummy matrix
         pattern_w_matrix <- matrix(0
@@ -874,27 +1038,49 @@ make_pattern_matrix <- function(communicating_nodes
         return(pattern_w_matrix)
 }
 
-# converts CellPhoneDB output matrix (significant_means.txt) into an array of weighted adjacency matrices
-# IN:
-#       CellPhoneDB_output      significant_means.txt file in the output of CellPhoneDB
-#       complex_input           complex_input.csv file. Download from CellPhoneDB
-#       gene_input              gene_input.csv file. Download from CellPhoneDB
-# OUT:
-#       list of:
-#               weight_array: 3D numeric array                       array of weighted adjacency matrices with dimensions [number of nodes, number of nodes, number of ligand-receptor pairs]. Note that the function filters out empty weight arrays and the corresponding ligand-receptor pairs
-#                       First dimension: sending nodes (note: this dimension has all possible nodes, even if some of them are silent for a particular ligand-receptor pair)
-#                       Second dimension: receiving nodes (note: this dimension has all possible nodes, even if some of them are silent for a particular ligand-receptor pair)
-#                       Third dimension: ligand-receptor pairs
-#                       Note that the weight_array should contain dimnames: dimnames = list(nodes, nodes, ligand-receptor pairs)
-#                       
-#               ligand_receptor_pair_df: string dataframe          data frame with columns "pair", "ligand", "ligand_complex_composition", "receptor", "receptor_complex_composition"
-#                        "pair" contains values in a form "ligand:receptor", i.e. ligand being at the first place, receptor being at the second place, e.g. "TNFSF13:TNFRSF17"
-#                        "ligand" contains ligand names, e.g. "TNFSF13"
-#                        "ligand_complex_composition" if ligand is a complex (e.g. "aXb2_complex"), contains genes in the ligand complex separated with a comma, e.g. "ITGAX,ITGB2", else contains ""
-#                        "receptor" contains receptor names, e.g. "TNFRSF17"
-#                        "receptor_complex_composition" if receptor is a complex (e.g. "NKG2D_II_receptor"), contains genes in the receptor complex separated with a comma, e.g. "KLRK1,HCST", else contains ""
-#               nodes: character string vector                            a vector with all cell types in the data
+#' @rdname convert_CellPhoneDB_output
 #' @export
+#' 
+#' @title 
+#' Converts CellPhoneDB output matrix into an array of weighted adjacency matrices
+#'
+#' @description 
+#' \code{convert_CellPhoneDB_output} converts CellPhoneDB output matrix (significant_means.txt) into an array of weighted adjacency matrices.
+#' The CellPhoneDB weight matrix (significant_means.txt) contains ligand-receptor pairs in the rows and all pairs of cell types in the columns. 
+#' COMUNET transforms it into a stack of weight matrices (i.e. weight array), one weight matrix per ligand-receptor pair. 
+#' If CellPhoneDB output contains \code{m} non-empty ligand-receptor pairs, then the number of matrices in the stack will be equal to \code{m}. 
+#' Each such weight matrix has all cell types in the rows and all cell types in the columns. 
+#' So if there are \code{n} cell types in the data, each weight matrix is an \code{n x n} matrix. 
+#' The rows of each matrix represent sending cell types, i.e. cell types that express a ligand of a ligand-receptor pair, 
+#' or just partner A of an undirected interacting pair (e.g. pair of adhesion molecules). 
+#' The columns of each matrix represent receiving cell types, i.e. cell types that express a receptor of a ligand-receptor pair, 
+#' or partner B of an undirected interacting pair (e.g. pair of adhesion molecules). 
+#' The NA values of the CellPhoneDB output are substituted with 0.
+#' 
+#' @author
+#' Maria Solovey \email{maria.solovey@helmholtz-muenchen.de}
+#'
+#' @param       CellPhoneDB_output significant_means.txt file in the output of CellPhoneDB.
+#' 
+#' @param       complex_input complex_input.csv file. Download from CellPhoneDB.
+#' 
+#' @param       gene_input gene_input.csv file. Download from CellPhoneDB.
+#' 
+#' @return list of:
+#'               weight_array: 3D numeric array                       array of weighted adjacency matrices with dimensions [number of nodes, number of nodes, number of ligand-receptor pairs]. 
+#' Note that the function filters out empty weight arrays and the corresponding ligand-receptor pairs
+#'                       First dimension: sending nodes (note: this dimension has all possible nodes, even if some of them are silent for a particular ligand-receptor pair)
+#'                       Second dimension: receiving nodes (note: this dimension has all possible nodes, even if some of them are silent for a particular ligand-receptor pair)
+#'                       Third dimension: ligand-receptor pairs
+#'                       Note that the weight_array should contain dimnames: dimnames = list(nodes, nodes, ligand-receptor pairs)
+#'                       
+#'               ligand_receptor_pair_df: string dataframe          data frame with columns "pair", "ligand", "ligand_complex_composition", "receptor", "receptor_complex_composition"
+#'                        "pair" contains values in a form "ligand:receptor", i.e. ligand being at the first place, receptor being at the second place, e.g. "TNFSF13:TNFRSF17"
+#'                        "ligand" contains ligand names, e.g. "TNFSF13"
+#'                        "ligand_complex_composition" if ligand is a complex (e.g. "aXb2_complex"), contains genes in the ligand complex separated with a comma, e.g. "ITGAX,ITGB2", else contains ""
+#'                        "receptor" contains receptor names, e.g. "TNFRSF17"
+#'                        "receptor_complex_composition" if receptor is a complex (e.g. "NKG2D_II_receptor"), contains genes in the receptor complex separated with a comma, e.g. "KLRK1,HCST", else contains ""
+#'               nodes: character string vector                            a vector with all cell types in the data
 convert_CellPhoneDB_output <- function(CellPhoneDB_output
                                        ,complex_input
                                        ,gene_input
@@ -911,7 +1097,7 @@ convert_CellPhoneDB_output <- function(CellPhoneDB_output
         
         # indices of receptors
         idx_receptor <- as.matrix(data.frame(a = CellPhoneDB_output$receptor_a
-                                            ,b = CellPhoneDB_output$receptor_b))
+                                             ,b = CellPhoneDB_output$receptor_b))
         rownames(idx_receptor) <- CellPhoneDB_output$interacting_pair
         
         # which pairs are directed
@@ -919,14 +1105,14 @@ convert_CellPhoneDB_output <- function(CellPhoneDB_output
         
         # make empty ligand_receptor_pair_df data.frame
         ligand_receptor_pair_df <- as.data.frame(matrix(NA
-                                                     ,nrow = nrow(CellPhoneDB_output)
-                                                     ,ncol = 5
+                                                        ,nrow = nrow(CellPhoneDB_output)
+                                                        ,ncol = 5
         ))
         colnames(ligand_receptor_pair_df) <- c("pair"
-                                            ,"ligand"
-                                            ,"ligand_complex_composition"
-                                            ,"receptor"
-                                            ,"receptor_complex_composition"
+                                               ,"ligand"
+                                               ,"ligand_complex_composition"
+                                               ,"receptor"
+                                               ,"receptor_complex_composition"
         )
         
         # put in ligand and receptors
@@ -934,8 +1120,8 @@ convert_CellPhoneDB_output <- function(CellPhoneDB_output
                 # check if any ligands or receptor complexes are written with "_"
                 # we will split pairs by "_", so any "_" in a complex name will interfere and we want to replace it with " "
                 which_to_replace <- function(idx_vector # all positions of "_" in the pair name
-                                           ,partner # which partner is a complex
-                                           ,how_many # how many "_" does this complex contain (i.e. how many do we want to replace with " ")
+                                             ,partner # which partner is a complex
+                                             ,how_many # how many "_" does this complex contain (i.e. how many do we want to replace with " ")
                 ){
                         if(partner == "partner_a") {
                                 idx_vector <- idx_vector[1:how_many] # take first "how_many" values
@@ -952,26 +1138,26 @@ convert_CellPhoneDB_output <- function(CellPhoneDB_output
                 ){
                         # which complexes in partern_a or in pertner_b colomn contain "_"
                         idx_complex <- grep("_"
-                                           ,unlist(CellPhoneDB_output[,partner])
+                                            ,unlist(CellPhoneDB_output[,partner])
                         )
                         # replace "_" for space in each position
                         if(length(idx_complex) != 0){
                                 for(lrp in idx_complex) {
                                         # how many "_" does a particular partner_a or partner_b complex contain
                                         how_many <- length(unlist(gregexpr(pattern = "_"
-                                                                          ,unlist(CellPhoneDB_output[lrp,partner]
-                                                                          ))
+                                                                           ,unlist(CellPhoneDB_output[lrp,partner]
+                                                                           ))
                                         )
                                         )
                                         # find all positions of "_" in the interacting_pair
                                         idx_char <- unlist(gregexpr(pattern = "_"
-                                                                   ,CellPhoneDB_output$interacting_pair[lrp]
+                                                                    ,CellPhoneDB_output$interacting_pair[lrp]
                                         )
                                         )
                                         # take only those that correspond to the prtner_a or prtner_b
                                         idx_char <- which_to_replace(idx_vector = idx_char
-                                                                  ,partner = partner
-                                                                  ,how_many = how_many)
+                                                                     ,partner = partner
+                                                                     ,how_many = how_many)
                                         # replace them for " "
                                         for(idx in idx_char){
                                                 substr(CellPhoneDB_output$interacting_pair[lrp]
@@ -988,17 +1174,17 @@ convert_CellPhoneDB_output <- function(CellPhoneDB_output
                 
                 # split by "_"
                 split_LRP <- strsplit(CellPhoneDB_output$interacting_pair
-                                     ,"_")
+                                      ,"_")
                 
                 # check splitting correctness
                 nr_partners <- sapply(1:nrow(CellPhoneDB_output)
-                                     ,function(i) length(split_LRP[[i]])
+                                      ,function(i) length(split_LRP[[i]])
                 )
                 if(any(nr_partners!=2)) stop("ERROR: Not all pairs contain 2 partners.")
                 # translate to data frame
                 split_LRP <- matrix(unlist(split_LRP)
-                                   ,ncol = 2
-                                   ,byrow = T)
+                                    ,ncol = 2
+                                    ,byrow = T)
         }
         ligand_receptor_pair_df$ligand <- as.vector(split_LRP[,1])
         ligand_receptor_pair_df$receptor <- as.vector(split_LRP[,2])
@@ -1011,8 +1197,8 @@ convert_CellPhoneDB_output <- function(CellPhoneDB_output
         
         # put in pairs
         ligand_receptor_pair_df$pair <- paste0(ligand_receptor_pair_df$ligand
-                                            ,":"
-                                            ,ligand_receptor_pair_df$receptor)
+                                               ,":"
+                                               ,ligand_receptor_pair_df$receptor)
         CellPhoneDB_output$sorted_pair <- ligand_receptor_pair_df$pair
         
         # put in complex composition
@@ -1046,7 +1232,7 @@ convert_CellPhoneDB_output <- function(CellPhoneDB_output
         
         # make a key of nodes (in order to convert a vector of pairwise nodes to an adjacency matrix)
         node_combinations <- colnames(CellPhoneDB_output)[grepl("[|]"
-                                                               ,colnames(CellPhoneDB_output))]
+                                                                ,colnames(CellPhoneDB_output))]
         node_key <- matrix(unlist(strsplit(node_combinations
                                            ,"[|]")
         )
@@ -1061,13 +1247,13 @@ convert_CellPhoneDB_output <- function(CellPhoneDB_output
         # make weight array
         # make a dummy array of weights
         weight_array <- array(0
-                         ,dim = c(length(nodes) # sending nodes
-                                  ,length(nodes) # recieving nodes
-                                  ,nrow(ligand_receptor_pair_df) # ligand-receptor pairs
-                         )
+                              ,dim = c(length(nodes) # sending nodes
+                                       ,length(nodes) # recieving nodes
+                                       ,nrow(ligand_receptor_pair_df) # ligand-receptor pairs
+                              )
         )
         dimnames(weight_array) <- list(unique(c(node_key[,"a"]
-                                           ,node_key[,"b"])
+                                                ,node_key[,"b"])
         )
         ,unique(c(node_key[,"a"]
                   ,node_key[,"b"])
@@ -1090,17 +1276,17 @@ convert_CellPhoneDB_output <- function(CellPhoneDB_output
                                         receptor <- 2
                                 }
                                 weight_array[node_key[nodePair,][ligand] # partner a (ligand)
-                                        ,node_key[nodePair,][receptor] # partner b (receptor)
-                                        ,as.character(ligand_receptor_pair_df[layer,"pair"])
-                                        ] <- as.numeric(CellPhoneDB_output[idxLayerCPDB 
-                                                                           ,nodePair])
+                                             ,node_key[nodePair,][receptor] # partner b (receptor)
+                                             ,as.character(ligand_receptor_pair_df[layer,"pair"])
+                                             ] <- as.numeric(CellPhoneDB_output[idxLayerCPDB 
+                                                                                ,nodePair])
                         }
                 }
         }
         
         # filter empty weight matrices
         filtered_data <- filter_empty_layers(weight_array = weight_array
-                                          ,ligand_receptor_pair_df = ligand_receptor_pair_df
+                                             ,ligand_receptor_pair_df = ligand_receptor_pair_df
         )
         ligand_receptor_pair_df <- filtered_data$ligand_receptor_pair_df
         weight_array_filtered <- filtered_data$weight_array
@@ -1117,28 +1303,50 @@ convert_CellPhoneDB_output <- function(CellPhoneDB_output
         )
 }
 
-# function to cluster ligand-receptor pairs
-# IN:
-#       weight_array: numeric array                     array of weighted adjacency matrices with dimensions [number of nodes, number of nodes, number of ligand-receptor pairs]
-#       ligand_receptor_pair_df: character dataframe          data frame with columns "pair", "ligand", "ligand_complex_composition", "receptor", "receptor_complex_composition"
-#                                                       "pair" contains values in a form "ligand:receptor", i.e. ligand being at the first place, receptor being at the second place, e.g. "TNFSF13:TNFRSF17"
-#                                                       "ligand" contains ligand names, e.g. "TNFSF13"
-#                                                       "ligand_complex_composition" if ligand is a complex (e.g. "aXb2_complex"), contains genes in the ligand complex separated with a comma, e.g. "ITGAX,ITGB2", else contains ""
-#                                                       "receptor" contains receptor names, e.g. "TNFRSF17"
-#                                                       "receptor_complex_composition" if receptor is a complex (e.g. "NKG2D_II_receptor"), contains genes in the receptor complex separated with a comma, e.g. "KLRK1,HCST", else contains ""
-#       nodes: character string vector                            a vector with all cell types in the data
-#       dissimilarity: func                             dissimilarity function. Default value is d_normWeightDiff
-#       min_cluster_size: numeric                         minimum number of ligand-receptor pairs per cluster. Default value: 6
-# OUT:
-#       a list of:
-#               dissim_matrix: numeric matrix           pairwise dissimilarity between all ligand-receptor pairs
-#               clusters: numeric vector                cluster assignment for each ligand-receptor pair
-#               weight_array_by_cluster: numeric array   array of weighted adjacency matrices with dimensions [number of nodes, number of nodes, number of ligand-receptor clusters]. Each edge weight in a cluster is calculated as the mean of the weights of this edge in all ligand-receptor pairs that belong to this cluster.
+#' @rdname lrp_clustering
 #' @export
+#' 
+#' @title 
+#' Clusters interacting protein pairs
+#'
+#' @description 
+#' \code{lrp_clustering} clusters interacting protein pairs by performing hierarchical clustering of the dissimilarity matrix of layers 
+#' (by default, the \code{hclust} R function with the \code{average} agglomeration method is used) and the results can be visualized as a heatmap or a UMAP plot (McInnes et al., 2018). 
+#' The number of clusters is estimated using the  \code{cutreeHybrid} R function (package dynamicTreeCut, version 1.63-1(Langfelder et al., 2008)) 
+#' with \code{deepSplit} equal to 0 and default \code{minClusterSize} equal to 6 by default (both can be adjusted). 
+#' For each cluster, a graph that represents the “average” pattern is built by averaging the adjacency matrices and the (see section 2.1) of the nodes of all the graphs in the cluster.
+#' 
+#' @author
+#' Maria Solovey \email{maria.solovey@helmholtz-muenchen.de}
+#'
+#' @param       weight_array numeric array: array of weighted adjacency matrices with dimensions [number of nodes, number of nodes, number of ligand-receptor pairs].
+#' 
+#' @param       ligand_receptor_pair_df character dataframe: data frame with columns "pair", "ligand", "ligand_complex_composition", "receptor", "receptor_complex_composition". 
+#' Column "pair" contains values in a form "ligand:receptor", i.e. ligand being at the first place, receptor being at the second place, e.g. "TNFSF13:TNFRSF17". 
+#' Column "ligand" contains ligand names, e.g. "TNFSF13".  
+#' Column ligand_complex_composition" if ligand is a complex (e.g. "aXb2_complex"), 
+#' contains genes in the ligand complex separated with a comma, e.g. "ITGAX,ITGB2", else contains empty string "". 
+#' Column "receptor" contains receptor names, e.g. "TNFRSF17". Column "receptor_complex_composition" if receptor is a complex (e.g. "NKG2D_II_receptor"), 
+#' contains genes in the receptor complex separated with a comma, e.g. "KLRK1,HCST", else contains empty string "".
+#' 
+#' @param       nodes character string vector: a vector with all cell types in the data.
+#' 
+#' @param       dissimilarity function: dissimilarity function. Default value is d_normWeightDiff.
+#' 
+#' @param       deep_split numeric: defines the deepSplit parameter of the \code{cutreeHybrid} function. Default value: 0.
+#' 
+#' @param       min_cluster_size numeric: minimum number of ligand-receptor pairs per cluster. Default value: 6.
+#' 
+#' @return a list of:
+#'               dissim_matrix: numeric matrix           pairwise dissimilarity between all ligand-receptor pairs
+#'               clusters: numeric vector                cluster assignment for each ligand-receptor pair
+#'               weight_array_by_cluster: numeric array   array of weighted adjacency matrices with dimensions [number of nodes, number of nodes, number of ligand-receptor clusters]. 
+#' Each edge weight in a cluster is calculated as the mean of the weights of this edge in all ligand-receptor pairs that belong to this cluster.
 lrp_clustering <- function(weight_array
                            ,ligand_receptor_pair_df
                            ,nodes
                            ,dissimilarity = d_normWeightDiff
+                           ,deep_split = 0
                            ,min_cluster_size = 6
                            
 ){
@@ -1169,13 +1377,13 @@ lrp_clustering <- function(weight_array
                                   , method= "average" 
                 )
                 
-                # Cut the treee to identify clusters
+                # Cut the tree to identify clusters
                 my_clusters <- dynamicTreeCut::cutreeHybrid(
                         my_tree
                         ,distM=dissim_matrix
-                        ,deepSplit = 0
+                        ,deepSplit = deep_split
                         ,minClusterSize = min_cluster_size 
-                        )$label
+                )$label
                 names(my_clusters) <- dimnames(dissim_matrix)[[1]]
                 
                 # Any unassigned cells?
@@ -1186,10 +1394,10 @@ lrp_clustering <- function(weight_array
                 # calculate adjacency matrices for each community (using mean weight for each edge)
                 if(any(my_clusters != 0)){
                         weight_array_by_cluster <- array(NA
-                                                   ,dim = c(length(nodes)
-                                                            ,length(nodes)
-                                                            ,max(my_clusters)
-                                                   )
+                                                         ,dim = c(length(nodes)
+                                                                  ,length(nodes)
+                                                                  ,max(my_clusters)
+                                                         )
                         )
                         for(communityNr in 1:max(my_clusters)){
                                 # calculate indices for the community
@@ -1233,23 +1441,46 @@ lrp_clustering <- function(weight_array
         return(result)
 }
 
-# function to perform pattern search
-# IN:
-#       pattern_adj_matrix: numeric matrix        an adjacency matrix for the pattern of interest
-#       weight_array: numeric array             array of weighted adjacency matrices with dimensions [number of nodes, number of nodes, number of ligand-receptor pairs]
-#       ligand_receptor_pair_df: character dataframe  data frame with columns "pair", "ligand", "ligand_complex_composition", "receptor", "receptor_complex_composition"
-#       nodes: character string vector                    a vector with all cell types in the data
-#       dissimilarity: function                 dissimilarity measure. Default value: d_normWeightDiff
-# OUT:
-#       dataframe:                              The data frame is sorted by increasing dissimilarity (i.e. similar patterns a the top
-#               pair: character string vector             ligand-receptor pair names
-#               dissimilarity: numeric vector  dissimilarity of ligand-receptor pairs to the pattern of interest. Note here that for the calculation of the dissimilarity of a weight matrix to the pattern of interest, we don't take into consideration the actual weight of the edges in this weight matrix, but just check wether the edge is present (i.e. has a non-zero value) or absent (i.e. has a zero value).
+#' @rdname pattern_search
 #' @export
+#' 
+#' @title 
+#' Performs pattern search
+#'
+#' @description 
+#' \code{pattern_search} performs pattern search.
+#' A pattern of interest is defined with a binary adjacency matrix, 1 indicating the presence of an edge and 0 the absence. 
+#' The adjacency matrices of the layers are also binarized based on the presence/absence of the edges and then the dissimilarities with the user-specified adjacency matrix are calculated. 
+#' The output is a list of pairs of interacting partners sorted by increasing dissimilarity with the user-specified pattern.
+#' 
+#' @author
+#' Maria Solovey \email{maria.solovey@helmholtz-muenchen.de}
+#'
+#' @param       pattern_adj_matrix numeric matrix: an adjacency matrix for the pattern of interest.
+#' 
+#' @param       weight_array numeric array: array of weighted adjacency matrices with dimensions [number of nodes, number of nodes, number of ligand-receptor pairs].
+#' 
+#' @param       ligand_receptor_pair_df character dataframe: data frame with columns "pair", "ligand", "ligand_complex_composition", "receptor", "receptor_complex_composition". 
+#' Column "pair" contains values in a form "ligand:receptor", i.e. ligand being at the first place, receptor being at the second place, e.g. "TNFSF13:TNFRSF17". 
+#' Column "ligand" contains ligand names, e.g. "TNFSF13".  
+#' Column "ligand_complex_composition" if ligand is a complex (e.g. "aXb2_complex"), 
+#' contains genes in the ligand complex separated with a comma, e.g. "ITGAX,ITGB2", else contains empty string "". 
+#' Column "receptor" contains receptor names, e.g. "TNFRSF17". 
+#' Column "receptor_complex_composition" if receptor is a complex (e.g. "NKG2D_II_receptor"), 
+#' contains genes in the receptor complex separated with a comma, e.g. "KLRK1,HCST", else contains empty string "".
+#' 
+#' @param       nodes character string vector: a vector with all cell types in the data.
+#' 
+#' @param       dissimilarity function: dissimilarity measure. Default value: d_normWeightDiff.
+#' 
+#' @return dataframe:                              The data frame is sorted by increasing dissimilarity (i.e. similar patterns a the top
+#'               pair: character string vector             ligand-receptor pair names
+#'               dissimilarity: numeric vector  dissimilarity of ligand-receptor pairs to the pattern of interest. Note here that for the calculation of the dissimilarity of a weight matrix to the pattern of interest, we don't take into consideration the actual weight of the edges in this weight matrix, but just check wether the edge is present (i.e. has a non-zero value) or absent (i.e. has a zero value).
 pattern_search <- function(pattern_adj_matrix # in rows are sending nodes, in columns are receiving nodes, 0 for no communication, 1 for communication
-                          ,weight_array
-                          ,ligand_receptor_pair_df
-                          ,nodes
-                          ,dissimilarity = d_normWeightDiff
+                           ,weight_array
+                           ,ligand_receptor_pair_df
+                           ,nodes
+                           ,dissimilarity = d_normWeightDiff
 ){
         # check whether pattern_adj_matrix contains all nodes
         if((!identical(rownames(pattern_adj_matrix)
@@ -1262,9 +1493,9 @@ pattern_search <- function(pattern_adj_matrix # in rows are sending nodes, in co
         
         # convert pattern_adj_matrix to array, We need it to pass two arrays to the dissimilarity function
         pattern_adj_array <- array(pattern_adj_matrix
-                                 ,dim = list(dim(pattern_adj_matrix)[[1]]
-                                             ,dim(pattern_adj_matrix)[[2]]
-                                             ,1)
+                                   ,dim = list(dim(pattern_adj_matrix)[[1]]
+                                               ,dim(pattern_adj_matrix)[[2]]
+                                               ,1)
         )
         
         # binarize weight_array
@@ -1291,36 +1522,57 @@ pattern_search <- function(pattern_adj_matrix # in rows are sending nodes, in co
         return(pattern_result = result)
 }
 
-# function to perform comparative analysis
-# IN:
-# cond1_weight_array: numeric array                     array of weighted adjacency matrices for condition 1. Note that the function filters out empty weight arrays and the corresponding ligand-receptor pairs
-# cond2_weight_array: numeric array                     array of weighted adjacency matrices for condition 2. Note that the function filters out empty weight arrays and the corresponding ligand-receptor pairs
-# cond1_ligand_receptor_pair_df: character dataframe          data frame with columns "pair", "ligand", "ligand_complex_composition", "receptor", "receptor_complex_composition" for condition 1
-# cond2_ligand_receptor_pair_df: character dataframe          data frame with columns "pair", "ligand", "ligand_complex_composition", "receptor", "receptor_complex_composition" for condition 2
-# cond1_nodes: character string vector                            a vector with all cell types in the data
-# Please note that comparativeAnalysis expects nodes (i.e. cell types) to be the same in both conditions.
-# cond2_nodes = cond1_nodes: character string vector              a vector with all cell types in the data
-# Please note that comparativeAnalysis expects nodes (i.e. cell types) to be the same in both conditions.
-# cond1_name: character string                          sample name for condition 1
-# cond2_name: character string                          sample name for condition 2
-# dissimilarity: func                                   dissimilarity function. Default value is d_normWeightDiff
-# OUT:
-# list of:
-# sorted_LRP_df: data.frame with columns:
-# 	pair: character string                          names of ligand-receptor pairs in the same form as they are in ligand_receptor_pair_df$pair
-# 	presence: character string                      whether the ligand-receptor pair is present in both conditions ("shared") or only in one of them.
-# 	dissimilarity: numeric                 dissimilarity value between the topology of ligand-receptor pair graph in two conditions. The smaller the dissimilarity value, the more similar is the graph topology between the two conditions. If a ligand-receptor pair is present only in one of the conditions, the dissimilarity is equal to 1.
-# dissim_cond1_cond2: numeric matrix            pairwise dissimilarity between all ligand-receptor pairs in the two conditions (condition 1 in rows, condition 2 in columns)
+#' @rdname comparative_analysis
 #' @export
+#' 
+#' @title 
+#' Performs comparative analysis
+#'
+#' @description 
+#' \code{comparative_analysis} performs comparative analysis between two conditions (e.g. two samples).
+#' Given the results of a cell-cell communication analysis of two datasets including the same cell types, 
+#' COMUNET estimates the differences in the intercellular communication patterns between corresponding interacting partners in the two datasets.
+#' 
+#' @author
+#' Maria Solovey \email{maria.solovey@helmholtz-muenchen.de}
+#'
+#' @param cond1_weight_array numeric array: array of weighted adjacency matrices for condition 1. 
+#' Note that the function filters out empty weight arrays and the corresponding ligand-receptor pairs.
+#' 
+#' @param cond2_weight_array numeric array: array of weighted adjacency matrices for condition 2. 
+#' Note that the function filters out empty weight arrays and the corresponding ligand-receptor pairs.
+#' 
+#' @param cond1_ligand_receptor_pair_df character dataframe: data frame with columns "pair", "ligand", "ligand_complex_composition", "receptor", "receptor_complex_composition" for condition 1.
+#' 
+#' @param cond2_ligand_receptor_pair_df character dataframe: data frame with columns "pair", "ligand", "ligand_complex_composition", "receptor", "receptor_complex_composition" for condition 2.
+#' 
+#' @param cond1_nodes character string vector: a vector with all cell types in the data. 
+#' Please note that comparative_analysis expects nodes (i.e. cell types) to be the same in both conditions.
+#' 
+#' @param cond2_nodes character string vector: a vector with all cell types in the data. Default value: cond1_nodes. 
+#' 
+#' Please note that comparative_analysis expects nodes (i.e. cell types) to be the same in both conditions.
+#' @param cond1_name character string: sample name for condition 1.
+#' 
+#' @param cond2_name character string: sample name for condition 2.
+#' 
+#' @param dissimilarity function: dissimilarity function. Default value is d_normWeightDiff.
+#' 
+#' @return a list of:
+#' sorted_LRP_df: data.frame with columns:
+#' 	pair: character string                          names of ligand-receptor pairs in the same form as they are in ligand_receptor_pair_df$pair
+#' 	presence: character string                      whether the ligand-receptor pair is present in both conditions ("shared") or only in one of them.
+#' 	dissimilarity: numeric                 dissimilarity value between the topology of ligand-receptor pair graph in two conditions. The smaller the dissimilarity value, the more similar is the graph topology between the two conditions. If a ligand-receptor pair is present only in one of the conditions, the dissimilarity is equal to 1.
+#' dissim_cond1_cond2: numeric matrix            pairwise dissimilarity between all ligand-receptor pairs in the two conditions (condition 1 in rows, condition 2 in columns)
 comparative_analysis <- function(cond1_weight_array
-                                ,cond2_weight_array
-                                ,cond1_ligand_receptor_pair_df
-                                ,cond2_ligand_receptor_pair_df
-                                ,cond1_nodes
-                                ,cond2_nodes = cond1_nodes
-                                ,cond1_name
-                                ,cond2_name
-                                ,dissimilarity = d_normWeightDiff 
+                                 ,cond2_weight_array
+                                 ,cond1_ligand_receptor_pair_df
+                                 ,cond2_ligand_receptor_pair_df
+                                 ,cond1_nodes
+                                 ,cond2_nodes = cond1_nodes
+                                 ,cond1_name
+                                 ,cond2_name
+                                 ,dissimilarity = d_normWeightDiff 
 ){
         
         # check if the nodes in both conditions are the same
@@ -1328,19 +1580,19 @@ comparative_analysis <- function(cond1_weight_array
         
         # stratify LRPs by shared or not shared
         all_LRPs <- union(cond1_ligand_receptor_pair_df$pair
-                         ,cond2_ligand_receptor_pair_df$pair
+                          ,cond2_ligand_receptor_pair_df$pair
         )
         
         shared_LRP <- intersect(cond1_ligand_receptor_pair_df$pair
-                               ,cond2_ligand_receptor_pair_df$pair
+                                ,cond2_ligand_receptor_pair_df$pair
         )
         
         only_cond1_LRPs <- setdiff(cond1_ligand_receptor_pair_df$pair
-                                 ,cond2_ligand_receptor_pair_df$pair
+                                   ,cond2_ligand_receptor_pair_df$pair
         )
         
         only_cond2_LRPs <- setdiff(cond2_ligand_receptor_pair_df$pair
-                                 ,cond1_ligand_receptor_pair_df$pair
+                                   ,cond1_ligand_receptor_pair_df$pair
         )
         
         # calculate dissimilarity
