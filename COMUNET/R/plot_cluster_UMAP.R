@@ -10,7 +10,7 @@
 #' @author
 #' Maria Solovey \email{maria.solovey@helmholtz-muenchen.de}
 #'
-#' @param       ligand_receptor_pair_df character dataframe: data frame with columns "pair", "ligand", "ligand_complex_composition", "receptor", "receptor_complex_composition".
+#' @param       ligand_receptor_pair_df Character dataframe: data frame with columns "pair", "ligand", "ligand_complex_composition", "receptor", "receptor_complex_composition".
 #'
 #' Column "pair" contains values in a form "ligand:receptor", i.e. ligand being at the first place, receptor being at the second place, e.g. "TNFSF13:TNFRSF17".
 #'
@@ -24,32 +24,32 @@
 #' Column "receptor_complex_composition" if receptor is a complex (e.g. "NKG2D_II_receptor"),
 #' contains genes in the receptor complex separated with a comma, e.g. "KLRK1,HCST", else contains empty string "".
 #'
-#' @param       dissim_matrix numeric matrix: pairwise dissimilarity matrix. Note that rownames and colnames should be defined.
+#' @param       dissim_matrix Numeric matrix: pairwise dissimilarity matrix. Note that rownames and colnames should be defined.
 #'
-#' @param       lrp_clusters numeric vector: cluster assignment for each ligand-recetor pair.
+#' @param       lrp_clusters Numeric vector: cluster assignment for each ligand-recetor pair.
 #'  Note that the the vector should be named and ordered in the same way as the rownames and colnames of the dissim_matrix.
 #'
-#' @param       seed random seed for UMAP. Default value: 100.
+#' @param       seed Random seed for UMAP. Default value: 100.
 #'
-#' @param       cluster_colors character string vector: vector with colours for each cluster. Default value: "".
+#' @param       cluster_colors Character string vector: vector with colours for each cluster. Default value: "".
 #'
-#' @param       unclustered_LRP_color character string: colour for ligand-receptor pairs that remained unclustered (cluster assignment 0). Default value: "black".
+#' @param       unclustered_LRP_color Character string: colour for ligand-receptor pairs that remained unclustered (cluster assignment 0). Default value: "black".
 #'
-#' @param       cluster_shape numeric vector: vector with shapes for each cluster. Default value: "".
+#' @param       cluster_shape Numeric vector: vector with shapes for each cluster. Default value: "".
 #'
-#' @param       point_size numeric: size of points. Default value: 2.
+#' @param       point_size Numeric: size of points. Default value: 2.
 #'
-#' @param       title character string: title of the heatmap plot. Argument of the draw function. Default value: "umap of ligand-receptor pairs".
+#' @param       title Character string: title of the heatmap plot. Argument of the draw function. Default value: "umap of ligand-receptor pairs".
 #'
-#' @param       legend_position character string: argument of the theme function. Default value: "bottom" guide_legend.
+#' @param       legend_position Character string: argument of the theme function. Default value: "bottom" guide_legend.
 #'
-#' @param       legend_direction character string: argument of the guide_legend function. Default value: "horizontal".
+#' @param       legend_direction Character string: argument of the guide_legend function. Default value: "horizontal".
 #'
-#' @param       legend_title_position character string: argument of the guide_legend function. Default value: "top".
+#' @param       legend_title_position Character string: argument of the guide_legend function. Default value: "top".
 #'
-#' @param       legend_label_position character string: argument of the guide_legend function. Default value: "bottom".
+#' @param       legend_label_position Character string: argument of the guide_legend function. Default value: "bottom".
 #'
-#' @param       legend_byrow logical: argument of the guide_legend function. Default value: TRUE.
+#' @param       legend_byrow logical: Argument of the guide_legend function. Default value: TRUE.
 #'
 #' @return      UMAP of ligand-receptor pairs coloured and shaped by cluster
 plot_cluster_UMAP <- function(ligand_receptor_pair_df

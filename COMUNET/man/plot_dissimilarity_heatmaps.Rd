@@ -27,9 +27,9 @@ plot_dissimilarity_heatmaps(
 )
 }
 \arguments{
-\item{dissim_cond1_cond2}{numeric matrix: pairwise dissimilarity between all ligand-receptor pairs in the two conditions (condition 1 in rows, condition 2 in columns).}
+\item{dissim_cond1_cond2}{Numeric matrix: pairwise dissimilarity between all ligand-receptor pairs in the two conditions (condition 1 in rows, condition 2 in columns).}
 
-\item{sorted_LRP_df}{dataframe with columns:
+\item{sorted_LRP_df}{Dataframe with columns:
 
 "pair" (character string): names of ligand-receptor pairs in the same form as they are in ligand_receptor_pair_df$pair;
 
@@ -39,39 +39,39 @@ plot_dissimilarity_heatmaps(
 The smaller the dissimilarity value, the more similar is the graph topology between the two conditions.
 If a ligand-receptor pair is present only in one of the conditions, the dissimilarity is equal to 1.}
 
-\item{cond1_name}{character string: sample name for condition 1.}
+\item{cond1_name}{Character string: sample name for condition 1.}
 
-\item{cond2_name}{character string: sample name for condition 2.}
+\item{cond2_name}{Character string: sample name for condition 2.}
 
-\item{colors_lrp}{character string vector: colours for ligand-receptor labels. Default: green for shared, black for unshared.}
+\item{colors_lrp}{Character string vector: colours for ligand-receptor labels. Default: green for shared, black for unshared.}
 
-\item{show_legend}{logical: parameter of the HeatmapAnnotation function. Default is T.}
+\item{show_legend}{Logical: parameter of the HeatmapAnnotation function. Default is T.}
 
-\item{row_names_fontsize}{numeric: parameter of the Heatmap function. Default is 5.}
+\item{row_names_fontsize}{Numeric: parameter of the Heatmap function. Default is 5.}
 
-\item{colomn_names_fontsize}{numeric: parameter of the Heatmap function. Default is 5.}
+\item{colomn_names_fontsize}{Numeric: parameter of the Heatmap function. Default is 5.}
 
-\item{show_column_names}{logical: parameter of the Heatmap function. Default is T.}
+\item{show_column_names}{Logical: parameter of the Heatmap function. Default is T.}
 
-\item{show_row_names}{logical: parameter of the Heatmap function. Default  is T.}
+\item{show_row_names}{Logical: parameter of the Heatmap function. Default  is T.}
 
-\item{width}{object of class "unit": parameter of the HeatmapAnnotation function. Default is unit(0.1, "cm").}
+\item{width}{Object of class "unit": parameter of the HeatmapAnnotation function. Default is unit(0.1, "cm").}
 
-\item{legend_direction}{character string: parameter of the Heatmap function. Default is "horizontal".}
+\item{legend_direction}{Character string: parameter of the Heatmap function. Default is "horizontal".}
 
-\item{legend_width}{object of class "unit": parameter of the Heatmap function. Default is unit(5, "cm").}
+\item{legend_width}{Object of class "unit": parameter of the Heatmap function. Default is unit(5, "cm").}
 
-\item{title_position}{character string: parameter of the Heatmap function. Default is "lefttop".}
+\item{title_position}{Character string: parameter of the Heatmap function. Default is "lefttop".}
 
-\item{row_dend_side}{character string: parameter of the Heatmap function. Default is "left"}
+\item{row_dend_side}{Character string: parameter of the Heatmap function. Default is "left"}
 
-\item{column_dend_side}{character string: parameter of the Heatmap function. Default is "top".}
+\item{column_dend_side}{Character string: parameter of the Heatmap function. Default is "top".}
 
-\item{column_title_side}{character string: parameter of the draw function. Default is "top".}
+\item{column_title_side}{Character string: parameter of the draw function. Default is "top".}
 
-\item{heatmap_legend_side}{character string: parameter of the draw function. Default is "bottom".}
+\item{heatmap_legend_side}{Character string: parameter of the draw function. Default is "bottom".}
 
-\item{...}{other parameters of the Heatmap function.}
+\item{...}{Any other parameters of the Heatmap function.}
 }
 \value{
 two heatmaps:

@@ -20,11 +20,11 @@
 #' @author
 #' Maria Solovey \email{maria.solovey@helmholtz-muenchen.de}
 #'
-#' @param       CellPhoneDB_output significant_means.txt file in the output of CellPhoneDB.
+#' @param       CellPhoneDB_output Character string: significant_means.txt file in the output of CellPhoneDB.
 #'
-#' @param       complex_input complex_input.csv file. Download from CellPhoneDB.
+#' @param       complex_input Character string: complex_input.csv file. Download from CellPhoneDB.
 #'
-#' @param       gene_input gene_input.csv file. Download from CellPhoneDB.
+#' @param       gene_input Character string: gene_input.csv file. Download from CellPhoneDB.
 #'
 #' @return list of:
 #'

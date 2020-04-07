@@ -17,11 +17,11 @@
 #' @author
 #' Maria Solovey \email{maria.solovey@helmholtz-muenchen.de}
 #'
-#' @param      LRP character string: name of ligand-receptor pair for which the plot should be constructed.
+#' @param      LRP Character string: name of ligand-receptor pair for which the plot should be constructed.
 #' Note the the LRP name should be written in the same from as in ligand_receptor_pair_df$pair.
 #' Alternatively, it can be a name of a cluster or a pattern.
 #'
-#' @param       weight_array 3D numeric array or 2D numeric matrix:
+#' @param       weight_array Numeric array (3D) or numeric matrix (2D):
 #' array of weighted adjacency matrices with dimensions [number of nodes, number of nodes, number of ligand-receptor pairs] or one adjacency matrix with dimensions [number of nodes, number of nodes].
 #'
 #' First dimension: sending nodes (note: this dimension has all possible nodes, even if some of them are silent for a particular ligand-receptor pair).
@@ -32,7 +32,7 @@
 #'
 #' Note that the weight_array should contain dimnames: dimnames = list(nodes, nodes, ligand-receptor pairs).
 #'
-#' @param       ligand_receptor_pair_df character dataframe: data frame with columns "pair", "ligand", "ligand_complex_composition", "receptor", "receptor_complex_composition".
+#' @param       ligand_receptor_pair_df Character dataframe: data frame with columns "pair", "ligand", "ligand_complex_composition", "receptor", "receptor_complex_composition".
 #'
 #' Column "pair" contains values in a form "ligand:receptor", i.e. ligand being at the first place, receptor being at the second place, e.g. "TNFSF13:TNFRSF17".
 #'
@@ -46,37 +46,37 @@
 #' Column "receptor_complex_composition" if receptor is a complex (e.g. "NKG2D_II_receptor"),
 #' contains genes in the receptor complex separated with a comma, e.g. "KLRK1,HCST", else contains empty string "".
 #'
-#' @param       nodes character vector: a vector with all cell types in the data.
+#' @param       nodes Character vector: a vector with all cell types in the data.
 #'
-#' @param       is_pattern logical: should a graph of a pattern (and not a particular ligand-receptor pair) be plotted. Default value = F.
+#' @param       is_pattern Logical: should a graph of a pattern (and not a particular ligand-receptor pair) be plotted. Default value = F.
 #'
-#' @param       is_cluster logical: should a graph of a cluster (and not a particular ligand-receptor pair) be plotted. Default value = F.
+#' @param       is_cluster Logical: should a graph of a cluster (and not a particular ligand-receptor pair) be plotted. Default value = F.
 #'
-#' @param       title character string: title of the plot. Default value: LRP.
+#' @param       title Character string: title of the plot. Default value: LRP.
 #'
-#' @param       subtitle character string:  subtitle of the plot. Default value: "".
+#' @param       subtitle Character string:  subtitle of the plot. Default value: "".
 #'
-#' @param       node_color_palette character string vector: vector of colours for nodes. Default values: c("blue", "gray40", "red").
+#' @param       node_color_palette Character string vector: vector of colours for nodes. Default values: c("blue", "gray40", "red").
 #' The colours will be used to construct a colour gradient for the node delta degree: blue representing a receiving node (negative delta degree),
 #' grey representing a neutral node (zero delta degree), red representing a sending node (positive delta degree).
 #'
-#' @param       node_label_cex numeric: size of node labels. Default value: 1.
+#' @param       node_label_cex Numeric: size of node labels. Default value: 1.
 #'
-#' @param       vertex_shape character string: shape of node. Default value: "none". See same argument of plot.igraph().
+#' @param       vertex_shape Character string: shape of node. Default value: "none". See same argument of plot.igraph().
 #'
-#' @param       vertex_size integer: size of node. Default value: 15. See same argument of plot.igraph().
+#' @param       vertex_size Integer: size of node. Default value: 15. See same argument of plot.igraph().
 #'
-#' @param       edge_arrow_size  numeric: size of arrow edge. Default value: 0.5. See same argument of plot.igraph().
+#' @param       edge_arrow_size  Numeric: size of arrow edge. Default value: 0.5. See same argument of plot.igraph().
 #'
-#' @param       edge_width_scale numeric: scaling factor for edge width. Default value: 2.5. See same argument of plot.igraph().
+#' @param       edge_width_scale Numeric: scaling factor for edge width. Default value: 2.5. See same argument of plot.igraph().
 #'
-#' @param       legend_size numeric: size of the legend text. Default value: 0.75.
+#' @param       legend_size Numeric: size of the legend text. Default value: 0.75.
 #'
-#' @param       legend_gradient_x_coord numeric vector: x coordinates of the label position. Default value: c(1.15,1.25,1.25,1.15).
+#' @param       legend_gradient_x_coord Numeric vector: x coordinates of the label position. Default value: c(1.15,1.25,1.25,1.15).
 #'
-#' @param       legend_gradient_y_coord numeric numeric vector: y coordinates of the label position. Default value: c(-0.5,-0.5,-1,-1).
+#' @param       legend_gradient_y_coord Numeric numeric vector: y coordinates of the label position. Default value: c(-0.5,-0.5,-1,-1).
 #'
-#' @param       ...                             other plot.igraph parameters
+#' @param       ... Any other plot.igraph parameters.
 #'
 #' @return      graph plot
 plot_communication_graph <- function(LRP

@@ -13,11 +13,11 @@ pattern_search(
 )
 }
 \arguments{
-\item{pattern_adj_matrix}{numeric matrix: an adjacency matrix for the pattern of interest.}
+\item{pattern_adj_matrix}{Numeric matrix: an adjacency matrix for the pattern of interest.}
 
-\item{weight_array}{numeric array: array of weighted adjacency matrices with dimensions [number of nodes, number of nodes, number of ligand-receptor pairs].}
+\item{weight_array}{Numeric array: array of weighted adjacency matrices with dimensions [number of nodes, number of nodes, number of ligand-receptor pairs].}
 
-\item{ligand_receptor_pair_df}{character dataframe: data frame with columns "pair", "ligand", "ligand_complex_composition", "receptor", "receptor_complex_composition".
+\item{ligand_receptor_pair_df}{Character dataframe: data frame with columns "pair", "ligand", "ligand_complex_composition", "receptor", "receptor_complex_composition".
 
 Column "pair" contains values in a form "ligand:receptor", i.e. ligand being at the first place, receptor being at the second place, e.g. "TNFSF13:TNFRSF17".
 
@@ -31,9 +31,9 @@ Column "receptor" contains receptor names, e.g. "TNFRSF17".
 Column "receptor_complex_composition" if receptor is a complex (e.g. "NKG2D_II_receptor"),
 contains genes in the receptor complex separated with a comma, e.g. "KLRK1,HCST", else contains empty string "".}
 
-\item{nodes}{character string vector: a vector with all cell types in the data.}
+\item{nodes}{Character string vector: a vector with all cell types in the data.}
 
-\item{dissimilarity}{function: dissimilarity measure. Default value: d_normWeightDiff.}
+\item{dissimilarity}{Function: dissimilarity measure. Default value: d_normWeightDiff.}
 }
 \value{
 dataframe:                              The data frame is sorted by increasing dissimilarity (i.e. similar patterns a the top

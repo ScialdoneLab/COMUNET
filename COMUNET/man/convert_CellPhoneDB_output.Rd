@@ -7,11 +7,11 @@
 convert_CellPhoneDB_output(CellPhoneDB_output, complex_input, gene_input)
 }
 \arguments{
-\item{CellPhoneDB_output}{significant_means.txt file in the output of CellPhoneDB.}
+\item{CellPhoneDB_output}{Character string: significant_means.txt file in the output of CellPhoneDB.}
 
-\item{complex_input}{complex_input.csv file. Download from CellPhoneDB.}
+\item{complex_input}{Character string: complex_input.csv file. Download from CellPhoneDB.}
 
-\item{gene_input}{gene_input.csv file. Download from CellPhoneDB.}
+\item{gene_input}{Character string: gene_input.csv file. Download from CellPhoneDB.}
 }
 \value{
 list of:

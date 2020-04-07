@@ -13,9 +13,9 @@
 #' @author
 #' Maria Solovey \email{maria.solovey@helmholtz-muenchen.de}
 #'
-#' @param communicating_nodes character string vector: in form of c("cellType1_to_celltype2", "cell_type1_to_celltype3", ...), e.g. c("HSC_to_Tcells", "HSC_to_bcells", ...).
+#' @param communicating_nodes Character string vector: in form of c("cellType1_to_celltype2", "cell_type1_to_celltype3", ...), e.g. c("HSC_to_Tcells", "HSC_to_bcells", ...).
 #'
-#' @param nodes character string vector: of length n with all cell types in the data.
+#' @param nodes Character string vector: of length n with all cell types in the data.
 #'
 #' @return     weight matrix: numeric n x n matrix with values 0 or 1. Rows are nodes, columns are nodes.
 #' Rows are regarded as sending cell type, columns are regarded as receiving cell types. 1 defines communication, 0 defines no communication

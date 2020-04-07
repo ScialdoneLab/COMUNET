@@ -19,11 +19,11 @@ plot_lig_rec(
 )
 }
 \arguments{
-\item{cluster_of_interest}{numeric: number of the cluster, for which the ligands and receptors should be plotted.}
+\item{cluster_of_interest}{Integer: number of the cluster, for which the ligands and receptors should be plotted.}
 
-\item{lrp_clusters}{numeric vector: cluster assignment for each ligand-receptor pair.}
+\item{lrp_clusters}{Integer vector: cluster assignment for each ligand-receptor pair.}
 
-\item{ligand_receptor_pair_df}{character dataframe: data frame with columns "pair", "ligand", "ligand_complex_composition", "receptor", "receptor_complex_composition".
+\item{ligand_receptor_pair_df}{Character dataframe: data frame with columns "pair", "ligand", "ligand_complex_composition", "receptor", "receptor_complex_composition".
 
 Column "pair" contains values in a form "ligand:receptor", i.e. ligand being at the first place, receptor being at the second place, e.g. "TNFSF13:TNFRSF17".
 
@@ -37,21 +37,21 @@ Column "receptor" contains receptor names, e.g. "TNFRSF17".
 Column "receptor_complex_composition" if receptor is a complex (e.g. "NKG2D_II_receptor"),
 contains genes in the receptor complex separated with a comma, e.g. "KLRK1,HCST", else contains empty string "".}
 
-\item{lig_rec_color}{character string vector: colours for ligand and receptors: first colour for the ligand, second colour for the receptor. Default value: c("red", "blue").}
+\item{lig_rec_color}{Character string vector: colours for ligand and receptors: first colour for the ligand, second colour for the receptor. Default value: c("red", "blue").}
 
-\item{edge_arrow_size}{numeric: size of arrow edge. Default value: 0.25. See same argument of plot.igraph().}
+\item{edge_arrow_size}{Numeric: size of arrow edge. Default value: 0.25. See same argument of plot.igraph().}
 
-\item{node_label_cex}{numeric: size of node labels. Default value: 1.}
+\item{node_label_cex}{Numeric: size of node labels. Default value: 1.}
 
-\item{layout}{function: see layout from igraph package v0.2.1. Default value: layout_nicely.}
+\item{layout}{Function: see layout from igraph package v0.2.1. Default value: layout_nicely.}
 
-\item{legend_position}{numeric vector: x, y coordinates of the legend position. Default value: c(-1, -1.1).}
+\item{legend_position}{Numeric vector: x, y coordinates of the legend position. Default value: c(-1, -1.1).}
 
-\item{legend_pt_cex}{numeric: expansion factor(s) for the points in the legend. See legend() from graphics v3.6.2. Default value: 2.}
+\item{legend_pt_cex}{Numeric: expansion factor(s) for the points in the legend. See legend() from graphics v3.6.2. Default value: 2.}
 
-\item{legend_cex}{numeric: character expansion factor in the legend. See legend() from graphics v3.6.2. Default value: 0.8.}
+\item{legend_cex}{Numeric: character expansion factor in the legend. See legend() from graphics v3.6.2. Default value: 0.8.}
 
-\item{...}{other plot.igraph parameters}
+\item{...}{Any other plot.igraph parameters.}
 }
 \value{
 graph plot

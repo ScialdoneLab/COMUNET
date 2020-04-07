@@ -14,9 +14,9 @@
 #' @author
 #' Maria Solovey \email{maria.solovey@helmholtz-muenchen.de}
 #'
-#' @param       weight_array numeric array: array of weighted adjacency matrices with dimensions [number of nodes, number of nodes, number of ligand-receptor pairs].
+#' @param       weight_array Numeric array: array of weighted adjacency matrices with dimensions [number of nodes, number of nodes, number of ligand-receptor pairs].
 #'
-#' @param       ligand_receptor_pair_df character dataframe: data frame with columns "pair", "ligand", "ligand_complex_composition", "receptor", "receptor_complex_composition".
+#' @param       ligand_receptor_pair_df Character dataframe: data frame with columns "pair", "ligand", "ligand_complex_composition", "receptor", "receptor_complex_composition".
 #'
 #' Column "pair" contains values in a form "ligand:receptor", i.e. ligand being at the first place, receptor being at the second place, e.g. "TNFSF13:TNFRSF17".
 #'
@@ -30,13 +30,13 @@
 #' Column "receptor_complex_composition" if receptor is a complex (e.g. "NKG2D_II_receptor"),
 #' contains genes in the receptor complex separated with a comma, e.g. "KLRK1,HCST", else contains empty string "".
 #'
-#' @param       nodes character string vector: a vector with all cell types in the data.
+#' @param       nodes Character string vector: a vector with all cell types in the data.
 #'
-#' @param       dissimilarity function: dissimilarity function. Default value is d_normWeightDiff.
+#' @param       dissimilarity Function: dissimilarity function. Default value is d_normWeightDiff.
 #'
-#' @param       deep_split numeric: defines the deepSplit parameter of the \code{cutreeHybrid} function. Default value: 0.
+#' @param       deep_split Numeric: defines the deepSplit parameter of the \code{cutreeHybrid} function. Default value: 0.
 #'
-#' @param       min_cluster_size numeric: minimum number of ligand-receptor pairs per cluster. Default value: 6.
+#' @param       min_cluster_size Numeric: minimum number of ligand-receptor pairs per cluster. Default value: 6.
 #'
 #' @return a list of:
 #'

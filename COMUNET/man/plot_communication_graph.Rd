@@ -26,11 +26,11 @@ plot_communication_graph(
 )
 }
 \arguments{
-\item{LRP}{character string: name of ligand-receptor pair for which the plot should be constructed.
+\item{LRP}{Character string: name of ligand-receptor pair for which the plot should be constructed.
 Note the the LRP name should be written in the same from as in ligand_receptor_pair_df$pair.
 Alternatively, it can be a name of a cluster or a pattern.}
 
-\item{weight_array}{3D numeric array or 2D numeric matrix:
+\item{weight_array}{Numeric array (3D) or numeric matrix (2D):
 array of weighted adjacency matrices with dimensions [number of nodes, number of nodes, number of ligand-receptor pairs] or one adjacency matrix with dimensions [number of nodes, number of nodes].
 
 First dimension: sending nodes (note: this dimension has all possible nodes, even if some of them are silent for a particular ligand-receptor pair).
@@ -41,7 +41,7 @@ Third dimension (for arrays): ligand-receptor pairs.
 
 Note that the weight_array should contain dimnames: dimnames = list(nodes, nodes, ligand-receptor pairs).}
 
-\item{ligand_receptor_pair_df}{character dataframe: data frame with columns "pair", "ligand", "ligand_complex_composition", "receptor", "receptor_complex_composition".
+\item{ligand_receptor_pair_df}{Character dataframe: data frame with columns "pair", "ligand", "ligand_complex_composition", "receptor", "receptor_complex_composition".
 
 Column "pair" contains values in a form "ligand:receptor", i.e. ligand being at the first place, receptor being at the second place, e.g. "TNFSF13:TNFRSF17".
 
@@ -55,37 +55,37 @@ Column "receptor" contains receptor names, e.g. "TNFRSF17".
 Column "receptor_complex_composition" if receptor is a complex (e.g. "NKG2D_II_receptor"),
 contains genes in the receptor complex separated with a comma, e.g. "KLRK1,HCST", else contains empty string "".}
 
-\item{nodes}{character vector: a vector with all cell types in the data.}
+\item{nodes}{Character vector: a vector with all cell types in the data.}
 
-\item{is_pattern}{logical: should a graph of a pattern (and not a particular ligand-receptor pair) be plotted. Default value = F.}
+\item{is_pattern}{Logical: should a graph of a pattern (and not a particular ligand-receptor pair) be plotted. Default value = F.}
 
-\item{is_cluster}{logical: should a graph of a cluster (and not a particular ligand-receptor pair) be plotted. Default value = F.}
+\item{is_cluster}{Logical: should a graph of a cluster (and not a particular ligand-receptor pair) be plotted. Default value = F.}
 
-\item{title}{character string: title of the plot. Default value: LRP.}
+\item{title}{Character string: title of the plot. Default value: LRP.}
 
-\item{subtitle}{character string:  subtitle of the plot. Default value: "".}
+\item{subtitle}{Character string:  subtitle of the plot. Default value: "".}
 
-\item{node_color_palette}{character string vector: vector of colours for nodes. Default values: c("blue", "gray40", "red").
+\item{node_color_palette}{Character string vector: vector of colours for nodes. Default values: c("blue", "gray40", "red").
 The colours will be used to construct a colour gradient for the node delta degree: blue representing a receiving node (negative delta degree),
 grey representing a neutral node (zero delta degree), red representing a sending node (positive delta degree).}
 
-\item{node_label_cex}{numeric: size of node labels. Default value: 1.}
+\item{node_label_cex}{Numeric: size of node labels. Default value: 1.}
 
-\item{vertex_shape}{character string: shape of node. Default value: "none". See same argument of plot.igraph().}
+\item{vertex_shape}{Character string: shape of node. Default value: "none". See same argument of plot.igraph().}
 
-\item{vertex_size}{integer: size of node. Default value: 15. See same argument of plot.igraph().}
+\item{vertex_size}{Integer: size of node. Default value: 15. See same argument of plot.igraph().}
 
-\item{edge_arrow_size}{numeric: size of arrow edge. Default value: 0.5. See same argument of plot.igraph().}
+\item{edge_arrow_size}{Numeric: size of arrow edge. Default value: 0.5. See same argument of plot.igraph().}
 
-\item{edge_width_scale}{numeric: scaling factor for edge width. Default value: 2.5. See same argument of plot.igraph().}
+\item{edge_width_scale}{Numeric: scaling factor for edge width. Default value: 2.5. See same argument of plot.igraph().}
 
-\item{legend_size}{numeric: size of the legend text. Default value: 0.75.}
+\item{legend_size}{Numeric: size of the legend text. Default value: 0.75.}
 
-\item{legend_gradient_x_coord}{numeric vector: x coordinates of the label position. Default value: c(1.15,1.25,1.25,1.15).}
+\item{legend_gradient_x_coord}{Numeric vector: x coordinates of the label position. Default value: c(1.15,1.25,1.25,1.15).}
 
-\item{legend_gradient_y_coord}{numeric numeric vector: y coordinates of the label position. Default value: c(-0.5,-0.5,-1,-1).}
+\item{legend_gradient_y_coord}{Numeric numeric vector: y coordinates of the label position. Default value: c(-0.5,-0.5,-1,-1).}
 
-\item{...}{other plot.igraph parameters}
+\item{...}{Any other plot.igraph parameters.}
 }
 \value{
 graph plot

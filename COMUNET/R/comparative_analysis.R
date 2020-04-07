@@ -12,27 +12,27 @@
 #' @author
 #' Maria Solovey \email{maria.solovey@helmholtz-muenchen.de}
 #'
-#' @param cond1_weight_array numeric array: array of weighted adjacency matrices for condition 1.
+#' @param cond1_weight_array Numeric array: array of weighted adjacency matrices for condition 1.
 #' Note that the function filters out empty weight arrays and the corresponding ligand-receptor pairs.
 #'
-#' @param cond2_weight_array numeric array: array of weighted adjacency matrices for condition 2.
+#' @param cond2_weight_array Numeric array: array of weighted adjacency matrices for condition 2.
 #' Note that the function filters out empty weight arrays and the corresponding ligand-receptor pairs.
 #'
-#' @param cond1_ligand_receptor_pair_df character dataframe: data frame with columns "pair", "ligand", "ligand_complex_composition", "receptor", "receptor_complex_composition" for condition 1.
+#' @param cond1_ligand_receptor_pair_df Character dataframe: data frame with columns "pair", "ligand", "ligand_complex_composition", "receptor", "receptor_complex_composition" for condition 1.
 #'
-#' @param cond2_ligand_receptor_pair_df character dataframe: data frame with columns "pair", "ligand", "ligand_complex_composition", "receptor", "receptor_complex_composition" for condition 2.
+#' @param cond2_ligand_receptor_pair_df Character dataframe: data frame with columns "pair", "ligand", "ligand_complex_composition", "receptor", "receptor_complex_composition" for condition 2.
 #'
-#' @param cond1_nodes character string vector: a vector with all cell types in the data.
+#' @param cond1_nodes Character string vector: a vector with all cell types in the data.
 #' Please note that comparative_analysis expects nodes (i.e. cell types) to be the same in both conditions.
 #'
-#' @param cond2_nodes character string vector: a vector with all cell types in the data. Default value: cond1_nodes.
+#' @param cond2_nodes Character string vector: a vector with all cell types in the data. Default value: cond1_nodes.
 #'
 #' Please note that comparative_analysis expects nodes (i.e. cell types) to be the same in both conditions.
-#' @param cond1_name character string: sample name for condition 1.
+#' @param cond1_name Character string: sample name for condition 1.
 #'
-#' @param cond2_name character string: sample name for condition 2.
+#' @param cond2_name Character string: sample name for condition 2.
 #'
-#' @param dissimilarity function: dissimilarity function. Default value is d_normWeightDiff.
+#' @param dissimilarity Function: dissimilarity function. Default value is d_normWeightDiff.
 #'
 #' @return a list of:
 #'
