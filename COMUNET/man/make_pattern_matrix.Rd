@@ -14,8 +14,8 @@ make_pattern_matrix(communicating_nodes, nodes)
 \value{
 \item{weight_matrix}{
 
-  Numeric n x n matrix with values 0 or 1. Rows are nodes, columns are nodes.
-  Rows are regarded as sending cell type, columns are regarded as receiving cell types. 1 defines communication, 0 defines no communication.
+  Numeric \eqn{n} x \eqn{n} matrix with \eqn{n} being the number of nodes and the values of the matrix being 0 or 1.
+  Rows are regarded as sending cell type, columns are regarded as receiving cell types. A value of 1 defines communication, a value of 0 defines no communication.
 }
 }
 \description{

@@ -38,33 +38,33 @@
 #'
 #' @param colors_lrp Character string vector: colours for ligand-receptor labels. Default: green for shared, black for unshared.
 #'
-#' @param show_legend Logical: parameter of the "HeatmapAnnotation" function. Default is T.
+#' @param show_legend Logical: parameter of the \code{\link[HeatmapAnnotation:ComplexHeatmap](HeatmapAnnotation)} function. Default is TRUE.
 #'
-#' @param row_names_fontsize Numeric: parameter of the "Heatmap" function. Default is 5.
+#' @param row_names_fontsize Numeric: parameter of the \code{\link[Heatmap:ComplexHeatmap](Heatmap)} function. Default is 5.
 #'
-#' @param colomn_names_fontsize Numeric: parameter of the "Heatmap" function. Default is 5.
+#' @param colomn_names_fontsize Numeric: parameter of the \code{\link[Heatmap:ComplexHeatmap](Heatmap)} function. Default is 5.
 #'
-#' @param show_column_names Logical: parameter of the "Heatmap" function. Default is T.
+#' @param show_column_names Logical: parameter of the \code{\link[Heatmap:ComplexHeatmap](Heatmap)} function. Default is TRUE.
 #'
-#' @param show_row_names Logical: parameter of the "Heatmap" function. Default  is T.
+#' @param show_row_names Logical: parameter of the \code{\link[Heatmap:ComplexHeatmap](Heatmap)} function. Default  is TRUE.
 #'
-#' @param width Object of class "unit": parameter of the "HeatmapAnnotation" function. Default is unit(0.1, "cm").
+#' @param width Object of class "unit": parameter of the \code{\link[HeatmapAnnotation:ComplexHeatmap](HeatmapAnnotation)} function. Default is unit(0.1, "cm").
 #'
-#' @param legend_direction Character string: parameter of the "Heatmap" function. Default is "horizontal".
+#' @param legend_direction Character string: parameter of the \code{\link[Heatmap:ComplexHeatmap](Heatmap)} function. Default is "horizontal".
 #'
-#' @param legend_width Object of class "unit": parameter of the "Heatmap" function. Default is unit(5, "cm").
+#' @param legend_width Object of class "unit": parameter of the \code{\link[Heatmap:ComplexHeatmap](Heatmap)} function. Default is unit(5, "cm").
 #'
-#' @param title_position Character string: parameter of the "Heatmap" function. Default is "lefttop".
+#' @param title_position Character string: parameter of the \code{\link[Heatmap:ComplexHeatmap](Heatmap)} function. Default is "lefttop".
 #'
-#' @param row_dend_side Character string: parameter of the "Heatmap" function. Default is "left"
+#' @param row_dend_side Character string: parameter of the \code{\link[Heatmap:ComplexHeatmap](Heatmap)} function. Default is "left"
 #'
-#' @param column_dend_side Character string: parameter of the "Heatmap" function. Default is "top".
+#' @param column_dend_side Character string: parameter of the \code{\link[Heatmap:ComplexHeatmap](Heatmap)} function. Default is "top".
 #'
-#' @param column_title_side Character string: parameter of the "draw" function. Default is "top".
+#' @param column_title_side Character string: parameter of the \code{\link[draw:ComplexHeatmap](draw)} function. Default is "top".
 #'
-#' @param heatmap_legend_side Character string: parameter of the "draw" function. Default is "bottom".
+#' @param heatmap_legend_side Character string: parameter of the \code{\link[draw:ComplexHeatmap](draw)} function. Default is "bottom".
 #'
-#' @param ... Any other parameters of the "Heatmap" function.
+#' @param ... Any other parameters of the \code{\link[Heatmap:ComplexHeatmap](Heatmap)} function.
 #'
 #' @return
 #' Two heatmaps:
@@ -86,11 +86,11 @@ plot_dissimilarity_heatmaps <- function(dissim_cond1_cond2
                                         ,cond2_name
                                         ,colors_lrp = c("green"
                                                         ,"black")
-                                        ,show_legend = T
+                                        ,show_legend = TRUE
                                         ,row_names_fontsize = 5
                                         ,colomn_names_fontsize = 5
-                                        ,show_column_names = T
-                                        ,show_row_names = T
+                                        ,show_column_names = TRUE
+                                        ,show_row_names = TRUE
                                         ,width = unit(0.1, "cm")
                                         ,legend_direction = "horizontal"
                                         ,legend_width = unit(5, "cm")

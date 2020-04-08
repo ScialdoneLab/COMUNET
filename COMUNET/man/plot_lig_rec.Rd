@@ -37,7 +37,7 @@ plot_lig_rec(
 
 \item{lig_rec_color}{Character string vector: colours for ligand and receptors: first colour for the ligand, second colour for the receptor. Default value: c("red", "blue").}
 
-\item{edge_arrow_size}{Numeric: size of arrow edge. Default value: 0.25. See same argument of plot.igraph().}
+\item{edge_arrow_size}{Numeric: size of arrow edge. Default value: 0.25. See also \code{edge.arrow.size} argument of the \code{\link[plot.igraph:igraph](plot.igraph)} function.}
 
 \item{node_label_cex}{Numeric: size of node labels. Default value: 1.}
 
@@ -45,11 +45,11 @@ plot_lig_rec(
 
 \item{legend_position}{Numeric vector: x, y coordinates of the legend position. Default value: c(-1, -1.1).}
 
-\item{legend_pt_cex}{Numeric: expansion factor(s) for the points in the legend. See legend() from graphics v3.6.2. Default value: 2.}
+\item{legend_pt_cex}{Numeric: expansion factor(s) for the points in the legend. Default value: 2. See also \code{pt.cex} argument of the \code{\link[legend:graphics](legend)} function.}
 
-\item{legend_cex}{Numeric: character expansion factor in the legend. See legend() from graphics v3.6.2. Default value: 0.8.}
+\item{legend_cex}{Numeric: character expansion factor in the legend. Default value: 0.8. See also \code{cex} argument of the \code{\link[legend:graphics](legend)} function.}
 
-\item{...}{Any other plot.igraph parameters.}
+\item{...}{Any other \code{\link[plot.igraph:igraph](plot.igraph)} parameters.}
 }
 \value{
 Graph plot.

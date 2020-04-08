@@ -6,12 +6,12 @@
 #'
 #' @description
 #' Clusters interacting protein pairs by performing hierarchical clustering of the dissimilarity matrix of layers
-#' (by default, the \code{hclust} R function with the \code{average} agglomeration method is used) and the results can be visualized as a heatmap or a UMAP plot (McInnes et al., 2018).
+#' (by default, the \code{\link[hclust:stats](hclust)} R function with the \code{average} agglomeration method is used) and the results can be visualized as a heatmap or a UMAP plot.
 #'
-#' The number of clusters is estimated using the  \code{cutreeHybrid} R function (package dynamicTreeCut, version 1.63-1(Langfelder et al., 2008))
+#' The number of clusters is estimated using the  \code{\link[cutreeHybrid:dynamicTreeCut](cutreeHybrid)} R function
 #' with \code{deepSplit} equal to 0 and default \code{minClusterSize} equal to 6 by default (both can be adjusted).
 #'
-#' For each cluster, a graph that represents the “average” pattern is built by averaging the edge weights and the delta degrees of the nodes of all the graphs in the cluster.
+#' For each cluster, a graph represents the average communication pattern in the cluster and is built by averaging the edge weights and the delta degrees of the nodes of all the graphs in the cluster.
 #'
 #' @author
 #' Maria Solovey \email{maria.solovey@helmholtz-muenchen.de}
@@ -34,9 +34,9 @@
 #'
 #' @param       dissimilarity Function: dissimilarity function. Default value is d_normWeightDiff.
 #'
-#' @param       deep_split Numeric: defines the deepSplit parameter of the \code{cutreeHybrid} function. Default value: 0.
+#' @param       deep_split Numeric: defines the \code{deepSplit} parameter of the \code{\link[cutreeHybrid:dynamicTreeCut](cutreeHybrid)} function. Default value: 0.
 #'
-#' @param       min_cluster_size Numeric: minimum number of ligand-receptor pairs per cluster. Default value: 6.
+#' @param       min_cluster_size Numeric: defines the \code{minClusterSize} parameter of the \code{\link[cutreeHybrid:dynamicTreeCut](cutreeHybrid)} function, i.e. the minimum number of ligand-receptor pairs per cluster. Default value: 6.
 #'
 #' @return A list of:
 #'

@@ -11,7 +11,7 @@
 #' COMUNET transforms it into a stack of weight matrices (i.e. weight array), one weight matrix per ligand-receptor pair.
 #' If CellPhoneDB output contains \eqn{m} non-empty ligand-receptor pairs, then the number of matrices in the stack will be equal to \eqn{m}.
 #' Each such weight matrix has all cell types in the rows and all cell types in the columns.
-#' By this, if there are \eqn{n} cell types in the data, each weight matrix is an \eqn{n \times n} matrix.
+#' By this, if there are \eqn{n} cell types in the data, each weight matrix is an \eqn{n} x \eqn{n} matrix.
 #'
 #' The rows of each matrix represent sending cell types, i.e. cell types that express a ligand of a ligand-receptor pair,
 #' or just partner A of an undirected interacting pair (e.g. pair of adhesion molecules).
@@ -61,6 +61,13 @@
 #'   Character string vector: a vector with all cell types in the data.
 #'   }
 #' }
+#'
+#' @references
+#' CellPhoneDB:
+#'
+#' \href{https://www.nature.com/articles/s41596-020-0292-x?proof=trueMay}{Efremova et al., \emph{Nature Protocols} 2019}
+#'
+#' \href{http://dx.doi.org/10.1038/s41586-018-0698-6}{Vento-Tormo et al., \emph{Nature} 2018}
 convert_CellPhoneDB_output <- function(CellPhoneDB_output
                                        ,complex_input
                                        ,gene_input

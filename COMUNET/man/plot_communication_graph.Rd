@@ -9,8 +9,8 @@ plot_communication_graph(
   weight_array,
   ligand_receptor_pair_df,
   nodes,
-  is_pattern = F,
-  is_cluster = F,
+  is_pattern = FALSE,
+  is_cluster = FALSE,
   title = LRP,
   subtitle = "",
   node_color_palette = c("blue", "gray40", "red"),
@@ -57,9 +57,9 @@ Note that the weight_array should contain dimension names: dimnames = list(nodes
 
 \item{nodes}{Character vector: a vector with all cell types in the data.}
 
-\item{is_pattern}{Logical: should a graph of a pattern (and not a particular ligand-receptor pair) be plotted. Default value = F.}
+\item{is_pattern}{Logical: should a graph of a pattern (and not a particular ligand-receptor pair) be plotted. Default value = FALSE.}
 
-\item{is_cluster}{Logical: should a graph of a cluster (and not a particular ligand-receptor pair) be plotted. Default value = F.}
+\item{is_cluster}{Logical: should a graph of a cluster (and not a particular ligand-receptor pair) be plotted. Default value = FALSE.}
 
 \item{title}{Character string: title of the plot. Default value: LRP.}
 
@@ -72,13 +72,13 @@ grey representing a neutral node (zero delta degree), red representing a sending
 
 \item{node_label_cex}{Numeric: size of node labels. Default value: 1.}
 
-\item{vertex_shape}{Character string: shape of node. Default value: "none". See same argument of plot.igraph().}
+\item{vertex_shape}{Character string: shape of node. Default value: "none". See also \code{vertex.shape} argument of the \code{\link[plot.igraph:igraph](plot.igraph)} function.}
 
-\item{vertex_size}{Integer: size of node. Default value: 15. See same argument of plot.igraph().}
+\item{vertex_size}{Integer: size of node. Default value: 15.}
 
-\item{edge_arrow_size}{Numeric: size of arrow edge. Default value: 0.5. See same argument of plot.igraph().}
+\item{edge_arrow_size}{Numeric: size of arrow edge. Default value: 0.5. See also \code{edge.arrow.size} argument of the \code{\link[plot.igraph:igraph](plot.igraph)} function.}
 
-\item{edge_width_scale}{Numeric: scaling factor for edge width. Default value: 2.5. See same argument of plot.igraph().}
+\item{edge_width_scale}{Numeric: scaling factor for edge width. Default value: 2.5.}
 
 \item{legend_size}{Numeric: size of the legend text. Default value: 0.75.}
 
@@ -86,7 +86,7 @@ grey representing a neutral node (zero delta degree), red representing a sending
 
 \item{legend_gradient_y_coord}{Numeric numeric vector: y coordinates of the label position. Default value: c(-0.5,-0.5,-1,-1).}
 
-\item{...}{Any other plot.igraph parameters.}
+\item{...}{Any other parameters of the \code{\link[plot.igraph:plot.igraph](plot.igraph)} function..}
 }
 \value{
 Graph plot.

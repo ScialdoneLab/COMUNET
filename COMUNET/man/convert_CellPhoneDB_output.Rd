@@ -53,15 +53,22 @@ Converts CellPhoneDB output matrix (significant_means.txt) into an array of weig
 
 The CellPhoneDB weight matrix (significant_means.txt) contains ligand-receptor pairs in the rows and all pairs of cell types in the columns.
 COMUNET transforms it into a stack of weight matrices (i.e. weight array), one weight matrix per ligand-receptor pair.
-If CellPhoneDB output contains \code{m} non-empty ligand-receptor pairs, then the number of matrices in the stack will be equal to \code{m}.
+If CellPhoneDB output contains \eqn{m} non-empty ligand-receptor pairs, then the number of matrices in the stack will be equal to \eqn{m}.
 Each such weight matrix has all cell types in the rows and all cell types in the columns.
-By this, if there are \code{n} cell types in the data, each weight matrix is an \code{n x n} matrix.
+By this, if there are \eqn{n} cell types in the data, each weight matrix is an \eqn{n} x \eqn{n} matrix.
 
 The rows of each matrix represent sending cell types, i.e. cell types that express a ligand of a ligand-receptor pair,
 or just partner A of an undirected interacting pair (e.g. pair of adhesion molecules).
 The columns of each matrix represent receiving cell types, i.e. cell types that express a receptor of a ligand-receptor pair,
 or partner B of an undirected interacting pair (e.g. pair of adhesion molecules).
 The NA values of the CellPhoneDB output are substituted with 0.
+}
+\references{
+CellPhoneDB:
+
+\href{https://www.nature.com/articles/s41596-020-0292-x?proof=trueMay}{Efremova et al., \emph{Nature Protocols} 2019}
+
+\href{http://dx.doi.org/10.1038/s41586-018-0698-6}{Vento-Tormo et al., \emph{Nature} 2018}
 }
 \author{
 Maria Solovey \email{maria.solovey@helmholtz-muenchen.de}

@@ -40,17 +40,17 @@
 #'
 #' @param       point_size Numeric: size of points. Default value: 2.
 #'
-#' @param       title Character string: title of the heatmap plot. Argument of the draw function. Default value: "umap of ligand-receptor pairs".
+#' @param       title Character string: title of the UMAP plot. Argument of the \code{\link[ggtitle:ggplot2](ggtitle)} function. Default value: "umap of ligand-receptor pairs".
 #'
-#' @param       legend_position Character string: argument of the theme function. Default value: "bottom" guide_legend.
+#' @param       legend_position Character string: argument of the \code{\link[theme:ggplot2](theme)} function. Default value: "bottom" guide_legend.
 #'
-#' @param       legend_direction Character string: argument of the guide_legend function. Default value: "horizontal".
+#' @param       legend_direction Character string: argument of the \code{\link[guide_legend:ggplot2](guide_legend)} function. Default value: "horizontal".
 #'
-#' @param       legend_title_position Character string: argument of the guide_legend function. Default value: "top".
+#' @param       legend_title_position Character string: argument of the \code{\link[guide_legend:ggplot2](guide_legend)} function. Default value: "top".
 #'
-#' @param       legend_label_position Character string: argument of the guide_legend function. Default value: "bottom".
+#' @param       legend_label_position Character string: argument of the \code{\link[guide_legend:ggplot2](guide_legend)} function. Default value: "bottom".
 #'
-#' @param       legend_byrow logical: Argument of the guide_legend function. Default value: TRUE.
+#' @param       legend_byrow logical: Argument of the \code{\link[guide_legend:ggplot2](guide_legend)} function. Default value: TRUE.
 #'
 #' @return      UMAP of ligand-receptor pairs coloured and shaped by cluster.
 plot_cluster_UMAP <- function(ligand_receptor_pair_df
