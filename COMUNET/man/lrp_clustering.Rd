@@ -32,9 +32,9 @@ lrp_clustering(
 
 \item{dissimilarity}{Function: dissimilarity function. Default value is d_normWeightDiff.}
 
-\item{deep_split}{Numeric: defines the \code{deepSplit} parameter of the \code{\link[cutreeHybrid:dynamicTreeCut](cutreeHybrid)} function. Default value: 0.}
+\item{deep_split}{Numeric: defines the \code{deepSplit} parameter of the \code{\link[cutreeHybrid:dynamicTreeCut]{cutreeHybrid}} function. Default value: 0.}
 
-\item{min_cluster_size}{Numeric: defines the \code{minClusterSize} parameter of the \code{\link[cutreeHybrid:dynamicTreeCut](cutreeHybrid)} function, i.e. the minimum number of ligand-receptor pairs per cluster. Default value: 6.}
+\item{min_cluster_size}{Numeric: defines the \code{minClusterSize} parameter of the \code{\link[cutreeHybrid:dynamicTreeCut]{cutreeHybrid}} function, i.e. the minimum number of ligand-receptor pairs per cluster. Default value: 6.}
 }
 \value{
 A list of:
@@ -60,9 +60,9 @@ A list of:
 }
 \description{
 Clusters interacting protein pairs by performing hierarchical clustering of the dissimilarity matrix of layers
-(by default, the \code{\link[hclust:stats](hclust)} R function with the \code{average} agglomeration method is used) and the results can be visualized as a heatmap or a UMAP plot.
+(by default, the \code{\link[hclust:stats]{hclust}} R function with the \code{average} agglomeration method is used) and the results can be visualized as a heatmap or a UMAP plot.
 
-The number of clusters is estimated using the  \code{\link[cutreeHybrid:dynamicTreeCut](cutreeHybrid)} R function
+The number of clusters is estimated using the  \code{\link[cutreeHybrid:dynamicTreeCut]{cutreeHybrid}} R function
 with \code{deepSplit} equal to 0 and default \code{minClusterSize} equal to 6 by default (both can be adjusted).
 
 For each cluster, a graph represents the average communication pattern in the cluster and is built by averaging the edge weights and the delta degrees of the nodes of all the graphs in the cluster.

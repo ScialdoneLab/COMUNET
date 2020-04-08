@@ -47,33 +47,33 @@ If a ligand-receptor pair is present only in one of the conditions, the dissimil
 
 \item{colors_lrp}{Character string vector: colours for ligand-receptor labels. Default: green for shared, black for unshared.}
 
-\item{show_legend}{Logical: parameter of the \code{\link[HeatmapAnnotation:ComplexHeatmap](HeatmapAnnotation)} function. Default is TRUE.}
+\item{show_legend}{Logical: parameter of the \code{\link[HeatmapAnnotation:ComplexHeatmap]{HeatmapAnnotation}} function. Default is TRUE.}
 
-\item{row_names_fontsize}{Numeric: parameter of the \code{\link[Heatmap:ComplexHeatmap](Heatmap)} function. Default is 5.}
+\item{row_names_fontsize}{Numeric: parameter of the \code{\link[Heatmap:ComplexHeatmap]{Heatmap}} function. Default is 5.}
 
-\item{colomn_names_fontsize}{Numeric: parameter of the \code{\link[Heatmap:ComplexHeatmap](Heatmap)} function. Default is 5.}
+\item{colomn_names_fontsize}{Numeric: parameter of the \code{\link[Heatmap:ComplexHeatmap]{Heatmap}} function. Default is 5.}
 
-\item{show_column_names}{Logical: parameter of the \code{\link[Heatmap:ComplexHeatmap](Heatmap)} function. Default is TRUE.}
+\item{show_column_names}{Logical: parameter of the \code{\link[Heatmap:ComplexHeatmap]{Heatmap}} function. Default is TRUE.}
 
-\item{show_row_names}{Logical: parameter of the \code{\link[Heatmap:ComplexHeatmap](Heatmap)} function. Default  is TRUE.}
+\item{show_row_names}{Logical: parameter of the \code{\link[Heatmap:ComplexHeatmap]{Heatmap}} function. Default  is TRUE.}
 
-\item{width}{Object of class "unit": parameter of the \code{\link[HeatmapAnnotation:ComplexHeatmap](HeatmapAnnotation)} function. Default is unit(0.1, "cm").}
+\item{width}{Object of class "unit": parameter of the \code{\link[HeatmapAnnotation:ComplexHeatmap]{HeatmapAnnotation}} function. Default is unit(0.1, "cm").}
 
-\item{legend_direction}{Character string: parameter of the \code{\link[Heatmap:ComplexHeatmap](Heatmap)} function. Default is "horizontal".}
+\item{legend_direction}{Character string: parameter of the \code{\link[Heatmap:ComplexHeatmap]{Heatmap}} function. Default is "horizontal".}
 
-\item{legend_width}{Object of class "unit": parameter of the \code{\link[Heatmap:ComplexHeatmap](Heatmap)} function. Default is unit(5, "cm").}
+\item{legend_width}{Object of class "unit": parameter of the \code{\link[Heatmap:ComplexHeatmap]{Heatmap}} function. Default is unit(5, "cm").}
 
-\item{title_position}{Character string: parameter of the \code{\link[Heatmap:ComplexHeatmap](Heatmap)} function. Default is "lefttop".}
+\item{title_position}{Character string: parameter of the \code{\link[Heatmap:ComplexHeatmap]{Heatmap}} function. Default is "lefttop".}
 
-\item{row_dend_side}{Character string: parameter of the \code{\link[Heatmap:ComplexHeatmap](Heatmap)} function. Default is "left"}
+\item{row_dend_side}{Character string: parameter of the \code{\link[Heatmap:ComplexHeatmap]{Heatmap}} function. Default is "left"}
 
-\item{column_dend_side}{Character string: parameter of the \code{\link[Heatmap:ComplexHeatmap](Heatmap)} function. Default is "top".}
+\item{column_dend_side}{Character string: parameter of the \code{\link[Heatmap:ComplexHeatmap]{Heatmap}} function. Default is "top".}
 
-\item{column_title_side}{Character string: parameter of the \code{\link[draw:ComplexHeatmap](draw)} function. Default is "top".}
+\item{column_title_side}{Character string: parameter of the \code{\link[draw:ComplexHeatmap]{draw}} function. Default is "top".}
 
-\item{heatmap_legend_side}{Character string: parameter of the \code{\link[draw:ComplexHeatmap](draw)} function. Default is "bottom".}
+\item{heatmap_legend_side}{Character string: parameter of the \code{\link[draw:ComplexHeatmap]{draw}} function. Default is "bottom".}
 
-\item{...}{Any other parameters of the \code{\link[Heatmap:ComplexHeatmap](Heatmap)} function.}
+\item{...}{Any other parameters of the \code{\link[Heatmap:ComplexHeatmap]{Heatmap}} function.}
 }
 \value{
 Two heatmaps:

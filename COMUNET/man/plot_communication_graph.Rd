@@ -72,11 +72,11 @@ grey representing a neutral node (zero delta degree), red representing a sending
 
 \item{node_label_cex}{Numeric: size of node labels. Default value: 1.}
 
-\item{vertex_shape}{Character string: shape of node. Default value: "none". See also \code{vertex.shape} argument of the \code{\link[plot.igraph:igraph](plot.igraph)} function.}
+\item{vertex_shape}{Character string: shape of node. Default value: "none". See also \code{vertex.shape} argument of the \code{\link[plot.igraph:igraph]{plot.igraph}} function.}
 
 \item{vertex_size}{Integer: size of node. Default value: 15.}
 
-\item{edge_arrow_size}{Numeric: size of arrow edge. Default value: 0.5. See also \code{edge.arrow.size} argument of the \code{\link[plot.igraph:igraph](plot.igraph)} function.}
+\item{edge_arrow_size}{Numeric: size of arrow edge. Default value: 0.5. See also \code{edge.arrow.size} argument of the \code{\link[plot.igraph:igraph]{plot.igraph}} function.}
 
 \item{edge_width_scale}{Numeric: scaling factor for edge width. Default value: 2.5.}
 
@@ -86,7 +86,7 @@ grey representing a neutral node (zero delta degree), red representing a sending
 
 \item{legend_gradient_y_coord}{Numeric numeric vector: y coordinates of the label position. Default value: c(-0.5,-0.5,-1,-1).}
 
-\item{...}{Any other parameters of the \code{\link[plot.igraph:plot.igraph](plot.igraph)} function..}
+\item{...}{Any other parameters of the \code{\link[plot.igraph:plot.igraph]{plot.igraph}} function..}
 }
 \value{
 Graph plot.

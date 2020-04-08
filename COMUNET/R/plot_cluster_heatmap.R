@@ -24,23 +24,23 @@
 #'
 #' @param       unclustered_LRP_color Character string: colour for ligand-receptor pairs that remained unclustered (cluster assignment 0). Default value: "black".
 #'
-#' @param       show_colomn_names Logical: argument of the \code{\link[Heatmap:ComplexHeatmap](Heatmap)} function. Default value: FALSE.
+#' @param       show_colomn_names Logical: argument of the \code{\link[Heatmap:ComplexHeatmap]{Heatmap}} function. Default value: FALSE.
 #'
-#' @param       show_row_names Logical: argument of the \code{\link[Heatmap:ComplexHeatmap](Heatmap)} function. Default value: FALSE.
+#' @param       show_row_names Logical: argument of the \code{\link[Heatmap:ComplexHeatmap]{Heatmap}} function. Default value: FALSE.
 #'
-#' @param       legend_direction Character string: argument of the \code{\link[Heatmap:ComplexHeatmap](Heatmap)} function. Default value: "horizontal".
+#' @param       legend_direction Character string: argument of the \code{\link[Heatmap:ComplexHeatmap]{Heatmap}} function. Default value: "horizontal".
 #'
-#' @param       legend_width Object of class "unit": argument of the \code{\link[Heatmap:ComplexHeatmap](Heatmap)} function. Default is: unit(5, "cm").
+#' @param       legend_width Object of class "unit": argument of the \code{\link[Heatmap:ComplexHeatmap]{Heatmap}} function. Default is: unit(5, "cm").
 #'
-#' @param       title_position Character string: argument of the \code{\link[Heatmap:ComplexHeatmap](Heatmap)} function. Default value: "lefttop".
+#' @param       title_position Character string: argument of the \code{\link[Heatmap:ComplexHeatmap]{Heatmap}} function. Default value: "lefttop".
 #'
-#' @param       column_title Character string: title of the heatmap plot. Argument of the \code{\link[draw:ComplexHeatmap](draw)} function. Default value: "Clustering of ligand-receptor pairs".
+#' @param       column_title Character string: title of the heatmap plot. Argument of the \code{\link[draw:ComplexHeatmap]{draw}} function. Default value: "Clustering of ligand-receptor pairs".
 #'
-#' @param       column_title_side Character string:  position of the title of the heatmap plot. Argument of the \code{\link[draw:ComplexHeatmap](draw)} function. Default value: "top".
+#' @param       column_title_side Character string:  position of the title of the heatmap plot. Argument of the \code{\link[draw:ComplexHeatmap]{draw}} function. Default value: "top".
 #'
-#' @param       heatmap_legend_side Character string: position of the legend of the heatmap plot. Argument of the \code{\link[draw:ComplexHeatmap](draw)} function. Default value: "bottom".
+#' @param       heatmap_legend_side Character string: position of the legend of the heatmap plot. Argument of the \code{\link[draw:ComplexHeatmap]{draw}} function. Default value: "bottom".
 #'
-#' @param       ... Any arguments \code{\link[Heatmap:ComplexHeatmap](Heatmap)} function takes.
+#' @param       ... Any arguments \code{\link[Heatmap:ComplexHeatmap]{Heatmap}} function takes.
 #'
 #' @return      Heatmap with ligand-receptor pairs ordered by their cluster assignment.
 plot_cluster_heatmap <- function(dissim_matrix

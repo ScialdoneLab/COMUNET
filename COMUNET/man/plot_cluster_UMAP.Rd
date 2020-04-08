@@ -52,17 +52,17 @@ Note that the the vector should be named and ordered in the same way as the row 
 
 \item{point_size}{Numeric: size of points. Default value: 2.}
 
-\item{title}{Character string: title of the UMAP plot. Argument of the \code{\link[ggtitle:ggplot2](ggtitle)} function. Default value: "umap of ligand-receptor pairs".}
+\item{title}{Character string: title of the UMAP plot. Argument of the \code{\link[ggtitle:ggplot2]{ggtitle}} function. Default value: "umap of ligand-receptor pairs".}
 
-\item{legend_position}{Character string: argument of the \code{\link[theme:ggplot2](theme)} function. Default value: "bottom" guide_legend.}
+\item{legend_position}{Character string: argument of the \code{\link[theme:ggplot2]{theme}} function. Default value: "bottom" guide_legend.}
 
-\item{legend_direction}{Character string: argument of the \code{\link[guide_legend:ggplot2](guide_legend)} function. Default value: "horizontal".}
+\item{legend_direction}{Character string: argument of the \code{\link[guide_legend:ggplot2]{guide_legend}} function. Default value: "horizontal".}
 
-\item{legend_title_position}{Character string: argument of the \code{\link[guide_legend:ggplot2](guide_legend)} function. Default value: "top".}
+\item{legend_title_position}{Character string: argument of the \code{\link[guide_legend:ggplot2]{guide_legend}} function. Default value: "top".}
 
-\item{legend_label_position}{Character string: argument of the \code{\link[guide_legend:ggplot2](guide_legend)} function. Default value: "bottom".}
+\item{legend_label_position}{Character string: argument of the \code{\link[guide_legend:ggplot2]{guide_legend}} function. Default value: "bottom".}
 
-\item{legend_byrow}{logical: Argument of the \code{\link[guide_legend:ggplot2](guide_legend)} function. Default value: TRUE.}
+\item{legend_byrow}{logical: Argument of the \code{\link[guide_legend:ggplot2]{guide_legend}} function. Default value: TRUE.}
 }
 \value{
 UMAP of ligand-receptor pairs coloured and shaped by cluster.

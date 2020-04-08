@@ -65,11 +65,11 @@
 #'
 #' @param       node_label_cex Numeric: size of node labels. Default value: 1.
 #'
-#' @param       vertex_shape Character string: shape of node. Default value: "none". See also \code{vertex.shape} argument of the \code{\link[plot.igraph:igraph](plot.igraph)} function.
+#' @param       vertex_shape Character string: shape of node. Default value: "none". See also \code{vertex.shape} argument of the \code{\link[plot.igraph:igraph]{plot.igraph}} function.
 #'
 #' @param       vertex_size Integer: size of node. Default value: 15.
 #'
-#' @param       edge_arrow_size  Numeric: size of arrow edge. Default value: 0.5. See also \code{edge.arrow.size} argument of the \code{\link[plot.igraph:igraph](plot.igraph)} function.
+#' @param       edge_arrow_size  Numeric: size of arrow edge. Default value: 0.5. See also \code{edge.arrow.size} argument of the \code{\link[plot.igraph:igraph]{plot.igraph}} function.
 #'
 #' @param       edge_width_scale Numeric: scaling factor for edge width. Default value: 2.5.
 #'
@@ -79,7 +79,7 @@
 #'
 #' @param       legend_gradient_y_coord Numeric numeric vector: y coordinates of the label position. Default value: c(-0.5,-0.5,-1,-1).
 #'
-#' @param       ... Any other parameters of the \code{\link[plot.igraph:plot.igraph](plot.igraph)} function..
+#' @param       ... Any other parameters of the \code{\link[plot.igraph:plot.igraph]{plot.igraph}} function..
 #'
 #' @return      Graph plot.
 plot_communication_graph <- function(LRP

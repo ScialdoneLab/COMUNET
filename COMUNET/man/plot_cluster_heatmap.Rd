@@ -33,23 +33,23 @@ Note that the the vector should be named and ordered in the same way as the row 
 
 \item{unclustered_LRP_color}{Character string: colour for ligand-receptor pairs that remained unclustered (cluster assignment 0). Default value: "black".}
 
-\item{show_row_names}{Logical: argument of the \code{\link[Heatmap:ComplexHeatmap](Heatmap)} function. Default value: FALSE.}
+\item{show_row_names}{Logical: argument of the \code{\link[Heatmap:ComplexHeatmap]{Heatmap}} function. Default value: FALSE.}
 
-\item{legend_direction}{Character string: argument of the \code{\link[Heatmap:ComplexHeatmap](Heatmap)} function. Default value: "horizontal".}
+\item{legend_direction}{Character string: argument of the \code{\link[Heatmap:ComplexHeatmap]{Heatmap}} function. Default value: "horizontal".}
 
-\item{legend_width}{Object of class "unit": argument of the \code{\link[Heatmap:ComplexHeatmap](Heatmap)} function. Default is: unit(5, "cm").}
+\item{legend_width}{Object of class "unit": argument of the \code{\link[Heatmap:ComplexHeatmap]{Heatmap}} function. Default is: unit(5, "cm").}
 
-\item{title_position}{Character string: argument of the \code{\link[Heatmap:ComplexHeatmap](Heatmap)} function. Default value: "lefttop".}
+\item{title_position}{Character string: argument of the \code{\link[Heatmap:ComplexHeatmap]{Heatmap}} function. Default value: "lefttop".}
 
-\item{column_title}{Character string: title of the heatmap plot. Argument of the \code{\link[draw:ComplexHeatmap](draw)} function. Default value: "Clustering of ligand-receptor pairs".}
+\item{column_title}{Character string: title of the heatmap plot. Argument of the \code{\link[draw:ComplexHeatmap]{draw}} function. Default value: "Clustering of ligand-receptor pairs".}
 
-\item{column_title_side}{Character string:  position of the title of the heatmap plot. Argument of the \code{\link[draw:ComplexHeatmap](draw)} function. Default value: "top".}
+\item{column_title_side}{Character string:  position of the title of the heatmap plot. Argument of the \code{\link[draw:ComplexHeatmap]{draw}} function. Default value: "top".}
 
-\item{heatmap_legend_side}{Character string: position of the legend of the heatmap plot. Argument of the \code{\link[draw:ComplexHeatmap](draw)} function. Default value: "bottom".}
+\item{heatmap_legend_side}{Character string: position of the legend of the heatmap plot. Argument of the \code{\link[draw:ComplexHeatmap]{draw}} function. Default value: "bottom".}
 
-\item{...}{Any arguments \code{\link[Heatmap:ComplexHeatmap](Heatmap)} function takes.}
+\item{...}{Any arguments \code{\link[Heatmap:ComplexHeatmap]{Heatmap}} function takes.}
 
-\item{show_colomn_names}{Logical: argument of the \code{\link[Heatmap:ComplexHeatmap](Heatmap)} function. Default value: FALSE.}
+\item{show_colomn_names}{Logical: argument of the \code{\link[Heatmap:ComplexHeatmap]{Heatmap}} function. Default value: FALSE.}
 }
 \value{
 Heatmap with ligand-receptor pairs ordered by their cluster assignment.
