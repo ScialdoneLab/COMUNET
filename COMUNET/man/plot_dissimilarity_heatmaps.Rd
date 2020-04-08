@@ -29,15 +29,17 @@ plot_dissimilarity_heatmaps(
 \arguments{
 \item{dissim_cond1_cond2}{Numeric matrix: pairwise dissimilarity between all ligand-receptor pairs in the two conditions (condition 1 in rows, condition 2 in columns).}
 
-\item{sorted_LRP_df}{Dataframe with columns:
+\item{sorted_LRP_df}{Data frame with columns:
 
-"pair" (character string): names of ligand-receptor pairs in the same form as they are in ligand_receptor_pair_df$pair;
+\itemize{
 
-"presence" (character string): name of the condition in which the ligand-receptor pair is present or "shared" if present in both conditions;
+\item "pair" (character string): names of ligand-receptor pairs in the same form as they are in ligand_receptor_pair_df$pair.
+\item "presence" (character string): name of the condition in which the ligand-receptor pair is present or "shared" if present in both conditions.
+\item "dissimilarity" (numeric): dissimilarity value between the topology of ligand-receptor pair graph in two conditions.
 
-"dissimilarity" (numeric): dissimilarity value between the topology of ligand-receptor pair graph in two conditions.
 The smaller the dissimilarity value, the more similar is the graph topology between the two conditions.
-If a ligand-receptor pair is present only in one of the conditions, the dissimilarity is equal to 1.}
+If a ligand-receptor pair is present only in one of the conditions, the dissimilarity is equal to 1.
+}}
 
 \item{cond1_name}{Character string: sample name for condition 1.}
 
@@ -45,49 +47,59 @@ If a ligand-receptor pair is present only in one of the conditions, the dissimil
 
 \item{colors_lrp}{Character string vector: colours for ligand-receptor labels. Default: green for shared, black for unshared.}
 
-\item{show_legend}{Logical: parameter of the HeatmapAnnotation function. Default is T.}
+\item{show_legend}{Logical: parameter of the "HeatmapAnnotation" function. Default is T.}
 
-\item{row_names_fontsize}{Numeric: parameter of the Heatmap function. Default is 5.}
+\item{row_names_fontsize}{Numeric: parameter of the "Heatmap" function. Default is 5.}
 
-\item{colomn_names_fontsize}{Numeric: parameter of the Heatmap function. Default is 5.}
+\item{colomn_names_fontsize}{Numeric: parameter of the "Heatmap" function. Default is 5.}
 
-\item{show_column_names}{Logical: parameter of the Heatmap function. Default is T.}
+\item{show_column_names}{Logical: parameter of the "Heatmap" function. Default is T.}
 
-\item{show_row_names}{Logical: parameter of the Heatmap function. Default  is T.}
+\item{show_row_names}{Logical: parameter of the "Heatmap" function. Default  is T.}
 
-\item{width}{Object of class "unit": parameter of the HeatmapAnnotation function. Default is unit(0.1, "cm").}
+\item{width}{Object of class "unit": parameter of the "HeatmapAnnotation" function. Default is unit(0.1, "cm").}
 
-\item{legend_direction}{Character string: parameter of the Heatmap function. Default is "horizontal".}
+\item{legend_direction}{Character string: parameter of the "Heatmap" function. Default is "horizontal".}
 
-\item{legend_width}{Object of class "unit": parameter of the Heatmap function. Default is unit(5, "cm").}
+\item{legend_width}{Object of class "unit": parameter of the "Heatmap" function. Default is unit(5, "cm").}
 
-\item{title_position}{Character string: parameter of the Heatmap function. Default is "lefttop".}
+\item{title_position}{Character string: parameter of the "Heatmap" function. Default is "lefttop".}
 
-\item{row_dend_side}{Character string: parameter of the Heatmap function. Default is "left"}
+\item{row_dend_side}{Character string: parameter of the "Heatmap" function. Default is "left"}
 
-\item{column_dend_side}{Character string: parameter of the Heatmap function. Default is "top".}
+\item{column_dend_side}{Character string: parameter of the "Heatmap" function. Default is "top".}
 
-\item{column_title_side}{Character string: parameter of the draw function. Default is "top".}
+\item{column_title_side}{Character string: parameter of the "draw" function. Default is "top".}
 
-\item{heatmap_legend_side}{Character string: parameter of the draw function. Default is "bottom".}
+\item{heatmap_legend_side}{Character string: parameter of the "draw" function. Default is "bottom".}
 
-\item{...}{Any other parameters of the Heatmap function.}
+\item{...}{Any other parameters of the "Heatmap" function.}
 }
 \value{
-two heatmaps:
+Two heatmaps:
 
-- one with ligand-receptor pairs clustered by their pairwise dissimilarity
+\itemize{
+  \item{clustered heatmap}{
 
-- one with ligand-receptor pairs sorted by decreasing dissimilarity of shared ligand-receptor pairs
+  A heatmap with ligand-receptor pairs clustered by their pairwise dissimilarity.
+  }
+
+  \item{sorted heatmap}{
+
+  A heatmap with ligand-receptor pairs sorted by decreasing dissimilarity of shared ligand-receptor pairs.
+  }
+  }
 }
 \description{
-\code{plot_dissimilarity_heatmaps} plots heatmaps of dissimilarity between two conditions.
+Plots heatmaps of dissimilarity between two conditions.
+
 In each heatmap, interacting protein pairs from condition 1 are in the rows, and those from condition 2 are in the columns.
 On the first heatmap, both rows and columns are clustered by the pairwise dissimilarity.
 On the second heatmap, rows and columns are sorted by presence (shared or unshared) of an interacting protein pairs in both conditions
 and by decreasing pairwise dissimilarity (in shared interacting pairs).
-Labels of interacting pairs are colored by their presence (shared or unshared).
-Each point of the heatmap is colored by the value of the pairwise dissimilarity.
+
+Labels of interacting pairs are colored by their presence in both conditions (shared or unshared).
+The heatmap is colored by the values of the pairwise dissimilarity.
 }
 \author{
 Maria Solovey \email{maria.solovey@helmholtz-muenchen.de}

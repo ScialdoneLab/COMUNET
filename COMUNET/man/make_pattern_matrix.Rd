@@ -12,11 +12,15 @@ make_pattern_matrix(communicating_nodes, nodes)
 \item{nodes}{Character string vector: of length n with all cell types in the data.}
 }
 \value{
-weight matrix: numeric n x n matrix with values 0 or 1. Rows are nodes, columns are nodes.
-Rows are regarded as sending cell type, columns are regarded as receiving cell types. 1 defines communication, 0 defines no communication
+\item{weight_matrix}{
+
+  Numeric n x n matrix with values 0 or 1. Rows are nodes, columns are nodes.
+  Rows are regarded as sending cell type, columns are regarded as receiving cell types. 1 defines communication, 0 defines no communication.
+}
 }
 \description{
-\code{make_pattern_matrix} makes a weight matrix for pattern of interest.
+Makes a weight matrix for pattern of interest.
+
 The rows and columns of the matrix contain all nodes.
 The rows are considered as sending nodes and the columns are considered as receiving nodes.
 The value of 1 represents an edge (i.e. cell types are communicating) and 0 represents no edge (i.e. cell types are not communicating).

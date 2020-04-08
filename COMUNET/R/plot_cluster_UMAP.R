@@ -5,29 +5,30 @@
 #' Plots UMAP of ligand-receptor pairs
 #'
 #' @description
-#' \code{plot_cluster_UMAP} plots UMAP of ligand-receptor pairs colored and shaped by cluster.
+#' Plots UMAP of ligand-receptor pairs colored and shaped by cluster.
 #'
 #' @author
 #' Maria Solovey \email{maria.solovey@helmholtz-muenchen.de}
 #'
-#' @param       ligand_receptor_pair_df Character dataframe: data frame with columns "pair", "ligand", "ligand_complex_composition", "receptor", "receptor_complex_composition".
+#' @param       ligand_receptor_pair_df Character string data frame: data frame with columns:
 #'
-#' Column "pair" contains values in a form "ligand:receptor", i.e. ligand being at the first place, receptor being at the second place, e.g. "TNFSF13:TNFRSF17".
+#'  \itemize{
+#'  \item "pair" contains values in a form "ligand:receptor", i.e. ligand being at the first place, receptor being at the second place, e.g. "TNFSF13:TNFRSF17".
+#'  \item "ligand" contains ligand names, e.g. "TNFSF13".
+#'  \item "ligand_complex_composition" if ligand is a complex (e.g. "aXb2_complex"),
+#'  contains genes in the ligand complex separated with a comma, e.g. "ITGAX,ITGB2", else contains empty string "".
+#'  \item "receptor" contains receptor names, e.g. "TNFRSF17".
+#'  \item "receptor_complex_composition" if receptor is a complex (e.g. "NKG2D_II_receptor"),
+#'  contains genes in the receptor complex separated with a comma, e.g. "KLRK1,HCST", else contains empty string "".
+#'  }
 #'
-#' Column "ligand" contains ligand names, e.g. "TNFSF13".
+#' @param       dissim_matrix Numeric matrix: pairwise dissimilarity matrix.
 #'
-#' Column ligand_complex_composition" if ligand is a complex (e.g. "aXb2_complex"),
-#' contains genes in the ligand complex separated with a comma, e.g. "ITGAX,ITGB2", else contains empty string "".
-#'
-#' Column "receptor" contains receptor names, e.g. "TNFRSF17".
-#'
-#' Column "receptor_complex_composition" if receptor is a complex (e.g. "NKG2D_II_receptor"),
-#' contains genes in the receptor complex separated with a comma, e.g. "KLRK1,HCST", else contains empty string "".
-#'
-#' @param       dissim_matrix Numeric matrix: pairwise dissimilarity matrix. Note that rownames and colnames should be defined.
+#' Note that row names and column names should contain ligand-receptor pairs.
 #'
 #' @param       lrp_clusters Numeric vector: cluster assignment for each ligand-recetor pair.
-#'  Note that the the vector should be named and ordered in the same way as the rownames and colnames of the dissim_matrix.
+#'
+#' Note that the the vector should be named and ordered in the same way as the row names and column names of the dissim_matrix.
 #'
 #' @param       seed Random seed for UMAP. Default value: 100.
 #'
@@ -51,7 +52,7 @@
 #'
 #' @param       legend_byrow logical: Argument of the guide_legend function. Default value: TRUE.
 #'
-#' @return      UMAP of ligand-receptor pairs coloured and shaped by cluster
+#' @return      UMAP of ligand-receptor pairs coloured and shaped by cluster.
 plot_cluster_UMAP <- function(ligand_receptor_pair_df
                               ,dissim_matrix
                               ,lrp_clusters

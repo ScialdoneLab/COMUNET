@@ -21,39 +21,43 @@ plot_cluster_heatmap(
 )
 }
 \arguments{
-\item{dissim_matrix}{Numeric matrix: pairwise dissimilarity matrix. Note that rownames and colnames should be defined.}
+\item{dissim_matrix}{Numeric matrix: pairwise dissimilarity matrix.
+
+Note that row names and column names should be defined.}
 
 \item{lrp_clusters}{Numeric vector: cluster assignment for each ligand-receptor pair.
-Note that the the vector should be named and ordered in the same way as the rownames and colnames of the dissim_matrix.}
+
+Note that the the vector should be named and ordered in the same way as the row names and column names of the dissim_matrix.}
 
 \item{cluster_colors}{Character string vector: vector with colours for each cluster. Default value: "".}
 
 \item{unclustered_LRP_color}{Character string: colour for ligand-receptor pairs that remained unclustered (cluster assignment 0). Default value: "black".}
 
-\item{show_row_names}{Logical: argument of the Heatmap function. Default value: F.}
+\item{show_row_names}{Logical: argument of the "Heatmap" function. Default value: F.}
 
-\item{legend_direction}{Character string: argument of the Heatmap function. Default value: "horizontal".}
+\item{legend_direction}{Character string: argument of the "Heatmap" function. Default value: "horizontal".}
 
-\item{legend_width}{Object of class "unit": argument of the Heatmap function. Default is: unit(5, "cm").}
+\item{legend_width}{Object of class "unit": argument of the "Heatmap" function. Default is: unit(5, "cm").}
 
-\item{title_position}{Character string: argument of the Heatmap function. Default value: "lefttop".}
+\item{title_position}{Character string: argument of the "Heatmap" function. Default value: "lefttop".}
 
-\item{column_title}{Character string: title of the heatmap plot. Argument of the draw function. Default value: "Clustering of ligand-receptor pairs".}
+\item{column_title}{Character string: title of the heatmap plot. Argument of the "draw" function. Default value: "Clustering of ligand-receptor pairs".}
 
-\item{column_title_side}{Character string:  position of the title of the heatmap plot. Argument of the draw function. Default value: "top".}
+\item{column_title_side}{Character string:  position of the title of the heatmap plot. Argument of the "draw" function. Default value: "top".}
 
-\item{heatmap_legend_side}{Character string: position of the legend of the heatmap plot. Argument of the draw function. Default value: "bottom".}
+\item{heatmap_legend_side}{Character string: position of the legend of the heatmap plot. Argument of the "draw" function. Default value: "bottom".}
 
 \item{...}{Any arguments "Heatmap" function takes.}
 
-\item{show_colomn_names}{Logical: argument of the Heatmap function. Default value: F.}
+\item{show_colomn_names}{Logical: argument of the "Heatmap" function. Default value: F.}
 }
 \value{
-heatmap with ligand-receptor pairs ordered by their cluster assignment
+Heatmap with ligand-receptor pairs ordered by their cluster assignment.
 }
 \description{
-\code{plot_cluster_heatmap} plots a heatmap for clustered ligand-receptor pairs.
-Rows and columns are sorted by cluster number, the color of the heatmap represents dissimilarity between two pairs.
+Plots a heatmap for clustered ligand-receptor pairs.
+
+Rows and columns are sorted by cluster number, the color of the heatmap represents dissimilarity between two ligand-receptor pairs.
 }
 \author{
 Maria Solovey \email{maria.solovey@helmholtz-muenchen.de}

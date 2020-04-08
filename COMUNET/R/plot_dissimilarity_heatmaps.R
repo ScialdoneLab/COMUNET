@@ -5,28 +5,32 @@
 #' Plots heatmaps of dissimilarity between two conditions
 #'
 #' @description
-#' \code{plot_dissimilarity_heatmaps} plots heatmaps of dissimilarity between two conditions.
+#' Plots heatmaps of dissimilarity between two conditions.
+#'
 #' In each heatmap, interacting protein pairs from condition 1 are in the rows, and those from condition 2 are in the columns.
 #' On the first heatmap, both rows and columns are clustered by the pairwise dissimilarity.
 #' On the second heatmap, rows and columns are sorted by presence (shared or unshared) of an interacting protein pairs in both conditions
 #' and by decreasing pairwise dissimilarity (in shared interacting pairs).
-#' Labels of interacting pairs are colored by their presence (shared or unshared).
-#' Each point of the heatmap is colored by the value of the pairwise dissimilarity.
+#'
+#' Labels of interacting pairs are colored by their presence in both conditions (shared or unshared).
+#' The heatmap is colored by the values of the pairwise dissimilarity.
 #'
 #' @author
 #' Maria Solovey \email{maria.solovey@helmholtz-muenchen.de}
 #'
 #' @param dissim_cond1_cond2 Numeric matrix: pairwise dissimilarity between all ligand-receptor pairs in the two conditions (condition 1 in rows, condition 2 in columns).
 #'
-#' @param sorted_LRP_df Dataframe with columns:
+#' @param sorted_LRP_df Data frame with columns:
 #'
-#' "pair" (character string): names of ligand-receptor pairs in the same form as they are in ligand_receptor_pair_df$pair;
+#' \itemize{
 #'
-#' "presence" (character string): name of the condition in which the ligand-receptor pair is present or "shared" if present in both conditions;
+#' \item "pair" (character string): names of ligand-receptor pairs in the same form as they are in ligand_receptor_pair_df$pair.
+#' \item "presence" (character string): name of the condition in which the ligand-receptor pair is present or "shared" if present in both conditions.
+#' \item "dissimilarity" (numeric): dissimilarity value between the topology of ligand-receptor pair graph in two conditions.
 #'
-#' "dissimilarity" (numeric): dissimilarity value between the topology of ligand-receptor pair graph in two conditions.
 #' The smaller the dissimilarity value, the more similar is the graph topology between the two conditions.
 #' If a ligand-receptor pair is present only in one of the conditions, the dissimilarity is equal to 1.
+#' }
 #'
 #' @param cond1_name Character string: sample name for condition 1.
 #'
@@ -34,40 +38,48 @@
 #'
 #' @param colors_lrp Character string vector: colours for ligand-receptor labels. Default: green for shared, black for unshared.
 #'
-#' @param show_legend Logical: parameter of the HeatmapAnnotation function. Default is T.
+#' @param show_legend Logical: parameter of the "HeatmapAnnotation" function. Default is T.
 #'
-#' @param row_names_fontsize Numeric: parameter of the Heatmap function. Default is 5.
+#' @param row_names_fontsize Numeric: parameter of the "Heatmap" function. Default is 5.
 #'
-#' @param colomn_names_fontsize Numeric: parameter of the Heatmap function. Default is 5.
+#' @param colomn_names_fontsize Numeric: parameter of the "Heatmap" function. Default is 5.
 #'
-#' @param show_column_names Logical: parameter of the Heatmap function. Default is T.
+#' @param show_column_names Logical: parameter of the "Heatmap" function. Default is T.
 #'
-#' @param show_row_names Logical: parameter of the Heatmap function. Default  is T.
+#' @param show_row_names Logical: parameter of the "Heatmap" function. Default  is T.
 #'
-#' @param width Object of class "unit": parameter of the HeatmapAnnotation function. Default is unit(0.1, "cm").
+#' @param width Object of class "unit": parameter of the "HeatmapAnnotation" function. Default is unit(0.1, "cm").
 #'
-#' @param legend_direction Character string: parameter of the Heatmap function. Default is "horizontal".
+#' @param legend_direction Character string: parameter of the "Heatmap" function. Default is "horizontal".
 #'
-#' @param legend_width Object of class "unit": parameter of the Heatmap function. Default is unit(5, "cm").
+#' @param legend_width Object of class "unit": parameter of the "Heatmap" function. Default is unit(5, "cm").
 #'
-#' @param title_position Character string: parameter of the Heatmap function. Default is "lefttop".
+#' @param title_position Character string: parameter of the "Heatmap" function. Default is "lefttop".
 #'
-#' @param row_dend_side Character string: parameter of the Heatmap function. Default is "left"
+#' @param row_dend_side Character string: parameter of the "Heatmap" function. Default is "left"
 #'
-#' @param column_dend_side Character string: parameter of the Heatmap function. Default is "top".
+#' @param column_dend_side Character string: parameter of the "Heatmap" function. Default is "top".
 #'
-#' @param column_title_side Character string: parameter of the draw function. Default is "top".
+#' @param column_title_side Character string: parameter of the "draw" function. Default is "top".
 #'
-#' @param heatmap_legend_side Character string: parameter of the draw function. Default is "bottom".
+#' @param heatmap_legend_side Character string: parameter of the "draw" function. Default is "bottom".
 #'
-#' @param ... Any other parameters of the Heatmap function.
+#' @param ... Any other parameters of the "Heatmap" function.
 #'
 #' @return
-#' two heatmaps:
+#' Two heatmaps:
 #'
-#' - one with ligand-receptor pairs clustered by their pairwise dissimilarity
+#' \itemize{
+#'   \item{clustered heatmap}{
 #'
-#' - one with ligand-receptor pairs sorted by decreasing dissimilarity of shared ligand-receptor pairs
+#'   A heatmap with ligand-receptor pairs clustered by their pairwise dissimilarity.
+#'   }
+#'
+#'   \item{sorted heatmap}{
+#'
+#'   A heatmap with ligand-receptor pairs sorted by decreasing dissimilarity of shared ligand-receptor pairs.
+#'   }
+#'   }
 plot_dissimilarity_heatmaps <- function(dissim_cond1_cond2
                                         ,sorted_LRP_df
                                         ,cond1_name

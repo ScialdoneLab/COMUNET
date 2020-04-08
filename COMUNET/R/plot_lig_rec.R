@@ -5,7 +5,8 @@
 #' Plots ligands and receptors in a particular cluster
 #'
 #' @description
-#' \code{plot_lig_rec} plots interacting partners in a particular cluster.
+#' Plots interacting partners in a particular cluster.
+#'
 #' If the pair of interacting partners is a ligand-receptor pair, then the ligand is colored red,
 #' the receptor is colored blue, and the arrow goes from the ligand to the receptor.
 #' In case no directionality is specified for the pair of interacting proteins A and B (i.e., as for adhesion molecules),
@@ -18,19 +19,17 @@
 #'
 #' @param       lrp_clusters Integer vector: cluster assignment for each ligand-receptor pair.
 #'
-#' @param       ligand_receptor_pair_df Character dataframe: data frame with columns "pair", "ligand", "ligand_complex_composition", "receptor", "receptor_complex_composition".
+#' @param       ligand_receptor_pair_df Character string data frame: data frame with columns:
 #'
-#' Column "pair" contains values in a form "ligand:receptor", i.e. ligand being at the first place, receptor being at the second place, e.g. "TNFSF13:TNFRSF17".
-#'
-#' Column "ligand" contains ligand names, e.g. "TNFSF13".
-#'
-#' Column "ligand_complex_composition" if ligand is a complex (e.g. "aXb2_complex"),
-#' contains genes in the ligand complex separated with a comma, e.g. "ITGAX,ITGB2", else contains empty string "".
-#'
-#' Column "receptor" contains receptor names, e.g. "TNFRSF17".
-#'
-#' Column "receptor_complex_composition" if receptor is a complex (e.g. "NKG2D_II_receptor"),
-#' contains genes in the receptor complex separated with a comma, e.g. "KLRK1,HCST", else contains empty string "".
+#'  \itemize{
+#'  \item "pair" contains values in a form "ligand:receptor", i.e. ligand being at the first place, receptor being at the second place, e.g. "TNFSF13:TNFRSF17".
+#'  \item "ligand" contains ligand names, e.g. "TNFSF13".
+#'  \item "ligand_complex_composition" if ligand is a complex (e.g. "aXb2_complex"),
+#'  contains genes in the ligand complex separated with a comma, e.g. "ITGAX,ITGB2", else contains empty string "".
+#'  \item "receptor" contains receptor names, e.g. "TNFRSF17".
+#'  \item "receptor_complex_composition" if receptor is a complex (e.g. "NKG2D_II_receptor"),
+#'  contains genes in the receptor complex separated with a comma, e.g. "KLRK1,HCST", else contains empty string "".
+#'  }
 #'
 #' @param       lig_rec_color Character string vector: colours for ligand and receptors: first colour for the ligand, second colour for the receptor. Default value: c("red", "blue").
 #'
@@ -48,7 +47,7 @@
 #'
 #' @param       ... Any other plot.igraph parameters.
 #'
-#' @return     graph plot
+#' @return     Graph plot.
 plot_lig_rec <- function(cluster_of_interest
                          ,lrp_clusters
                          ,ligand_receptor_pair_df
