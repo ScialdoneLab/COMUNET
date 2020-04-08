@@ -21,8 +21,8 @@
 #' @return
 #' \item{weight_matrix}{
 #'
-#'   Numeric n x n matrix with values 0 or 1. Rows are nodes, columns are nodes.
-#'   Rows are regarded as sending cell type, columns are regarded as receiving cell types. 1 defines communication, 0 defines no communication.
+#'   Numeric \eqn{n \times n} matrix with \eqn{n} being the number of nodes and the values 0 or 1. Rows are nodes, columns are nodes.
+#'   Rows are regarded as sending cell type, columns are regarded as receiving cell types. A value of 1 defines communication, a value of 0 defines no communication.
 #' }
 make_pattern_matrix <- function(communicating_nodes
                                 ,nodes
