@@ -132,7 +132,7 @@ lrp_clustering <- function(weight_array
                         )
                         check_NAs(weight_array_by_cluster)
 
-                        # calcualte degree arrays for each community (put it as well as an array)
+                        # calculate degree arrays for each community (put it as well as an array)
                         degree_array_for_clusters <- calc_degrees(weight_array = weight_array_by_cluster)
 
                 } else {

@@ -95,8 +95,8 @@ Graph plot.
 Plots a communication graph for a pair of interacting partners.
 
 If the pair of interacting partners is a ligand-receptor pair, a positive value of the node delta degree indicates that the node (cell type)
-is mostly communicating by producing and secreting the ligand (“sending” node); conversely, a negative node delta degree marks nodes
-that communicate mainly by receiving signals through the receptor (“receiving node”).
+is mostly communicating by producing and secreting the ligand ("sending" node); conversely, a negative node delta degree marks nodes
+that communicate mainly by receiving signals through the receptor ("receiving node").
 
 The arrows of the graph start at the sending nodes (which expresses the ligand) and point to the receiving nodes (which expresses the receptor),
 while the thickness of an edge indicates the edge weight.

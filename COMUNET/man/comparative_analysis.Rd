@@ -2,7 +2,7 @@
 % Please edit documentation in R/comparative_analysis.R
 \name{comparative_analysis}
 \alias{comparative_analysis}
-\title{Performs comparative analysis between two comditions}
+\title{Performs comparative analysis between two conditions}
 \usage{
 comparative_analysis(
   cond1_weight_array,
