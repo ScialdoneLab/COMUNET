@@ -71,6 +71,24 @@ Performs comparative analysis between two conditions (e.g. two samples).
 Given the results of a cell-cell communication analysis of two datasets including the same cell types,
 \code{comparative_analysis} estimates the differences in the cell-cell communication patterns between corresponding interacting partners in the two datasets.
 }
+\examples{
+# load AML328_d0_interactions
+data("AML328_d0_interactions")
+
+# load AML328_d31_interactions
+data("AML328_d31_interactions")
+
+comparative_analysis <- comparative_analysis(cond1_weight_array = AML328_d0_interactions$weight_array
+                                             ,cond2_weight_array = AML328_d31_interactions$weight_array
+                                             ,cond1_ligand_receptor_pair_df = AML328_d0_interactions$ligand_receptor_pair_df
+                                             ,cond2_ligand_receptor_pair_df = AML328_d31_interactions$ligand_receptor_pair_df
+                                             ,cond1_nodes = AML328_d0_interactions$nodes
+                                             ,cond2_nodes = AML328_d31_interactions$nodes
+                                             ,cond1_name = "AML328_d0"
+                                             ,cond2_name = "AML328_d31")
+print(str(comparative_analysis))
+
+}
 \author{
 Maria Solovey \email{maria.solovey@helmholtz-muenchen.de}
 }

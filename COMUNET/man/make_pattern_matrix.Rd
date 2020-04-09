@@ -25,6 +25,19 @@ The rows and columns of the matrix contain all nodes.
 The rows are considered as sending nodes and the columns are considered as receiving nodes.
 The value of 1 represents an edge (i.e. cell types are communicating) and 0 represents no edge (i.e. cell types are not communicating).
 }
+\examples{
+
+# load embryo_interactions
+data("embryo_interactions")
+
+communicating_nodes <- c("exVE_to_EPI" ,"exVE_to_Mes","exVE_to_TE" ,"exVE_to_emVE" ,"exVE_to_exVE")
+
+test_pattern <- make_pattern_matrix(communicating_nodes = communicating_nodes,
+                   nodes = embryo_interactions$nodes)
+print(test_pattern)
+
+
+}
 \author{
 Maria Solovey \email{maria.solovey@helmholtz-muenchen.de}
 }

@@ -103,6 +103,44 @@ while the thickness of an edge indicates the edge weight.
 In case no directionality is specified for the pair of interacting proteins A and B (i.e., as for adhesion molecules),
 the arrows start at the node expressing partner A and point to the node expressing partner B.
 }
+\examples{
+
+# load embryo_interactions
+data("embryo_interactions")
+
+# load lrp_clusters
+data("lrp_clusters")
+
+# For a sinlge ligand-receptor pair:
+plot_communication_graph(LRP = "IGF2:IGF2R",
+                        weight_array = embryo_interactions$weight_array,
+                        ligand_receptor_pair_df = embryo_interactions$ligand_receptor_pair_df,
+                        nodes = interactions$node)
+
+# For a cluster:
+plot_communication_graph(LRP = "cluster 1",
+                       weight_array = lrp_clusters$weight_array_by_cluster[,,"cluster 1"],
+                       ligand_receptor_pair_df = embryo_interactions$ligand_receptor_pair_df,
+                       nodes = embryo_interactions$nodes,
+                       is_cluster = T)
+
+# for a patern:
+test_pattern <- matrix(c(rep(0
+                            ,dim(embryo_interactions$weight_array)[[1]]-1)
+                            ,1)
+                       ,nrow = dim(embryo_interactions$weight_array)[[1]]
+                       ,ncol = dim(embryo_interactions$weight_array)[[2]]
+                       ,byrow = F
+                       )
+dimnames(test_pattern) <- dimnames(embryo_interactions$weight_array)[c(1,2)]
+
+plot_communication_graph(LRP = "my pattern of interest",
+                       weight_array = test_pattern,
+                       ligand_receptor_pair_df = embryo_interactions$ligand_receptor_pair_df,
+                       nodes = embryo_interactions$node,
+                       is_pattern = T)
+
+}
 \author{
 Maria Solovey \email{maria.solovey@helmholtz-muenchen.de}
 }

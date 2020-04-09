@@ -45,6 +45,37 @@
 #'
 #'   }
 #'    The data frame is sorted by increasing dissimilarity (i.e. similar patterns come at the top).
+#'
+#' @examples
+#' # load embryo_interactions
+#' data("embryo_interactions")
+#'
+#' # make a pattern of interest
+#' communicating_nodes <- c("exVE_to_EPI" ,"exVE_to_Mes","exVE_to_TE" ,"exVE_to_emVE" ,"exVE_to_exVE")
+#'
+#' test_pattern <- make_pattern_matrix(communicating_nodes = communicating_nodes,
+#'                    nodes = embryo_interactions$nodes)
+#' print(test_pattern)
+#'
+#' # alternatively create a pattern matrix manually:
+#' \dontrun{
+#' test_pattern <- matrix(c(rep(0
+#'                             ,dim(embryo_interactions$weight_array)[[1]]-1)
+#'                             ,1)
+#'                        ,nrow = dim(embryo_interactions$weight_array)[[1]]
+#'                        ,ncol = dim(embryo_interactions$weight_array)[[2]]
+#'                        ,byrow = F
+#'                        )
+#' dimnames(test_pattern) <- dimnames(embryo_interactions$weight_array)[c(1,2)]
+#' }
+#'
+#'# search for the pattern
+#' patterns <- pattern_search(pattern_adj_matrix = test_pattern,
+#'                           weight_array = embryo_interactions$weight_array,
+#'                           ligand_receptor_pair_df = embryo_interactions$ligand_receptor_pair_df,
+#'                           nodes = embryo_interactions$nodes)
+#' print(str(patterns))
+#'
 pattern_search <- function(pattern_adj_matrix
                            ,weight_array
                            ,ligand_receptor_pair_df

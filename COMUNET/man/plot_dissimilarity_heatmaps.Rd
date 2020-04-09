@@ -101,6 +101,16 @@ and by decreasing pairwise dissimilarity (in shared interacting pairs).
 Labels of interacting pairs are colored by their presence in both conditions (shared or unshared).
 The heatmap is colored by the values of the pairwise dissimilarity.
 }
+\examples{
+# load comparative analysis
+data("comparative_analysis")
+
+plot_dissimilarity_heatmaps(dissim_cond1_cond2 = comparative_analysis$dissim_cond1_cond2,
+                            sorted_LRP_df = comparative_analysis$sorted_LRP_df,
+                            cond1_name = "AML328-d0",
+                            cond2_name = "AML328-d31")
+
+}
 \author{
 Maria Solovey \email{maria.solovey@helmholtz-muenchen.de}
 }
