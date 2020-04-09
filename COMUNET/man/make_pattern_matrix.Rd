@@ -7,7 +7,7 @@
 make_pattern_matrix(communicating_nodes, nodes)
 }
 \arguments{
-\item{communicating_nodes}{Character string vector: in form of c("cellType1_to_celltype2", "cell_type1_to_celltype3", ...), e.g. c("HSC_to_Tcells", "HSC_to_bcells", ...).}
+\item{communicating_nodes}{Character string vector: in form of c("cellType1_to_cellType2", "cellType1_to_cellType3", ...), e.g. c("HSC_to_Tcells", "HSC_to_Bcells", ...).}
 
 \item{nodes}{Character string vector: of length n with all cell types in the data.}
 }

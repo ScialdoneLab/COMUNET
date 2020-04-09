@@ -2,7 +2,7 @@
 #' @export
 #'
 #' @title
-#' Performs comparative analysis between two comditions
+#' Performs comparative analysis between two conditions
 #'
 #' @description
 #' Performs comparative analysis between two conditions (e.g. two samples).

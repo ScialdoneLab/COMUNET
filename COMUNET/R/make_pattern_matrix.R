@@ -14,7 +14,7 @@
 #' @author
 #' Maria Solovey \email{maria.solovey@helmholtz-muenchen.de}
 #'
-#' @param communicating_nodes Character string vector: in form of c("cellType1_to_celltype2", "cell_type1_to_celltype3", ...), e.g. c("HSC_to_Tcells", "HSC_to_bcells", ...).
+#' @param communicating_nodes Character string vector: in form of c("cellType1_to_cellType2", "cellType1_to_cellType3", ...), e.g. c("HSC_to_Tcells", "HSC_to_Bcells", ...).
 #'
 #' @param nodes Character string vector: of length n with all cell types in the data.
 #'
@@ -44,7 +44,7 @@ make_pattern_matrix <- function(communicating_nodes
 
         # define receiving nodes
         receiving_nodes <- gsub('.*to_', "", communicating_nodes)
-        print("recieving nodes are:")
+        print("receiving nodes are:")
         print(receiving_nodes)
 
 

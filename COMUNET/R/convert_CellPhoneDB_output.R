@@ -123,7 +123,7 @@ convert_CellPhoneDB_output <- function(CellPhoneDB_output
                                  ,"partner_b"
                 )
                 ){
-                        # which complexes in partern_a or in pertner_b colomn contain "_"
+                        # which complexes in partern_a or in partner_b colomn contain "_"
                         idx_complex <- grep("_"
                                             ,unlist(CellPhoneDB_output[,partner])
                         )
