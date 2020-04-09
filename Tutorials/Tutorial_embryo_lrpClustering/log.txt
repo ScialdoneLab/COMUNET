@@ -1,0 +1,21 @@
+[ ][APP][09/10/19-12:23:35][WARNING] Latest local available version is `v2.0.0`, using it
+[ ][APP][09/10/19-12:23:35][WARNING] User selected downloaded database `v2.0.0` is available, using it
+[ ][CORE][09/10/19-12:23:35][INFO] Initializing SqlAlchemy CellPhoneDB Core
+[ ][CORE][09/10/19-12:23:35][INFO] Using custom database at /Users/MariaSolovey/.cpdb/releases/v2.0.0/cellphone.db
+[ ][APP][09/10/19-12:23:35][INFO] Launching Method cpdb_statistical_analysis_local_method_launcher
+[ ][APP][09/10/19-12:23:35][INFO] Launching Method _set_paths
+[ ][APP][09/10/19-12:23:35][INFO] Launching Method _load_meta_counts
+[ ][CORE][09/10/19-12:23:41][INFO] Launching Method cpdb_statistical_analysis_launcher
+[ ][CORE][09/10/19-12:23:41][INFO] Launching Method _counts_validations
+[ ][CORE][09/10/19-12:23:41][INFO] [Cluster Statistical Analysis Simple] Threshold:0.1 Iterations:1000 Debug-seed:-1 Threads:4 Precision:3
+[ ][CORE][09/10/19-12:23:41][INFO] Running Simple Prefilters
+[ ][CORE][09/10/19-12:23:42][INFO] Running Real Simple Analysis
+[ ][CORE][09/10/19-12:23:44][INFO] Running Statistical Analysis
+[ ][CORE][09/10/19-12:31:36][INFO] Building Pvalues result
+[ ][CORE][09/10/19-12:31:50][INFO] Building Simple results
+[ ][CORE][09/10/19-12:31:51][INFO] [Cluster Statistical Analysis Complex] Threshold:0.1 Iterations:1000 Debug-seed:-1 Threads:4 Precision:3
+[ ][CORE][09/10/19-12:31:51][INFO] Running Complex Prefilters
+[ ][CORE][09/10/19-12:32:04][INFO] Running Real Complex Analysis
+[ ][CORE][09/10/19-12:32:05][INFO] Running Statistical Analysis
+[ ][CORE][09/10/19-12:36:09][INFO] Building Pvalues result
+[ ][CORE][09/10/19-12:36:12][INFO] Building Complex results
