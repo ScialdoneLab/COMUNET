@@ -142,7 +142,7 @@ plot_dissimilarity_heatmaps <- function(dissim_cond1_cond2
                                              ,title_position = title_position
                 )
                 ,row_title = cond1_name
-                ,end_side = row_dend_side
+                ,row_dend_side = row_dend_side
                 ,column_title = cond2_name
                 ,column_dend_side = column_dend_side
                 ,...

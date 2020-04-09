@@ -4,9 +4,17 @@ Intercellular communication plays an essential role in multicellular organisms a
 We developed COMUNET (Cell cOMmunication exploration with MUltiplex NETworks), a tool that streamlines the interpretation of the results from cell-cell communication analyses. 
 COMUNET uses multiplex networks to represent and cluster all potential communication pathways between cell types. The algorithm also enables the search for specific patterns of communication and can perform comparative analysis between two biological conditions. To exemplify its use, here we apply COMUNET to investigate cell communication patterns in single-cell transcriptomic datasets from mouse embryos and from an acute myeloid leukemia patient at diagnosis and after treatment. 
 
+## Installation
+
+For installation, please use the following command:
+
+```devtools::install_github("ScialdoneLab/COMUNET/COMUNET")```
+
+## Tutorials
+
 There are following tutorials available:
 
-## **[Tutorial_embryo_lrpClustering](https://github.com/ScialdoneLab/COMUNET/tree/COUMNET-dev/Tutorials/Tutorial_embryo_lrpClustering):**
+### **[Tutorial_embryo_lrpClustering](https://github.com/ScialdoneLab/COMUNET/tree/COUMNET-dev/Tutorials/Tutorial_embryo_lrpClustering):**
 1. 1_PrepareData.ipynb
 2. 2_CellPhoneDBanalysis.ipynb
 3. 3_LRP_clustering.ipynb
@@ -21,7 +29,7 @@ Please note that COMUNET does not necessarily rely on the results of CellPhoneDB
 
 The 3_LRP_clustering.ipynb tutorial describes the COMUNET ligand-receptor clustering procedure.
 
-## **[Tutorial_embryo_patternSearch](https://github.com/ScialdoneLab/COMUNET/tree/COUMNET-dev/Tutorials/Tutorial_embryo_patternSearch):**
+### **[Tutorial_embryo_patternSearch](https://github.com/ScialdoneLab/COMUNET/tree/COUMNET-dev/Tutorials/Tutorial_embryo_patternSearch):**
 1. 1_PrepareData.ipynb
 2. 2_CellPhoneDBanalysis.ipynb
 3. 3_PatternSearch.ipynb
@@ -32,7 +40,7 @@ The tutorials 1_PrepareData.ipynb and 2_CellPhoneDBanalysis.ipynb are the same, 
 
 The tutorial 3_PatternSearch.ipynb describes the COMUNET cell-cell communication pattern search procedure.
 
-## **[Tutorial_AML_comparative](https://github.com/ScialdoneLab/COMUNET/tree/COUMNET-dev/Tutorials/Tutorial_AML_comparative):**
+### **[Tutorial_AML_comparative](https://github.com/ScialdoneLab/COMUNET/tree/COUMNET-dev/Tutorials/Tutorial_AML_comparative):**
 1. 1_PrepareData.ipynb
 2. 2_CellPhoneDBanalysis.ipynb
 3. 3_ComparativeAnalysis.ipynb
