@@ -8,7 +8,7 @@ COMUNET uses multiplex networks to represent and cluster all potential communica
 
 For installation, please use the following command:
 
-\code{devtools::install_github("ScialdoneLab/COMUNET/COMUNET")}
+```devtools::install_github("ScialdoneLab/COMUNET/COMUNET")```
 
 ## Tutorials
 
