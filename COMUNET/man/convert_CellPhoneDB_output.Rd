@@ -63,6 +63,22 @@ The columns of each matrix represent receiving cell types, i.e. cell types that 
 or partner B of an undirected interacting pair (e.g. pair of adhesion molecules).
 The NA values of the CellPhoneDB output are substituted with 0.
 }
+\examples{
+# load CellPhoneDB output for embryo data
+data("embryo_CellPhoneDB_output")
+
+# load complex_input table
+data("complex_input")
+
+# load gene_input table
+data("gene_input")
+
+# transform CellPhoneDB output
+embryo_interactions <- convert_CellPhoneDB_output(CellPhoneDB_output = embryo_CellPhoneDB_output, complex_input = complex_input, gene_input = gene_input)
+
+# print(str(embryo_interactions))
+
+}
 \references{
 CellPhoneDB:
 

@@ -48,6 +48,19 @@
 #' @param       ... Any other \code{\link[plot.igraph:igraph]{plot.igraph}} parameters.
 #'
 #' @return     Graph plot.
+#'
+#' @examples
+#'
+#' # load embryo_interactions
+#' data("embryo_interactions")
+#'
+#' # load lrp_clusters
+#' data("lrp_clusters")
+#'
+#' plot_lig_rec(cluster_of_interest = 1,
+#'              lrp_clusters = lrp_clusters$clusters,
+#'              ligand_receptor_pair_df = embryo_interactions$ligand_receptor_pair_df)
+#'
 plot_lig_rec <- function(cluster_of_interest
                          ,lrp_clusters
                          ,ligand_receptor_pair_df

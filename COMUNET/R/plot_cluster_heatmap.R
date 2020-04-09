@@ -43,6 +43,15 @@
 #' @param       ... Any arguments \code{\link[Heatmap:ComplexHeatmap]{Heatmap}} function takes.
 #'
 #' @return      Heatmap with ligand-receptor pairs ordered by their cluster assignment.
+#'
+#' @examples
+#'
+#' # load lrp_clusters
+#' data("lrp_clusters")
+#'
+#' # plot heatmap
+#' plot_cluster_heatmap(dissim_matrix = lrp_clusters$dissim_matrix, lrp_clusters = lrp_clusters$clusters)
+#'
 plot_cluster_heatmap <- function(dissim_matrix
                                  ,lrp_clusters
                                  ,cluster_colors = ""

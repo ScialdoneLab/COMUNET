@@ -70,6 +70,17 @@ UMAP of ligand-receptor pairs coloured and shaped by cluster.
 \description{
 Plots UMAP of ligand-receptor pairs colored and shaped by cluster.
 }
+\examples{
+# load lrp_clusters
+data("lrp_clusters")
+
+# load embryo_interactions
+data("embryo_interactions")
+
+# plot heatmap
+plot_cluster_UMAP(ligand_receptor_pair_df = embryo_interactions$ligand_receptor_pair_df, dissim_matrix = lrp_clusters$dissim_matrix, lrp_clusters = lrp_clusters$clusters)
+
+}
 \author{
 Maria Solovey \email{maria.solovey@helmholtz-muenchen.de}
 }

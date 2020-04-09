@@ -80,6 +80,16 @@
 #'   A heatmap with ligand-receptor pairs sorted by decreasing dissimilarity of shared ligand-receptor pairs.
 #'   }
 #'   }
+#'
+#' @examples
+#' # load comparative analysis
+#' data("comparative_analysis")
+#'
+#' plot_dissimilarity_heatmaps(dissim_cond1_cond2 = comparative_analysis$dissim_cond1_cond2,
+#'                             sorted_LRP_df = comparative_analysis$sorted_LRP_df,
+#'                             cond1_name = "AML328-d0",
+#'                             cond2_name = "AML328-d31")
+#'
 plot_dissimilarity_heatmaps <- function(dissim_cond1_cond2
                                         ,sorted_LRP_df
                                         ,cond1_name

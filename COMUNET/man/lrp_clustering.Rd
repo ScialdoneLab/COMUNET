@@ -50,7 +50,9 @@ A list of:
   }
   \item{weight_array_by_cluster}{
 
-  Numeric array:   array of weighted adjacency matrices with dimensions [number of nodes, number of nodes, number of ligand-receptor clusters].
+  Numeric array:   array of weight adjacency matrices (one weight adjacency matrix per cluster).
+
+  The array of weight adjacency has the following dimensions: number of nodes, number of nodes, number of ligand-receptor clusters.
 
   Each edge weight in a cluster is calculated as the mean of the weights of this edge in all ligand-receptor pairs that belong to this cluster.
 
@@ -66,6 +68,18 @@ The number of clusters is estimated using the  \code{\link[cutreeHybrid:dynamicT
 with \code{deepSplit} equal to 0 and default \code{minClusterSize} equal to 6 by default (both can be adjusted).
 
 For each cluster, a graph represents the average communication pattern in the cluster and is built by averaging the edge weights and the delta degrees of the nodes of all the graphs in the cluster.
+}
+\examples{
+# load embryo_interactions data
+data("embryo_interactions")
+
+# calcualte clusters if ligand-receptor pairs
+lrp_clusters <- lrp_clustering(weight_array = embryo_interactions$weight_array,
+          ligand_receptor_pair_df = embryo_interactions$ligand_receptor_pair_df,
+          nodes = embryo_interactions$nodes
+          )
+
+# print(str(lrp_clusters))
 }
 \author{
 Maria Solovey \email{maria.solovey@helmholtz-muenchen.de}

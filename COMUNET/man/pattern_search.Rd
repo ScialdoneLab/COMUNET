@@ -51,6 +51,37 @@ Performs a search search for ligand-receptor pairs with a pattern of communicati
 A pattern of interest is defined with a binary adjacency matrix with values 0 or 1, the value 1 indicating the presence of an edge and 0 the absence.
 The adjacency matrices of the layers are also binarized based on the presence/absence of the edges and then the dissimilarities with the user-specified adjacency matrix are calculated.
 }
+\examples{
+# load embryo_interactions
+data("embryo_interactions")
+
+# make a pattern of interest
+communicating_nodes <- c("exVE_to_EPI" ,"exVE_to_Mes","exVE_to_TE" ,"exVE_to_emVE" ,"exVE_to_exVE")
+
+test_pattern <- make_pattern_matrix(communicating_nodes = communicating_nodes,
+                   nodes = embryo_interactions$nodes)
+print(test_pattern)
+
+# alternatively create a pattern matrix manually:
+\dontrun{
+test_pattern <- matrix(c(rep(0
+                            ,dim(embryo_interactions$weight_array)[[1]]-1)
+                            ,1)
+                       ,nrow = dim(embryo_interactions$weight_array)[[1]]
+                       ,ncol = dim(embryo_interactions$weight_array)[[2]]
+                       ,byrow = F
+                       )
+dimnames(test_pattern) <- dimnames(embryo_interactions$weight_array)[c(1,2)]
+}
+
+# search for the pattern
+patterns <- pattern_search(pattern_adj_matrix = test_pattern,
+                          weight_array = embryo_interactions$weight_array,
+                          ligand_receptor_pair_df = embryo_interactions$ligand_receptor_pair_df,
+                          nodes = embryo_interactions$nodes)
+print(str(patterns))
+
+}
 \author{
 Maria Solovey \email{maria.solovey@helmholtz-muenchen.de}
 }

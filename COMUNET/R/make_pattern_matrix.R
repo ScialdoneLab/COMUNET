@@ -24,6 +24,19 @@
 #'   Numeric \eqn{n} x \eqn{n} matrix with \eqn{n} being the number of nodes and the values of the matrix being 0 or 1.
 #'   Rows are regarded as sending cell type, columns are regarded as receiving cell types. A value of 1 defines communication, a value of 0 defines no communication.
 #' }
+#'
+#' @examples
+#'
+#' # load embryo_interactions
+#' data("embryo_interactions")
+#'
+#' communicating_nodes <- c("exVE_to_EPI" ,"exVE_to_Mes","exVE_to_TE" ,"exVE_to_emVE" ,"exVE_to_exVE")
+#'
+#' test_pattern <- make_pattern_matrix(communicating_nodes = communicating_nodes,
+#'                    nodes = embryo_interactions$nodes)
+#' print(test_pattern)
+#'
+#'
 make_pattern_matrix <- function(communicating_nodes
                                 ,nodes
 ){

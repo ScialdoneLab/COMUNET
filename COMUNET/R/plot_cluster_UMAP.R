@@ -53,6 +53,17 @@
 #' @param       legend_byrow logical: Argument of the \code{\link[guide_legend:ggplot2]{guide_legend}} function. Default value: TRUE.
 #'
 #' @return      UMAP of ligand-receptor pairs coloured and shaped by cluster.
+#'
+#' @examples
+#' # load lrp_clusters
+#' data("lrp_clusters")
+#'
+#' # load embryo_interactions
+#' data("embryo_interactions")
+#'
+#' # plot heatmap
+#' plot_cluster_UMAP(ligand_receptor_pair_df = embryo_interactions$ligand_receptor_pair_df, dissim_matrix = lrp_clusters$dissim_matrix, lrp_clusters = lrp_clusters$clusters)
+#'
 plot_cluster_UMAP <- function(ligand_receptor_pair_df
                               ,dissim_matrix
                               ,lrp_clusters

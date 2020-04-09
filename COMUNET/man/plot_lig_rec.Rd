@@ -62,6 +62,19 @@ the receptor is colored blue, and the arrow goes from the ligand to the receptor
 In case no directionality is specified for the pair of interacting proteins A and B (i.e., as for adhesion molecules),
 the arrows start at the node expressing partner A and point to the node expressing partner B.
 }
+\examples{
+
+# load embryo_interactions
+data("embryo_interactions")
+
+# load lrp_clusters
+data("lrp_clusters")
+
+plot_lig_rec(cluster_of_interest = 1,
+             lrp_clusters = lrp_clusters$clusters,
+             ligand_receptor_pair_df = embryo_interactions$ligand_receptor_pair_df)
+
+}
 \author{
 Maria Solovey \email{maria.solovey@helmholtz-muenchen.de}
 }

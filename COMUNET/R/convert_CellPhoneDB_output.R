@@ -62,6 +62,21 @@
 #'   }
 #' }
 #'
+#' @examples
+#' # load CellPhoneDB output for embryo data
+#' data("embryo_CellPhoneDB_output")
+#'
+#' # load complex_input table
+#' data("complex_input")
+#'
+#' # load gene_input table
+#' data("gene_input")
+#'
+#' # transform CellPhoneDB output
+#' embryo_interactions <- convert_CellPhoneDB_output(CellPhoneDB_output = embryo_CellPhoneDB_output, complex_input = complex_input, gene_input = gene_input)
+#'
+#' # print(str(embryo_interactions))
+#'
 #' @references
 #' CellPhoneDB:
 #'

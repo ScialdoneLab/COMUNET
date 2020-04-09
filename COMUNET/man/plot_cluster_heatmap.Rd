@@ -59,6 +59,15 @@ Plots a heatmap for clustered ligand-receptor pairs.
 
 Rows and columns are sorted by cluster number, the color of the heatmap represents dissimilarity between two ligand-receptor pairs.
 }
+\examples{
+
+# load lrp_clusters
+data("lrp_clusters")
+
+# plot heatmap
+plot_cluster_heatmap(dissim_matrix = lrp_clusters$dissim_matrix, lrp_clusters = lrp_clusters$clusters)
+
+}
 \author{
 Maria Solovey \email{maria.solovey@helmholtz-muenchen.de}
 }
