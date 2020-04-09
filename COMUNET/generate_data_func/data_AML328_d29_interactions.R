@@ -37,12 +37,12 @@
 #'   }
 #' }
 #'
-"AML328_d31_interactions"
+"AML328_d29_interactions"
 
 options(stringsAsFactors = F)
 
 # load CellPhoneDB output for embryo data
-data("AML328_d31_CellPhoneDB_output")
+data("AML328_d29_CellPhoneDB_output")
 
 # load complex_input table
 data("complex_input")
@@ -52,10 +52,10 @@ data("gene_input")
 
 
 # transform CellPhoneDB output
-AML328_d31_interactions <- convert_CellPhoneDB_output(CellPhoneDB_output = AML328_d31_CellPhoneDB_output
+AML328_d29_interactions <- convert_CellPhoneDB_output(CellPhoneDB_output = AML328_d29_CellPhoneDB_output
                                                      ,complex_input = complex_input
                                                      ,gene_input = gene_input)
 
 
-use_data(AML328_d31_interactions
+use_data(AML328_d29_interactions
          ,overwrite = TRUE)
