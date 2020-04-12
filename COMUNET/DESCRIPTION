@@ -9,8 +9,7 @@ Description: COMUNET is a visualisation and analysis tool for cell-cell communic
 	COMUNET uses multiplex networks to represent and cluster all potential communication 
 	pathways between cell types. It also enables the search for specific patterns of 
 	communication and can perform comparative analysis between two biological conditions. 
-Depends: R (>= 3.5.0)
-Imports:
+Depends: R (>= 3.5.0),
 	ComplexHeatmap (>= 1.20.0),
 	dynamicTreeCut (>= 1.63-1),
 	ggplot2 (>= 3.3.0),
