@@ -108,7 +108,7 @@ data("comparative_analysis")
 plot_dissimilarity_heatmaps(dissim_cond1_cond2 = comparative_analysis$dissim_cond1_cond2,
                             sorted_LRP_df = comparative_analysis$sorted_LRP_df,
                             cond1_name = "AML328-d0",
-                            cond2_name = "AML328-d31")
+                            cond2_name = "AML328-d29")
 
 }
 \author{
