@@ -68,10 +68,10 @@ the arrows start at the node expressing partner A and point to the node expressi
 data("embryo_interactions")
 
 # load lrp_clusters
-data("lrp_clusters")
+data("embryo_lrp_clusters")
 
 plot_lig_rec(cluster_of_interest = 1,
-             lrp_clusters = lrp_clusters$clusters,
+             lrp_clusters = embryo_lrp_clusters$clusters,
              ligand_receptor_pair_df = embryo_interactions$ligand_receptor_pair_df)
 
 }
