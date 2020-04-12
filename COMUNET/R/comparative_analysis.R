@@ -66,7 +66,7 @@
 #' # load AML328_d29_interactions
 #' data("AML328_d29_interactions")
 #'
-#' comparative_analysis <- comparative_analysis(cond1_weight_array = AML328_d0_interactions$weight_array
+#' my_comparative_analysis <- comparative_analysis(cond1_weight_array = AML328_d0_interactions$weight_array
 #'                                              ,cond2_weight_array = AML328_d29_interactions$weight_array
 #'                                              ,cond1_ligand_receptor_pair_df = AML328_d0_interactions$ligand_receptor_pair_df
 #'                                              ,cond2_ligand_receptor_pair_df = AML328_d29_interactions$ligand_receptor_pair_df
@@ -74,7 +74,7 @@
 #'                                              ,cond2_nodes = AML328_d29_interactions$nodes
 #'                                              ,cond1_name = "AML328_d0"
 #'                                              ,cond2_name = "AML328_d29")
-#' print(str(comparative_analysis))
+#' print(str(my_comparative_analysis))
 #'
 comparative_analysis <- function(cond1_weight_array
                                  ,cond2_weight_array

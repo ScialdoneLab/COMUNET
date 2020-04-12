@@ -35,12 +35,12 @@ options(stringsAsFactors = F)
 data("embryo_interactions")
 
 # calcualte clusters if ligand-receptor pairs
-lrp_clusters <- lrp_clustering(weight_array = embryo_interactions$weight_array
+embryo_lrp_clusters <- lrp_clustering(weight_array = embryo_interactions$weight_array
                                ,ligand_receptor_pair_df = embryo_interactions$ligand_receptor_pair_df
                                ,nodes = embryo_interactions$nodes
 )
 
 # print(str(lrp_clusters))
 
-use_data(lrp_clusters
+use_data(embryo_lrp_clusters
          ,overwrite = TRUE)
