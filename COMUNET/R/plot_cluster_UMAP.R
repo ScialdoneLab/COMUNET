@@ -56,13 +56,13 @@
 #'
 #' @examples
 #' # load lrp_clusters
-#' data("lrp_clusters")
+#' data("embryo_lrp_clusters")
 #'
 #' # load embryo_interactions
 #' data("embryo_interactions")
 #'
 #' # plot heatmap
-#' plot_cluster_UMAP(ligand_receptor_pair_df = embryo_interactions$ligand_receptor_pair_df, dissim_matrix = lrp_clusters$dissim_matrix, lrp_clusters = lrp_clusters$clusters)
+#' plot_cluster_UMAP(ligand_receptor_pair_df = embryo_interactions$ligand_receptor_pair_df, dissim_matrix = embryo_lrp_clusters$dissim_matrix, lrp_clusters = embryo_lrp_clusters$clusters)
 #'
 plot_cluster_UMAP <- function(ligand_receptor_pair_df
                               ,dissim_matrix

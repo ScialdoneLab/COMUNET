@@ -109,7 +109,7 @@ the arrows start at the node expressing partner A and point to the node expressi
 data("embryo_interactions")
 
 # load lrp_clusters
-data("lrp_clusters")
+data("embryo_lrp_clusters")
 
 # For a sinlge ligand-receptor pair:
 plot_communication_graph(LRP = "IGF2:IGF2R",
@@ -119,7 +119,7 @@ plot_communication_graph(LRP = "IGF2:IGF2R",
 
 # For a cluster:
 plot_communication_graph(LRP = "cluster 1",
-                       weight_array = lrp_clusters$weight_array_by_cluster[,,"cluster 1"],
+                       weight_array = embryo_lrp_clusters$weight_array_by_cluster[,,"cluster 1"],
                        ligand_receptor_pair_df = embryo_interactions$ligand_receptor_pair_df,
                        nodes = embryo_interactions$nodes,
                        is_cluster = T)

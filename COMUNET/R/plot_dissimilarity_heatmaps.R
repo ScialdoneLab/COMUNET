@@ -83,10 +83,10 @@
 #'
 #' @examples
 #' # load comparative analysis
-#' data("comparative_analysis")
+#' data("AML_comparative_analysis")
 #'
-#' plot_dissimilarity_heatmaps(dissim_cond1_cond2 = comparative_analysis$dissim_cond1_cond2,
-#'                             sorted_LRP_df = comparative_analysis$sorted_LRP_df,
+#' plot_dissimilarity_heatmaps(dissim_cond1_cond2 = AML_comparative_analysis$dissim_cond1_cond2,
+#'                             sorted_LRP_df = AML_comparative_analysis$sorted_LRP_df,
 #'                             cond1_name = "AML328-d0",
 #'                             cond2_name = "AML328-d29")
 #'

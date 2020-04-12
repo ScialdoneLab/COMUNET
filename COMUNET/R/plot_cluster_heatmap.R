@@ -47,10 +47,10 @@
 #' @examples
 #'
 #' # load lrp_clusters
-#' data("lrp_clusters")
+#' data("embryo_lrp_clusters")
 #'
 #' # plot heatmap
-#' plot_cluster_heatmap(dissim_matrix = lrp_clusters$dissim_matrix, lrp_clusters = lrp_clusters$clusters)
+#' plot_cluster_heatmap(dissim_matrix = embryo_lrp_clusters$dissim_matrix, lrp_clusters = embryo_lrp_clusters$clusters)
 #'
 plot_cluster_heatmap <- function(dissim_matrix
                                  ,lrp_clusters
