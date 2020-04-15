@@ -10,7 +10,7 @@
 #' A pattern of interest is defined with a binary adjacency matrix with values 0 or 1, the value 1 indicating the presence of an edge and 0 the absence.
 #' The adjacency matrices of the layers are also binarized based on the presence/absence of the edges and then the dissimilarities with the user-specified adjacency matrix are calculated.
 #'
-#' Please nota that for simplicity, we address all interacting partners (including non-directional partners such as adhesion molecules) as "ligand-receptor pairs".
+#' Please note that for simplicity, we address all interacting partners (including non-directional partners such as adhesion molecules) as "ligand-receptor pairs".
 #'
 #' @author
 #' Maria Solovey \email{maria.solovey@helmholtz-muenchen.de}

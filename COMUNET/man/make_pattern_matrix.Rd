@@ -25,7 +25,7 @@ The rows and columns of the matrix contain all nodes.
 The rows are considered as sending nodes and the columns are considered as receiving nodes.
 The value of 1 represents an edge (i.e. cell types are communicating) and 0 represents no edge (i.e. cell types are not communicating).
 
-Please nota that for simplicity, we address all interacting partners (including non-directional partners such as adhesion molecules) as "ligand-receptor pairs".
+Please note that for simplicity, we address all interacting partners (including non-directional partners such as adhesion molecules) as "ligand-receptor pairs".
 }
 \examples{
 

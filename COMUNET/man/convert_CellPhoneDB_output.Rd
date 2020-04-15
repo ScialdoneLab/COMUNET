@@ -63,7 +63,7 @@ The columns of each matrix represent receiving cell types, i.e. cell types that 
 or partner B of an undirected interacting pair (e.g. pair of adhesion molecules).
 The NA values of the CellPhoneDB output are substituted with 0.
 
-Please nota that for simplicity, we address all interacting partners (including non-directional partners such as adhesion molecules) as "ligand-receptor pairs".
+Please note that for simplicity, we address all interacting partners (including non-directional partners such as adhesion molecules) as "ligand-receptor pairs".
 }
 \examples{
 # load CellPhoneDB output for embryo data

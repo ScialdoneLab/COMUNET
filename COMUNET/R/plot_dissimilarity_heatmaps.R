@@ -15,7 +15,7 @@
 #' Labels of interacting partners are colored by their presence in both conditions (shared or unshared).
 #' The heatmap is colored by the values of the pairwise dissimilarity.
 #'
-#' Please nota that for simplicity, we address all interacting partners (including non-directional partners such as adhesion molecules) as "ligand-receptor pairs".
+#' Please note that for simplicity, we address all interacting partners (including non-directional partners such as adhesion molecules) as "ligand-receptor pairs".
 #'
 #' @author
 #' Maria Solovey \email{maria.solovey@helmholtz-muenchen.de}
