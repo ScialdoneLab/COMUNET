@@ -12,7 +12,7 @@
 #' In case no directionality is specified for the pair of interacting proteins A and B (i.e., as for adhesion molecules),
 #' the arrows start at the node expressing partner A and point to the node expressing partner B.
 #'
-#' Please nota that for simplicity, we address all interacting partners (including non-directional partners such as adhesion molecules) as "ligand-receptor pairs".
+#' Please note that for simplicity, we address all interacting partners (including non-directional partners such as adhesion molecules) as "ligand-receptor pairs".
 #'
 #' @author
 #' Maria Solovey \email{maria.solovey@helmholtz-muenchen.de}
