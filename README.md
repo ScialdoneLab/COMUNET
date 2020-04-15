@@ -27,7 +27,7 @@ The 2_CellPhoneDBanalysis.ipynb tutorial describes the steps to run CellPhoneDB 
 
 Please note that COMUNET does not necessarily rely on the results of CellPhoneDB algorithm. You can use any algorithm of choice, which generates weight matrices, which represent how likely/strong is the interaction between two different cell types mediated by a given pair of proteins. 
 
-The 3_LRP_clustering.ipynb tutorial describes the COMUNET ligand-receptor clustering procedure.
+The 3_LRP_clustering.ipynb tutorial describes the COMUNET clustering of interacting partners.
 
 ### **[Tutorial_embryo_patternSearch](https://github.com/ScialdoneLab/COMUNET/tree/master/Tutorials/Tutorial_embryo_patternSearch):**
 1. 1_PrepareData.ipynb

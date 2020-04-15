@@ -2,7 +2,7 @@
 % Please edit documentation in R/plot_cluster_heatmap.R
 \name{plot_cluster_heatmap}
 \alias{plot_cluster_heatmap}
-\title{Plots heatmap for clustered ligand-receptor pairs}
+\title{Plots heatmap for clustered interacting partners}
 \usage{
 plot_cluster_heatmap(
   dissim_matrix,
@@ -55,9 +55,11 @@ Note that the the vector should be named and ordered in the same way as the row 
 Heatmap with ligand-receptor pairs ordered by their cluster assignment.
 }
 \description{
-Plots a heatmap for clustered ligand-receptor pairs.
+Plots a heatmap for clustered interacting partners.
 
-Rows and columns are sorted by cluster number, the color of the heatmap represents dissimilarity between two ligand-receptor pairs.
+Rows and columns are sorted by cluster number, the color of the heatmap represents dissimilarity between two pairs of interacting partners.
+
+Please nota that for simplicity, we address all interacting partners (including non-directional partners such as adhesion molecules) as "ligand-receptor pairs".
 }
 \examples{
 

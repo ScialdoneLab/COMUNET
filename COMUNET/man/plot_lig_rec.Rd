@@ -2,7 +2,7 @@
 % Please edit documentation in R/plot_lig_rec.R
 \name{plot_lig_rec}
 \alias{plot_lig_rec}
-\title{Plots ligands and receptors in a particular cluster}
+\title{Plots interacting partners in a particular cluster}
 \usage{
 plot_lig_rec(
   cluster_of_interest,
@@ -61,6 +61,8 @@ If the pair of interacting partners is a ligand-receptor pair, then the ligand i
 the receptor is colored blue, and the arrow goes from the ligand to the receptor.
 In case no directionality is specified for the pair of interacting proteins A and B (i.e., as for adhesion molecules),
 the arrows start at the node expressing partner A and point to the node expressing partner B.
+
+Please nota that for simplicity, we address all interacting partners (including non-directional partners such as adhesion molecules) as "ligand-receptor pairs".
 }
 \examples{
 

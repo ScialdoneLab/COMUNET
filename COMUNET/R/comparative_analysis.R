@@ -9,6 +9,8 @@
 #' Given the results of a cell-cell communication analysis of two datasets including the same cell types,
 #' \code{comparative_analysis} estimates the differences in the cell-cell communication patterns between corresponding interacting partners in the two datasets.
 #'
+#' Please nota that for simplicity, we address all interacting partners (including non-directional partners such as adhesion molecules) as "ligand-receptor pairs".
+#'
 #' @author
 #' Maria Solovey \email{maria.solovey@helmholtz-muenchen.de}
 #'

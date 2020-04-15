@@ -2,7 +2,7 @@
 % Please edit documentation in R/plot_cluster_UMAP.R
 \name{plot_cluster_UMAP}
 \alias{plot_cluster_UMAP}
-\title{Plots UMAP of ligand-receptor pairs}
+\title{Plots UMAP of interacting partners}
 \usage{
 plot_cluster_UMAP(
   ligand_receptor_pair_df,
@@ -38,7 +38,7 @@ plot_cluster_UMAP(
 
 Note that row names and column names should contain ligand-receptor pairs.}
 
-\item{lrp_clusters}{Numeric vector: cluster assignment for each ligand-recetor pair.
+\item{lrp_clusters}{Numeric vector: cluster assignment for each ligand-receptor pair.
 
 Note that the the vector should be named and ordered in the same way as the row names and column names of the dissim_matrix.}
 
@@ -68,7 +68,9 @@ Note that the the vector should be named and ordered in the same way as the row 
 UMAP of ligand-receptor pairs coloured and shaped by cluster.
 }
 \description{
-Plots UMAP of ligand-receptor pairs colored and shaped by cluster.
+Plots UMAP of interacting partners colored and shaped by cluster.
+
+Please nota that for simplicity, we address all interacting partners (including non-directional partners such as adhesion molecules) as "ligand-receptor pairs".
 }
 \examples{
 # load lrp_clusters

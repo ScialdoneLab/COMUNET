@@ -70,6 +70,8 @@ A list of:
 Performs comparative analysis between two conditions (e.g. two samples).
 Given the results of a cell-cell communication analysis of two datasets including the same cell types,
 \code{comparative_analysis} estimates the differences in the cell-cell communication patterns between corresponding interacting partners in the two datasets.
+
+Please nota that for simplicity, we address all interacting partners (including non-directional partners such as adhesion molecules) as "ligand-receptor pairs".
 }
 \examples{
 # load AML328_d0_interactions

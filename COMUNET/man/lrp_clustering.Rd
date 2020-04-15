@@ -68,12 +68,14 @@ The number of clusters is estimated using the  \code{\link[cutreeHybrid:dynamicT
 with \code{deepSplit} equal to 0 and default \code{minClusterSize} equal to 6 by default (both can be adjusted).
 
 For each cluster, a graph represents the average communication pattern in the cluster and is built by averaging the edge weights and the delta degrees of the nodes of all the graphs in the cluster.
+
+Please nota that for simplicity, we address all interacting partners (including non-directional partners such as adhesion molecules) as "ligand-receptor pairs".
 }
 \examples{
 # load embryo_interactions data
 data("embryo_interactions")
 
-# calcualte clusters if ligand-receptor pairs
+# calculate clusters if ligand-receptor pairs
 lrp_clusters <- lrp_clustering(weight_array = embryo_interactions$weight_array,
           ligand_receptor_pair_df = embryo_interactions$ligand_receptor_pair_df,
           nodes = embryo_interactions$nodes
