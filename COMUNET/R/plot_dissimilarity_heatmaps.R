@@ -7,13 +7,15 @@
 #' @description
 #' Plots heatmaps of dissimilarity between two conditions.
 #'
-#' In each heatmap, interacting protein pairs from condition 1 are in the rows, and those from condition 2 are in the columns.
+#' In each heatmap, interacting partners from condition 1 are in the rows, and those from condition 2 are in the columns.
 #' On the first heatmap, both rows and columns are clustered by the pairwise dissimilarity.
-#' On the second heatmap, rows and columns are sorted by presence (shared or unshared) of an interacting protein pairs in both conditions
-#' and by decreasing pairwise dissimilarity (in shared interacting pairs).
+#' On the second heatmap, rows and columns are sorted by presence (shared or unshared) of interacting partners in both conditions
+#' and by decreasing pairwise dissimilarity (in shared interacting partners).
 #'
-#' Labels of interacting pairs are colored by their presence in both conditions (shared or unshared).
+#' Labels of interacting partners are colored by their presence in both conditions (shared or unshared).
 #' The heatmap is colored by the values of the pairwise dissimilarity.
+#'
+#' Please nota that for simplicity, we address all interacting partners (including non-directional partners such as adhesion molecules) as "ligand-receptor pairs".
 #'
 #' @author
 #' Maria Solovey \email{maria.solovey@helmholtz-muenchen.de}

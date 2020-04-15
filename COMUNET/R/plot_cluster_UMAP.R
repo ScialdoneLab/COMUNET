@@ -2,10 +2,12 @@
 #' @export
 #'
 #' @title
-#' Plots UMAP of ligand-receptor pairs
+#' Plots UMAP of interacting partners
 #'
 #' @description
-#' Plots UMAP of ligand-receptor pairs colored and shaped by cluster.
+#' Plots UMAP of interacting partners colored and shaped by cluster.
+#'
+#' Please nota that for simplicity, we address all interacting partners (including non-directional partners such as adhesion molecules) as "ligand-receptor pairs".
 #'
 #' @author
 #' Maria Solovey \email{maria.solovey@helmholtz-muenchen.de}
@@ -26,7 +28,7 @@
 #'
 #' Note that row names and column names should contain ligand-receptor pairs.
 #'
-#' @param       lrp_clusters Numeric vector: cluster assignment for each ligand-recetor pair.
+#' @param       lrp_clusters Numeric vector: cluster assignment for each ligand-receptor pair.
 #'
 #' Note that the the vector should be named and ordered in the same way as the row names and column names of the dissim_matrix.
 #'

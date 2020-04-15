@@ -19,6 +19,8 @@
 #' or partner B of an undirected interacting pair (e.g. pair of adhesion molecules).
 #' The NA values of the CellPhoneDB output are substituted with 0.
 #'
+#' Please nota that for simplicity, we address all interacting partners (including non-directional partners such as adhesion molecules) as "ligand-receptor pairs".
+#'
 #' @author
 #' Maria Solovey \email{maria.solovey@helmholtz-muenchen.de}
 #'

@@ -16,6 +16,8 @@
 #' In case no directionality is specified for the pair of interacting proteins A and B (i.e., as for adhesion molecules),
 #' the arrows start at the node expressing partner A and point to the node expressing partner B.
 #'
+#' Please nota that for simplicity, we address all interacting partners (including non-directional partners such as adhesion molecules) as "ligand-receptor pairs".
+#'
 #' @author
 #' Maria Solovey \email{maria.solovey@helmholtz-muenchen.de}
 #'
@@ -91,7 +93,7 @@
 #' # load lrp_clusters
 #' data("embryo_lrp_clusters")
 #'
-#' # For a sinlge ligand-receptor pair:
+#' # For a single ligand-receptor pair:
 #' plot_communication_graph(LRP = "IGF2:IGF2R",
 #'                         weight_array = embryo_interactions$weight_array,
 #'                         ligand_receptor_pair_df = embryo_interactions$ligand_receptor_pair_df,

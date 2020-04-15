@@ -46,10 +46,12 @@ A data frame with columns:
    The data frame is sorted by increasing dissimilarity (i.e. similar patterns come at the top).
 }
 \description{
-Performs a search search for ligand-receptor pairs with a pattern of communication similar to the pattern of interest.
+Performs a search search for interacting partners with a pattern of communication similar to the pattern of interest.
 
 A pattern of interest is defined with a binary adjacency matrix with values 0 or 1, the value 1 indicating the presence of an edge and 0 the absence.
 The adjacency matrices of the layers are also binarized based on the presence/absence of the edges and then the dissimilarities with the user-specified adjacency matrix are calculated.
+
+Please nota that for simplicity, we address all interacting partners (including non-directional partners such as adhesion molecules) as "ligand-receptor pairs".
 }
 \examples{
 # load embryo_interactions
