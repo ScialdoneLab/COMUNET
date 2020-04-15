@@ -9,7 +9,7 @@
 #'
 #' Rows and columns are sorted by cluster number, the color of the heatmap represents dissimilarity between two pairs of interacting partners.
 #'
-#' Please nota that for simplicity, we address all interacting partners (including non-directional partners such as adhesion molecules) as "ligand-receptor pairs".
+#' Please note that for simplicity, we address all interacting partners (including non-directional partners such as adhesion molecules) as "ligand-receptor pairs".
 #'
 #' @author
 #' Maria Solovey \email{maria.solovey@helmholtz-muenchen.de}

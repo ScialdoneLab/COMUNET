@@ -13,7 +13,7 @@
 #'
 #' For each cluster, a graph represents the average communication pattern in the cluster and is built by averaging the edge weights and the delta degrees of the nodes of all the graphs in the cluster.
 #'
-#' Please nota that for simplicity, we address all interacting partners (including non-directional partners such as adhesion molecules) as "ligand-receptor pairs".
+#' Please note that for simplicity, we address all interacting partners (including non-directional partners such as adhesion molecules) as "ligand-receptor pairs".
 #'
 #' @author
 #' Maria Solovey \email{maria.solovey@helmholtz-muenchen.de}
